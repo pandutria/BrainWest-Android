@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">BrainWest</string>
+    <string name="onborading_title_one">Selamat Datang di Dunia Teknologi yang Dapat Diakses</string>
+    <string name="onborading_title_two">Deteksi Dini untuk Otak yang Lebih Sehat dan Berkinerja Optimal</string>
+    <string name="onborading_title_three">Edukasi &amp; Dukungan untuk Perjalanan Kesehatan Otak Anda</string>
+    <string name="onborading_subtitle_one">Aplikasi kesehatan otak yang membantu masyarakat menjaga dan meningkatkan kesehatan otak dengan fitur deteksi dini, konsultasi, komunitas, edukasi, serta dukungan berbasis teknologi AI. Mari wujudkan generasi yang lebih sehat, cerdas, dan peduli terhadap kesehatan otak!</string>
+    <string name="onborading_subtitle_two">Dengan teknologi AI dan analisis cerdas, kami membantu Anda memeriksa kondisi kesehatan otak secara cepat dan akurat.  Cukup jawab pertanyaan atau gunakan fitur analisis otomatis, dan dapatkan panduan pencegahan yang tepat sebelum masalah muncul.</string>
+    <string name="onborading_subtitle_three">Akses materi edukasi terpercaya, tips gaya hidup sehat, dan komunitas yang peduli. Bersama, kita wujudkan generasi yang lebih sadar, cerdas, dan siap menjaga kesehatan otak seumur hidup.</string>
+    <string name="login_title">Silahkan Masuk ke Akun Anda</string>
+    <string name="login_sub_title">Masukkan nama user dan kata sandi Anda untuk masuk</string>
+    <string name="username">Nama User</string>
+    <string name="hint_username">Masukan nama user...</string>
+    <string name="password">Kata Sandi</string>
+    <string name="hint_password">Masukan kata sandi...</string>
+    <string name="forgot_password">Lupa Kata Sandi?</string>
+    <string name="login">Masuk</string>
+    <string name="google">Lanjutkan dengan Google</string>
+    <string name="facebook">Lanjutkan dengan Facebook</string>
+    <string name="or">Atau</string>
+    <string name="dont_have_account">Belum punya akun? Daftar</string>
+    <string name="register">Daftar</string>
+    <string name="register_title">Daftar</string>
+    <string name="register_sub_title">Buat akun untuk melanjutkan!</string>
+    <string name="fullname">Nama Lengkap</string>
+    <string name="hint_fullname">Masukan nama lengkap...</string>
+    <string name="birth_date">Tanggal Lahir</string>
+    <string name="hint_birth_date">Masukan tanggal lahir...</string>
+    <string name="already_have_account">Sudah punya akun?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
