@@ -3,21 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg"
     android:orientation="vertical"
     android:paddingHorizontal="30dp"
     android:paddingVertical="10dp"
     tools:context=".ui.view.onboarding.OnBoardingOneFragment">
 
-    <TextView
-        android:id="@+id/tvSkip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/next"
-        android:textColor="@color/white"
-        android:fontFamily="@font/poppins_regular"
-        android:layout_gravity="end"
-        android:textSize="14sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,25 +21,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="@string/onborading_title_one"
+            android:text="@string/onborading_title_three"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/white"
             android:textSize="20sp"/>
 
         <ImageView
-            android:layout_width="280dp"
+            android:layout_width="match_parent"
             android:layout_height="280dp"
-            android:src="@drawable/onboard1"
+            android:src="@drawable/onboard3"
             android:layout_marginVertical="70dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="@string/onborading_subtitle_one"
+            android:text="@string/onborading_subtitle_three"
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/white"
-            android:textSize="10.5sp"
+            android:textSize="10sp"
             android:layout_marginBottom="50dp"/>
 
         <LinearLayout
@@ -56,21 +48,35 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogin"
+                android:layout_width="110dp"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/white"
+                app:cornerRadius="100dp"
+                android:text="@string/login"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="13sp"/>
+
+
             <ImageView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="7dp"
-                android:src="@drawable/slider1"
-                android:layout_marginLeft="45dp"
+                android:src="@drawable/slider3"
                 />
 
-            <ImageButton
-                android:id="@+id/btnNext"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:background="@null"
-                android:scaleType="centerCrop"
-                android:src="@drawable/arrow_right_button"/>
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="110dp"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/primary"
+                app:cornerRadius="100dp"
+                android:text="@string/register"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="12sp"/>
+
 
         </LinearLayout>
 

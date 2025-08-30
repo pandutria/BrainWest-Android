@@ -8,6 +8,72 @@
     <fragment
         android:id="@+id/splashFragment"
         tools:layout="@layout/fragment_splash"
-        android:name="com.example.brainwest_android.ui.view.splash.SplashFragment"/>
+        android:name="com.example.brainwest_android.ui.view.splash.SplashFragment">
+        <action
+            android:id="@+id/action_splashFragment_to_onBoardingOneFragment"
+            app:destination="@id/onBoardingOneFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/onBoardingOneFragment"
+        tools:layout="@layout/fragment_on_boarding_one"
+        android:name="com.example.brainwest_android.ui.view.onboarding.OnBoardingOneFragment">
+        <action
+            android:id="@+id/action_onBoardingOneFragment_to_onBoardingTwoFragment"
+            app:destination="@id/onBoardingTwoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_onBoardingOneFragment_to_onBoardingThreeFragment"
+            app:destination="@id/onBoardingThreeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/onBoardingTwoFragment"
+        tools:layout="@layout/fragment_on_boarding_two"
+        android:name="com.example.brainwest_android.ui.view.onboarding.OnBoardingTwoFragment">
+        <action
+            android:id="@+id/action_onBoardingTwoFragment_to_onBoardingThreeFragment"
+            app:destination="@id/onBoardingThreeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_onBoardingTwoFragment_to_onBoardingOneFragment"
+            app:destination="@id/onBoardingOneFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/onBoardingThreeFragment"
+        tools:layout="@layout/fragment_on_boarding_three"
+        android:name="com.example.brainwest_android.ui.view.onboarding.OnBoardingThreeFragment">
+        <action
+            android:id="@+id/action_onBoardingThreeFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        tools:layout="@layout/fragment_login"
+        android:name="com.example.brainwest_android.ui.view.auth.LoginFragment"/>
 
 </navigation>

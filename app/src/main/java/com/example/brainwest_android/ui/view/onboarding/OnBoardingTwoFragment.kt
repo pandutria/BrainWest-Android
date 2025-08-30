@@ -7,28 +7,30 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
-import com.example.brainwest_android.databinding.FragmentOnBoardingOneBinding
+import com.example.brainwest_android.databinding.FragmentOnBoardingTwoBinding
 
-class OnBoardingOneFragment : Fragment() {
-    lateinit var binding: FragmentOnBoardingOneBinding
+class OnBoardingTwoFragment : Fragment() {
+    lateinit var binding: FragmentOnBoardingTwoBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentOnBoardingOneBinding.inflate(layoutInflater)
+        binding = FragmentOnBoardingTwoBinding.inflate(layoutInflater)
 
         binding.btnNext.setOnClickListener {
-            findNavController().navigate(R.id.action_onBoardingOneFragment_to_onBoardingTwoFragment)
+            findNavController().navigate(R.id.action_onBoardingTwoFragment_to_onBoardingThreeFragment)
+        }
+
+        binding.btnPrev.setOnClickListener {
+            findNavController().navigate(R.id.action_onBoardingTwoFragment_to_onBoardingOneFragment)
         }
 
         binding.tvSkip.setOnClickListener {
-            findNavController().navigate(R.id.action_onBoardingOneFragment_to_onBoardingThreeFragment)
+            findNavController().navigate(R.id.action_onBoardingTwoFragment_to_onBoardingThreeFragment)
         }
 
         return binding.root
     }
-
-
 }
