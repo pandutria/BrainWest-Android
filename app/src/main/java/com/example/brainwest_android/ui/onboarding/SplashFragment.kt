@@ -1,4 +1,4 @@
-package com.example.brainwest_android.ui.view.splash
+package com.example.brainwest_android.ui.onboarding
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

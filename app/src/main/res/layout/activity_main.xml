@@ -15,7 +15,36 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost="true"
         app:navGraph="@navigation/main_nav_graph"
+        android:layout_above="@id/frameNavbar"
         android:clipToPadding="true"
         />
+    
+    <FrameLayout
+        android:id="@+id/frameNavbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg"
+            android:elevation="10dp"
+            app:itemIconTint="@color/nav_item_color"
+            app:itemTextColor="@color/nav_item_color"
+            app:labelVisibilityMode="labeled"
+            app:itemActiveIndicatorStyle="@null"
+            android:paddingTop="5dp"
+            app:menu="@menu/main_menu"/>
+
+        <View
+            android:id="@+id/indicator"
+            android:layout_width="70dp"
+            android:layout_height="6dp"
+            android:elevation="20dp"
+            android:background="@drawable/bg_indicator"/>
+
+    </FrameLayout>
 
 </RelativeLayout>

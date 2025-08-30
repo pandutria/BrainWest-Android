@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:paddingHorizontal="30dp"
     android:paddingVertical="10dp"
-    tools:context=".ui.view.onboarding.OnBoardingOneFragment">
+    tools:context=".ui.onboarding.OnBoardingOneFragment">
 
     <TextView
         android:id="@+id/tvSkip"

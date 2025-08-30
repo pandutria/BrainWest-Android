@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:paddingHorizontal="30dp"
     android:paddingVertical="10dp"
-    tools:context=".ui.view.onboarding.OnBoardingOneFragment">
+    tools:context=".ui.onboarding.OnBoardingOneFragment">
 
 
     <LinearLayout
@@ -68,6 +68,7 @@
                 />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRegister"
                 android:layout_width="110dp"
                 android:layout_height="60dp"
                 android:backgroundTint="@color/primary"

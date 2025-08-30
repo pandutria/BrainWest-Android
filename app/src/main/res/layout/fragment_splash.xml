@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@color/bg"
-    tools:context=".ui.view.splash.SplashFragment">
+    tools:context=".ui.onboarding.SplashFragment">
 
     <ImageView
         android:layout_width="140dp"

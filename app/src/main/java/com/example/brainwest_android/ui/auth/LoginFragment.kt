@@ -1,4 +1,4 @@
-package com.example.brainwest_android.ui.view.onboarding
+package com.example.brainwest_android.ui.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,21 +7,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
-import com.example.brainwest_android.databinding.FragmentOnBoardingThreeBinding
+import com.example.brainwest_android.databinding.FragmentLoginBinding
 
-
-class OnBoardingThreeFragment : Fragment() {
-    lateinit var binding: FragmentOnBoardingThreeBinding
+class LoginFragment : Fragment() {
+    lateinit var binding: FragmentLoginBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentOnBoardingThreeBinding.inflate(layoutInflater)
+        binding = FragmentLoginBinding.inflate(layoutInflater)
+
+        binding.tvRegister.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
 
         binding.btnLogin.setOnClickListener {
-            findNavController().navigate(R.id.action_onBoardingThreeFragment_to_loginFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
 
         return binding.root
