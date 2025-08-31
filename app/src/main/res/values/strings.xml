@@ -52,4 +52,5 @@
     <string name="try_ai">Coba</string>
     <string name="drug_shopping">Perdagangan Obat</string>
     <string name="see_all"><u>Lihat Semua</u></string>
+    <string name="all_field_must_be_filled">Semua input wajib di isi!</string>
 </resources>

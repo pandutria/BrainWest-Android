@@ -9,7 +9,7 @@ import com.example.brainwest_android.R
 import io.github.muddz.styleabletoast.StyleableToast
 
 object Helper {
-    fun showErrorLog(message: String) {
+    fun showErrorLog(message: String? = null) {
         Log.d("AppError", "Error : $message")
     }
 
@@ -29,27 +29,27 @@ object Helper {
             .show()
     }
 
-    fun showWarningToast(context: Context, message: String) {
-        StyleableToast.Builder(context)
-            .text(message)
-            .textColor(Color.WHITE)
-            .backgroundColor(ContextCompat.getColor(context, R.color.warningToast))
-            .solidBackground()
-            .cornerRadius(5)
-            .textBold()
-            .iconStart(R.drawable.ic_success)
-            .length(3000)
-            .textSize(14f)
-            .gravity(Gravity.TOP)
-            .font(R.font.poppins_medium)
-            .show()
-    }
+//    fun showWarningToast(context: Context, message: String) {
+//        StyleableToast.Builder(context)
+//            .text(message)
+//            .textColor(Color.WHITE)
+//            .backgroundColor(ContextCompat.getColor(context, R.color.warningToast))
+//            .solidBackground()
+//            .cornerRadius(5)
+//            .textBold()
+//            .iconStart(R.drawable.ic_success)
+//            .length(3000)
+//            .textSize(14f)
+//            .gravity(Gravity.TOP)
+//            .font(R.font.poppins_medium)
+//            .show()
+//    }
 
     fun showErrorToast(context: Context, message: String) {
         StyleableToast.Builder(context)
             .text(message)
             .textColor(Color.WHITE)
-            .backgroundColor(ContextCompat.getColor(context, R.color.warningToast))
+            .backgroundColor(ContextCompat.getColor(context, R.color.errorToast))
             .solidBackground()
             .cornerRadius(5)
             .textBold()

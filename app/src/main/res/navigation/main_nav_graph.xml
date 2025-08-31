@@ -81,7 +81,7 @@
     <fragment
         android:id="@+id/loginFragment"
         tools:layout="@layout/fragment_login"
-        android:name="com.example.brainwest_android.ui.auth.LoginFragment">
+        android:name="com.example.brainwest_android.ui.auth.login.LoginFragment">
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment"
@@ -101,7 +101,7 @@
     <fragment
         android:id="@+id/registerFragment"
         tools:layout="@layout/fragment_register"
-        android:name="com.example.brainwest_android.ui.auth.RegisterFragment">
+        android:name="com.example.brainwest_android.ui.auth.register.RegisterFragment">
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment"
