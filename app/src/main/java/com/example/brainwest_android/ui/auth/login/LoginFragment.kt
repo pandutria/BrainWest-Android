@@ -22,7 +22,6 @@ class LoginFragment : Fragment() {
         LoginViewModelFactory(AuthRepository())
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,6 +38,9 @@ class LoginFragment : Fragment() {
         }
 
         handleLogin()
+
+        binding.etUsername.setText("pandu")
+        binding.etPassword.setText("pandu")
 
         return binding.root
     }

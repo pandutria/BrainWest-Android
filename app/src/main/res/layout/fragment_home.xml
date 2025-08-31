@@ -447,7 +447,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/see_all"
                     android:fontFamily="@font/poppins_medium"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:textColor="@color/white"/>
 
             </LinearLayout>

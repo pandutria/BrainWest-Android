@@ -24,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:paddingTop="5dp"
         android:clipToPadding="false">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -35,7 +36,6 @@
             app:itemIconTint="@color/nav_item_color"
             app:itemTextColor="@color/nav_item_color"
             app:labelVisibilityMode="labeled"
-            android:paddingTop="5dp"
             app:itemActiveIndicatorStyle="@null"
             app:menu="@menu/main_menu"/>
 
@@ -44,6 +44,7 @@
             android:layout_width="70dp"
             android:layout_height="6dp"
             android:elevation="20dp"
+            android:layout_marginTop="-5dp"
             android:background="@drawable/bg_indicator"/>
 
     </FrameLayout>

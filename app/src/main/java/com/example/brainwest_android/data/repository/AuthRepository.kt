@@ -26,7 +26,7 @@ class AuthRepository {
         context: Context
     ): Response<LoginResponse> {
         val res = RetrofitInstance.api.login(LoginRequest(username, password))
-        TokenPref(context).saveToken(res.body()!!.token!!)
+        if (res.isSuccessful) TokenPref(context).saveToken(res.body()!!.token!!)
         return res
     }
 }

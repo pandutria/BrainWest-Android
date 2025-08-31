@@ -118,5 +118,12 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/educationFragment"
+        tools:layout="@layout/fragment_education"
+        android:name="com.example.brainwest_android.ui.education.EducationFragment">
+
+    </fragment>
+
 
 </navigation>

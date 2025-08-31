@@ -53,4 +53,10 @@
     <string name="drug_shopping">Perdagangan Obat</string>
     <string name="see_all"><u>Lihat Semua</u></string>
     <string name="all_field_must_be_filled">Semua input wajib di isi!</string>
+    <string name="hint_search_article">Cari artikel...</string>
+    <string name="popular_video">Video Populer</string>
+    <string name="most_view">Paling banyak dilihat</string>
+    <string name="new_article">Artikel Terbaru</string>
+    <string name="just_upload">Baru saja diupload</string>
+    <string name="edu_slider_one">Ragam Perilaku Gejala ”Brain Rot” dan Cara Menjaga Kesehatan Otak</string>
 </resources>

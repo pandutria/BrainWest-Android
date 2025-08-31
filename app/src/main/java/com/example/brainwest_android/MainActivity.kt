@@ -60,17 +60,46 @@ class MainActivity : AppCompatActivity() {
             moveIndicatorTo(bottomNav.selectedItemId)
 
 
-            val navHost =
-                supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
+            val navHost = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
             navController = navHost.navController
+
+            bottomNav.setOnItemSelectedListener { item ->
+                moveIndicatorTo(item.itemId)
+                when (item.itemId) {
+                    R.id.homeMenu -> {
+                        navController.navigate(R.id.homeFragment)
+                        true
+                    }
+                    R.id.eduMenu -> {
+                        navController.navigate(R.id.educationFragment)
+                        true
+                    }
+//                    R.id.communityMenu -> {
+//                        navController.navigate(R.id.communityFragment)
+//                        true
+//                    }
+//                    R.id.profileMenu -> {
+//                        navController.navigate(R.id.profileFragment)
+//                        true
+//                    }
+                    else -> false
+                }
+            }
+
 
             navController.addOnDestinationChangedListener { _, destination, _ ->
                 when (destination.id) {
                     R.id.homeFragment -> {
                         binding.frameNavbar.visibility = View.VISIBLE
-                        binding.frameNavbar.doOnLayout {
-                            moveIndicatorTo(binding.bottomNavbar.selectedItemId)
-                        }
+//                        binding.frameNavbar.doOnLayout {
+//                            moveIndicatorTo(R.id.homeMenu)
+//                        }
+                    }
+                    R.id.educationFragment -> {
+                        binding.frameNavbar.visibility = View.VISIBLE
+//                        binding.frameNavbar.doOnLayout {
+//                            moveIndicatorTo(R.id.eduMenu)
+//                        }
                     }
 
                     else -> {

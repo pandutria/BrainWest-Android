@@ -5,7 +5,7 @@ import android.content.Context
 class TokenPref(context: Context) {
     val tokenPref = "token_pref"
     val tokenKey = "token_key"
-
+  
     val shared = context.getSharedPreferences(tokenPref, Context.MODE_PRIVATE)
 
     fun saveToken(token: String) {

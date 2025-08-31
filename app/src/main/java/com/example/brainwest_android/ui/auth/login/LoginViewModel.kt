@@ -38,7 +38,7 @@ class LoginViewModel(private val repo: AuthRepository): ViewModel() {
                 else _loginResult.postValue(State.Error(ApiErrorHandler.parseError(res)))
             } catch (err: Exception) {
                 _loginResult.postValue(State.Error("${err.message}"))
-                Helper.showErrorLog(err.message ?: "Error tanpa pesan")
+                Helper.showErrorLog(err.message)
             }
         }
     }
