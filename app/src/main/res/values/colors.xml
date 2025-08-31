@@ -3,8 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="textPrimary">#FFFFFFFF</color>
+    <color name="textSecondary">#878787</color>
     <color name="primary">#3C82F6</color>
     <color name="secondary">#7B61FF</color>
     <color name="thirdtinary">#BB6BD9</color>
     <color name="bg">#111629</color>
+    <color name="successToast">#248852</color>
+    <color name="warningToast">#FFAF23</color>
+    <color name="errorToast">#D73B52</color>
 </resources>

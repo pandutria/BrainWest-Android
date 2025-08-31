@@ -23,7 +23,8 @@
         android:id="@+id/frameNavbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:clipToPadding="false">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavbar"
@@ -34,8 +35,8 @@
             app:itemIconTint="@color/nav_item_color"
             app:itemTextColor="@color/nav_item_color"
             app:labelVisibilityMode="labeled"
-            app:itemActiveIndicatorStyle="@null"
             android:paddingTop="5dp"
+            app:itemActiveIndicatorStyle="@null"
             app:menu="@menu/main_menu"/>
 
         <View

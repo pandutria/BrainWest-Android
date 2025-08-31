@@ -101,12 +101,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/bg_gradient"
-                android:paddingHorizontal="20dp"
+                android:paddingHorizontal="15dp"
                 android:layout_marginTop="25dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="220dp"
+                    android:layout_width="205dp"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="20dp"
                     android:orientation="vertical">
@@ -117,23 +117,24 @@
                         android:text="@string/home_shortcut_one"
                         android:fontFamily="@font/poppins_semibold"
                         android:textColor="@color/white"
-                        android:textSize="20sp"/>
+                        android:textSize="18sp"/>
 
                     <com.google.android.material.button.MaterialButton
-                        android:layout_width="150dp"
+                        android:layout_width="135dp"
                         android:layout_height="50dp"
                         android:backgroundTint="@color/bg"
                         app:cornerRadius="5dp"
                         android:text="@string/test_now"
-                        android:textSize="12sp"
+                        android:textColor="@color/white"
+                        android:textSize="11sp"
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/poppins_semibold"/>
 
                 </LinearLayout>
 
                 <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="155dp"
+                    android:layout_width="125dp"
+                    android:layout_height="150dp"
                     android:layout_gravity="bottom"
                     android:src="@drawable/doctor"/>
 
@@ -142,7 +143,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="20dp"
+                android:layout_marginVertical="15dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -157,8 +158,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:paddingHorizontal="5dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingHorizontal="8dp"
                     android:orientation="horizontal"
                     android:baselineAligned="false">
 
@@ -207,7 +208,6 @@
                             android:layout_marginTop="5dp"
                             android:textSize="10sp"/>
 
-
                     </LinearLayout>
 
                     <LinearLayout
@@ -255,7 +255,6 @@
                             android:layout_marginTop="5dp"
                             android:textSize="10sp"/>
 
-
                     </LinearLayout>
 
                 </LinearLayout>
@@ -264,7 +263,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:paddingHorizontal="5dp"
+                    android:paddingHorizontal="8dp"
                     android:orientation="horizontal"
                     android:baselineAligned="false">
 
@@ -370,8 +369,88 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                />
+                android:layout_height="230dp"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_shortcut_assistant"
+                android:orientation="horizontal"
+                android:paddingHorizontal="15dp"
+                android:gravity="center_vertical"
+                android:paddingVertical="10dp">
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@drawable/robot" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="@string/need_friend_to_talk"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/chat_ai_now"
+                        android:textSize="10sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/textSecondary"/>
+
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="75dp"
+                    android:layout_height="40dp"
+                    android:text="@string/try_ai"
+                    android:textSize="10sp"
+                    android:backgroundTint="@color/primary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/drug_shopping"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/see_all"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
 import com.example.brainwest_android.databinding.FragmentOnBoardingOneBinding
+import com.example.brainwest_android.utils.Helper
 
 class OnBoardingOneFragment : Fragment() {
     lateinit var binding: FragmentOnBoardingOneBinding
@@ -20,6 +21,7 @@ class OnBoardingOneFragment : Fragment() {
         binding = FragmentOnBoardingOneBinding.inflate(layoutInflater)
 
         binding.btnNext.setOnClickListener {
+//            Helper.showSuccessToast(requireContext(), "Berhasil")
             findNavController().navigate(R.id.action_onBoardingOneFragment_to_onBoardingTwoFragment)
         }
 

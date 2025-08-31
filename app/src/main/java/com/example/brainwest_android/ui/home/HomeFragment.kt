@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
 
     fun setupImageSlider() {
         val images = listOf(R.drawable.image_slider1, R.drawable.image_slider1, R.drawable.image_slider1)
-        val icons = listOf(R.drawable.image_slider_icon1, R.drawable.image_slider_icon1, R.drawable.image_slider_icon1)
+        val icons = listOf(R.drawable.image_slider_icon1, R.drawable.image_slider_icon2, R.drawable.image_slider_icon3)
 
         val adapter = SliderAdapter(images, icons)
         binding.viewPager.adapter = adapter

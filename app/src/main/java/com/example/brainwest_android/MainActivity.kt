@@ -29,6 +29,17 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        ViewCompat.setOnApplyWindowInsetsListener(binding.bottomNavbar) { v, insets ->
+//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(0, 0, 0, 0)
+
+            (v.layoutParams as? ViewGroup.MarginLayoutParams)?.let { lp ->
+                lp.bottomMargin = 0
+                v.layoutParams = lp
+            }
+            insets
+        }
+
         window.statusBarColor = getColor(R.color.bg)
         window.navigationBarColor = getColor(R.color.bg)
 

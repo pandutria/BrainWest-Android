@@ -47,4 +47,9 @@
     <string name="event">Event Webinar</string>
     <string name="rehabilitation">Tele Rehabilitasi</string>
     <string name="e_commerce">E-Commerce</string>
+    <string name="need_friend_to_talk">Butuh Teman Untuk Ngobrol?</string>
+    <string name="chat_ai_now">Chat Asisten Kesehatan Sekarang!</string>
+    <string name="try_ai">Coba</string>
+    <string name="drug_shopping">Perdagangan Obat</string>
+    <string name="see_all"><u>Lihat Semua</u></string>
 </resources>
