@@ -110,7 +110,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun moveIndicatorTo(itemId: Int) {
         val index = when (itemId) {
             R.id.homeMenu -> 0
