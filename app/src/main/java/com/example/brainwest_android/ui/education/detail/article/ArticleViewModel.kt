@@ -14,22 +14,7 @@ import com.example.brainwest_android.utils.State
 import kotlinx.coroutines.launch
 
 class ArticleViewModel(private val repo: EducationRepository): ViewModel() {
-    private val _articleResult = MutableLiveData<State<List<Education>>>()
-    val articleResult: LiveData<State<List<Education>>> get() = _articleResult
 
-    fun getAllArticle() {
-        viewModelScope.launch {
-            _articleResult.postValue(State.Loading)
-            try {
-                val res = repo.getAllArticle()
-
-                if (res.isSuccessful) _articleResult.postValue(State.Success(res.body()!!.data, res.body()!!.message))
-                else _articleResult.postValue(State.Error(ApiErrorHandler.parseError(res)))
-            } catch (e: Exception) {
-                _articleResult.postValue(State.Error(e.message!!))
-            }
-        }
-    }
 }
 
 class ArticleViewModelFactory(private val repo: EducationRepository) :

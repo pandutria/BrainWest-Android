@@ -58,6 +58,9 @@ dependencies {
     //Styleabletoast
     implementation (libs.styleabletoast)
 
+    //Glide
+    implementation (libs.glide)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

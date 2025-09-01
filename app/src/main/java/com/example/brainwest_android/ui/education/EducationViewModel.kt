@@ -1,0 +1,45 @@
+package com.example.brainwest_android.ui.education
+
+import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import com.example.brainwest_android.data.model.Education
+import com.example.brainwest_android.data.repository.AuthRepository
+import com.example.brainwest_android.data.repository.EducationRepository
+import com.example.brainwest_android.ui.auth.login.LoginViewModel
+import com.example.brainwest_android.utils.ApiErrorHandler
+import com.example.brainwest_android.utils.State
+import kotlinx.coroutines.launch
+
+class EducationViewModel(private val repo: EducationRepository, private val context: Context): ViewModel() {
+    private val _getAllEducationResult = MutableLiveData<State<List<Education>>>()
+    val getAllEducationResult: LiveData<State<List<Education>>> get() = _getAllEducationResult
+
+    fun getAllArticle() {
+        viewModelScope.launch {
+            _getAllEducationResult.postValue(State.Loading)
+            try {
+                val res = repo.getAllEducation(context)
+
+                if (res.isSuccessful) _getAllEducationResult.postValue(State.Success(res.body()!!.data, res.body()!!.message))
+                else _getAllEducationResult.postValue(State.Error(ApiErrorHandler.parseError(res)))
+            } catch (e: Exception) {
+                _getAllEducationResult.postValue(State.Error(e.message!!))
+            }
+        }
+    }
+}
+
+class EducationViewModelFactory(private val repo: EducationRepository, private val context: Context) :
+    ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(EducationViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return EducationViewModel(repo, context) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+}

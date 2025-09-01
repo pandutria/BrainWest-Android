@@ -16,17 +16,20 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/imgEducation"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/example_videos"/>
 
             <View
+                android:id="@+id/overlay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#40000000"/>
 
             <ImageView
+                android:id="@+id/imgPlay"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/ic_play"
@@ -37,6 +40,7 @@
     </androidx.cardview.widget.CardView>
     
     <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="5 Dampak Minum Kopi Setiap Hari, Bisa Tingkatkan Kesehatan Otak?"
@@ -48,6 +52,7 @@
         android:layout_marginTop="8dp"/>
 
     <TextView
+        android:id="@+id/tvDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="kopi tidak buruk untuk diminum setiap hari. Kecuali, Anda telah disarankan oleh tim layanan..."

@@ -9,6 +9,7 @@ import com.example.brainwest_android.data.network.response.LoginResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface ApiService {
@@ -18,9 +19,9 @@ interface ApiService {
     @POST("login")
     suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
 
-    @GET("articles")
-    suspend fun getAllArticle(): Response<BaseResponse<List<Education>>>
+    @GET("education")
+    suspend fun getAllEducation(@Header("Authorization") token: String): Response<BaseResponse<List<Education>>>
 
-    @GET("videos")
-    suspend fun getAllVideo(): Response<BaseResponse<List<Education>>>
+//    @GET("videos")
+//    suspend fun getAllVideo(): Response<BaseResponse<List<Education>>>
 }

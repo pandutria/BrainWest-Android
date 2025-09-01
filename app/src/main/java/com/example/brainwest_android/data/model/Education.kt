@@ -7,4 +7,5 @@ data class Education(
     val text: String? = null,
     val link: String? = null,
     val desc: String? = null,
+    val category: String? = null
 )

@@ -7,15 +7,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.example.brainwest_android.R
+import com.example.brainwest_android.data.model.Education
+import com.example.brainwest_android.data.repository.EducationRepository
 import com.example.brainwest_android.databinding.FragmentEducationBinding
+import com.example.brainwest_android.ui.adapter.EducationAdapter
 import com.example.brainwest_android.ui.adapter.SliderAdapter
 import com.example.brainwest_android.ui.adapter.SliderArticleAdapter
+import com.example.brainwest_android.utils.State
 
 class EducationFragment : Fragment() {
     lateinit var binding: FragmentEducationBinding
     private val handler = Handler(Looper.getMainLooper())
     private var currentPage = 0
+
+    private val viewModel: EducationViewModel by viewModels {
+        EducationViewModelFactory(EducationRepository(), requireContext())
+    }
+
+    lateinit var educationAdapter: EducationAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,7 +35,28 @@ class EducationFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentEducationBinding.inflate(layoutInflater)
         setupImageSlider()
+
+        educationAdapter = EducationAdapter {edu ->
+
+        }
+
+        showDataArticle()
+
         return binding.root
+    }
+
+    fun showDataArticle() {
+        viewModel.getAllArticle()
+        viewModel.getAllEducationResult.observe(viewLifecycleOwner) {state ->
+            when (state) {
+                is State.Loading -> {}
+                is State.Success -> {
+                    educationAdapter.setData(state.data)
+                    binding.rvArticle.adapter = educationAdapter
+                }
+                is State.Error -> {}
+            }
+        }
     }
 
     fun setupImageSlider() {
