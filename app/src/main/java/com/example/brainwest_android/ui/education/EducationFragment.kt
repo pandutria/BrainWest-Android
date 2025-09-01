@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
 import com.example.brainwest_android.data.model.Education
 import com.example.brainwest_android.data.repository.EducationRepository
@@ -23,7 +24,7 @@ class EducationFragment : Fragment() {
     private var currentPage = 0
 
     private val viewModel: EducationViewModel by viewModels {
-        EducationViewModelFactory(EducationRepository(), requireContext())
+        EducationViewModelFactory(EducationRepository())
     }
 
     lateinit var educationAdapter: EducationAdapter
@@ -37,7 +38,10 @@ class EducationFragment : Fragment() {
         setupImageSlider()
 
         educationAdapter = EducationAdapter {edu ->
-
+            val bundle = Bundle().apply {
+                putInt("id", edu.id!!)
+            }
+            findNavController().navigate(R.id.action_educationFragment_to_articleFragment, bundle)
         }
 
         showDataArticle()
@@ -46,7 +50,7 @@ class EducationFragment : Fragment() {
     }
 
     fun showDataArticle() {
-        viewModel.getAllArticle()
+        viewModel.getAllArticle(requireContext())
         viewModel.getAllEducationResult.observe(viewLifecycleOwner) {state ->
             when (state) {
                 is State.Loading -> {}

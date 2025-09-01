@@ -5,29 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
+import com.example.brainwest_android.data.repository.EducationRepository
+import com.example.brainwest_android.databinding.FragmentArticleBinding
+import com.example.brainwest_android.ui.education.EducationViewModel
+import com.example.brainwest_android.ui.education.EducationViewModelFactory
+import com.example.brainwest_android.utils.State
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ArticleFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ArticleFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    lateinit var binding: FragmentArticleBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private val viewModel: ArticleViewModel by viewModels {
+        ArticleViewModelFactory(EducationRepository())
     }
 
     override fun onCreateView(
@@ -35,26 +26,55 @@ class ArticleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_article, container, false)
+        binding = FragmentArticleBinding.inflate(layoutInflater)
+
+        binding.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.action_articleFragment_to_educationFragment)
+        }
+
+        showData()
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ArticleFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ArticleFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    fun showData() {
+        val id = arguments?.getInt("id", 0)
+        viewModel.getEducationById(requireContext(), id!!)
+        viewModel.getEducationByIdResult.observe(viewLifecycleOwner) {state ->
+            when (state) {
+                is State.Loading -> {
+                    binding.wvArticle.visibility = View.GONE
+                    binding.pbLoading.visibility = View.VISIBLE
+                }
+
+                is State.Success -> {
+                    binding.wvArticle.visibility = View.VISIBLE
+                    binding.pbLoading.visibility = View.GONE
+
+                    val link = state.data.link
+
+                    if (!link.isNullOrEmpty()) {
+                        binding.wvArticle.apply {
+                            settings.javaScriptEnabled = true
+                            webViewClient = object : android.webkit.WebViewClient() {
+                                override fun onPageStarted(view: android.webkit.WebView?, url: String?, favicon: android.graphics.Bitmap?) {
+                                    binding.pbLoading.visibility = View.VISIBLE
+                                    binding.wvArticle.visibility = View.GONE
+                                }
+
+                                override fun onPageFinished(view: android.webkit.WebView?, url: String?) {
+                                    binding.pbLoading.visibility = View.GONE
+                                    binding.wvArticle.visibility = View.VISIBLE
+                                }
+                            }
+                            loadUrl(link)
+                        }
+                    }
+                }
+
+                is State.Error -> {
+                    findNavController().navigate(R.id.action_articleFragment_to_educationFragment)
                 }
             }
+        }
     }
 }

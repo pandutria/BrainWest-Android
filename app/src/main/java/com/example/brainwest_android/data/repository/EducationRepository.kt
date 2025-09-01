@@ -11,13 +11,13 @@ import retrofit2.Response
 class EducationRepository {
     suspend fun getAllEducation(context: Context): Response<BaseResponse<List<Education>>> {
         val token = TokenPref(context).getToken()
-        Log.d("tokenDebug", "token $token")
         val res = RetrofitInstance.api.getAllEducation("Bearer $token")
         return res
     }
-//
-//    suspend fun getAllVideos(): Response<BaseResponse<List<Education>>> {
-//        val res = RetrofitInstance.api.getAllVideo()
-//        return res
-//    }
+
+    suspend fun getEducationById(context: Context, id: Int): Response<BaseResponse<Education>> {
+        val token = TokenPref(context).getToken()
+        val res = RetrofitInstance.api.getEducationById("Bearer $token", id)
+        return res
+    }
 }

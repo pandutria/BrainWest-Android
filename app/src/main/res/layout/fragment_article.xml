@@ -19,8 +19,9 @@
         android:elevation="4dp">
 
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:id="@+id/btnBack"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@drawable/arrow_left"/>
 
         <View
@@ -29,16 +30,33 @@
             android:layout_height="2dp"/>
 
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@drawable/ic_share"/>
 
     </LinearLayout>
 
-    <WebView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/header"/>
+        android:layout_below="@id/header"
+        android:background="@color/bg">
+
+        <WebView
+            android:id="@+id/wvArticle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        <ProgressBar
+            android:id="@+id/pbLoading"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/primary"
+            android:visibility="gone"/>
+
+    </FrameLayout>
 
 
 </RelativeLayout>

@@ -11,6 +11,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ApiService {
     @POST("register")
@@ -22,6 +23,9 @@ interface ApiService {
     @GET("education")
     suspend fun getAllEducation(@Header("Authorization") token: String): Response<BaseResponse<List<Education>>>
 
-//    @GET("videos")
-//    suspend fun getAllVideo(): Response<BaseResponse<List<Education>>>
+    @GET("education/{id}")
+    suspend fun getEducationById(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+        ): Response<BaseResponse<Education>>
 }

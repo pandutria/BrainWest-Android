@@ -11,14 +11,15 @@ import com.example.brainwest_android.data.repository.AuthRepository
 import com.example.brainwest_android.data.repository.EducationRepository
 import com.example.brainwest_android.ui.auth.login.LoginViewModel
 import com.example.brainwest_android.utils.ApiErrorHandler
+import com.example.brainwest_android.utils.Helper
 import com.example.brainwest_android.utils.State
 import kotlinx.coroutines.launch
 
-class EducationViewModel(private val repo: EducationRepository, private val context: Context): ViewModel() {
+class EducationViewModel(private val repo: EducationRepository): ViewModel() {
     private val _getAllEducationResult = MutableLiveData<State<List<Education>>>()
     val getAllEducationResult: LiveData<State<List<Education>>> get() = _getAllEducationResult
 
-    fun getAllArticle() {
+    fun getAllArticle(context: Context) {
         viewModelScope.launch {
             _getAllEducationResult.postValue(State.Loading)
             try {
@@ -27,18 +28,19 @@ class EducationViewModel(private val repo: EducationRepository, private val cont
                 if (res.isSuccessful) _getAllEducationResult.postValue(State.Success(res.body()!!.data, res.body()!!.message))
                 else _getAllEducationResult.postValue(State.Error(ApiErrorHandler.parseError(res)))
             } catch (e: Exception) {
+                Helper.showErrorLog(e.message!!)
                 _getAllEducationResult.postValue(State.Error(e.message!!))
             }
         }
     }
 }
 
-class EducationViewModelFactory(private val repo: EducationRepository, private val context: Context) :
+class EducationViewModelFactory(private val repo: EducationRepository) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(EducationViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return EducationViewModel(repo, context) as T
+            return EducationViewModel(repo) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
