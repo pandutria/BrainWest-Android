@@ -1,6 +1,7 @@
 package com.example.brainwest_android.ui.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brainwest_android.data.model.Education
@@ -16,6 +17,14 @@ class EducationAdapter(
         fun bind (education: Education, position: Int) {
             binding.tvTitle.text = education.title
             binding.tvDesc.text = education.desc
+
+            if (education.category == "video") {
+                binding.imgPlay.visibility = View.VISIBLE
+                binding.overlay.visibility = View.VISIBLE
+            } else {
+                binding.imgPlay.visibility = View.GONE
+                binding.overlay.visibility = View.GONE
+            }
         }
     }
 

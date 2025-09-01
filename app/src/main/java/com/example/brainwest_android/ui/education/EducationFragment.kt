@@ -51,7 +51,7 @@ class EducationFragment : Fragment() {
             when (state) {
                 is State.Loading -> {}
                 is State.Success -> {
-                    educationAdapter.setData(state.data)
+                    educationAdapter.setData(state.data.filter { x -> x.category == "article" })
                     binding.rvArticle.adapter = educationAdapter
                 }
                 is State.Error -> {}
