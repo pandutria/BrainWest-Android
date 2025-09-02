@@ -8,10 +8,10 @@ import com.bumptech.glide.Glide
 import com.example.brainwest_android.data.model.Education
 import com.example.brainwest_android.databinding.ItemEducationBinding
 
-class EducationAdapter(
+class VideoAdapter(
     private val educationList: MutableList<Education> = mutableListOf(),
     private val onClick: (Education) -> Unit
-): RecyclerView.Adapter<EducationAdapter.ViewHolder>() {
+): RecyclerView.Adapter<VideoAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemEducationBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind (education: Education, position: Int, onClick: (Education) -> Unit) {

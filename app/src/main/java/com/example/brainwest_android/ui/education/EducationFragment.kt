@@ -10,12 +10,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
-import com.example.brainwest_android.data.model.Education
 import com.example.brainwest_android.data.repository.EducationRepository
 import com.example.brainwest_android.databinding.FragmentEducationBinding
-import com.example.brainwest_android.ui.adapter.EducationAdapter
-import com.example.brainwest_android.ui.adapter.SliderAdapter
+import com.example.brainwest_android.ui.adapter.ArticleAdapter
 import com.example.brainwest_android.ui.adapter.SliderArticleAdapter
+import com.example.brainwest_android.ui.adapter.VideoAdapter
+import com.example.brainwest_android.utils.Helper
 import com.example.brainwest_android.utils.State
 
 class EducationFragment : Fragment() {
@@ -27,7 +27,8 @@ class EducationFragment : Fragment() {
         EducationViewModelFactory(EducationRepository())
     }
 
-    lateinit var educationAdapter: EducationAdapter
+    lateinit var articleAdapter: ArticleAdapter
+    lateinit var videoAdapter: VideoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,16 +38,40 @@ class EducationFragment : Fragment() {
         binding = FragmentEducationBinding.inflate(layoutInflater)
         setupImageSlider()
 
-        educationAdapter = EducationAdapter {edu ->
+        articleAdapter = ArticleAdapter { edu ->
             val bundle = Bundle().apply {
                 putInt("id", edu.id!!)
             }
             findNavController().navigate(R.id.action_educationFragment_to_articleFragment, bundle)
         }
 
+        videoAdapter = VideoAdapter { edu ->
+            val bundle = Bundle().apply {
+                putInt("id", edu.id!!)
+            }
+            findNavController().navigate(R.id.action_educationFragment_to_videoFragment, bundle)
+        }
+
         showDataArticle()
+        showDataVideo()
 
         return binding.root
+    }
+
+    fun showDataVideo() {
+        viewModel.getAllArticle(requireContext())
+        viewModel.getAllEducationResult.observe(viewLifecycleOwner) {state ->
+            when (state) {
+                is State.Loading -> {}
+                is State.Success -> {
+                    videoAdapter.setData(state.data.filter { x -> x.category == "video" })
+                    binding.rvVideo.adapter = videoAdapter
+                }
+                is State.Error -> {
+                    Helper.showErrorToast(requireContext(), state.message)
+                }
+            }
+        }
     }
 
     fun showDataArticle() {
@@ -55,10 +80,12 @@ class EducationFragment : Fragment() {
             when (state) {
                 is State.Loading -> {}
                 is State.Success -> {
-                    educationAdapter.setData(state.data.filter { x -> x.category == "article" })
-                    binding.rvArticle.adapter = educationAdapter
+                    articleAdapter.setData(state.data.filter { x -> x.category == "article" })
+                    binding.rvArticle.adapter = articleAdapter
                 }
-                is State.Error -> {}
+                is State.Error -> {
+                    Helper.showErrorToast(requireContext(), state.message)
+                }
             }
         }
     }
@@ -75,7 +102,7 @@ class EducationFragment : Fragment() {
             "Ragam Perilaku Gejala ”Brain Rot” dan Cara Menjaga Kesehatan Otak",
             "Ragam Perilaku Gejala ”Brain Rot” dan Cara Menjaga Kesehatan Otak",
             "Ragam Perilaku Gejala ”Brain Rot” dan Cara Menjaga Kesehatan Otak"
-        )
+        ) 
 
         val adapter = SliderArticleAdapter(images, icons, texts)
         binding.viewPager.adapter = adapter

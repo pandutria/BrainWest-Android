@@ -1,5 +1,6 @@
 package com.example.brainwest_android.ui.education.detail.article
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -29,13 +30,17 @@ class ArticleFragment : Fragment() {
         binding = FragmentArticleBinding.inflate(layoutInflater)
 
         binding.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_articleFragment_to_educationFragment)
+            findNavController().popBackStack()
         }
 
+        binding.pbLoading.visibility = View.VISIBLE
+        binding.wvArticle.visibility = View.GONE
         showData()
+
         return binding.root
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     fun showData() {
         val id = arguments?.getInt("id", 0)
         viewModel.getEducationById(requireContext(), id!!)

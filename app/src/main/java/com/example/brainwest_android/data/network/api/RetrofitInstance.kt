@@ -20,7 +20,6 @@ object RetrofitInstance {
     val api: ApiService by lazy {
         Retrofit.Builder()
             .baseUrl(baseurl)
-            .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

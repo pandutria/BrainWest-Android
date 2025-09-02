@@ -61,6 +61,9 @@ dependencies {
     //Glide
     implementation (libs.glide)
 
+    //ExoPlayer
+    implementation (libs.exoplayer)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

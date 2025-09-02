@@ -1,4 +1,4 @@
-package com.example.brainwest_android.ui.education.detail.article
+package com.example.brainwest_android.ui.education.detail.video
 
 import android.content.Context
 import androidx.lifecycle.LiveData
@@ -8,12 +8,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.brainwest_android.data.model.Education
 import com.example.brainwest_android.data.repository.EducationRepository
+import com.example.brainwest_android.ui.education.detail.article.ArticleViewModel
 import com.example.brainwest_android.utils.ApiErrorHandler
 import com.example.brainwest_android.utils.Helper
 import com.example.brainwest_android.utils.State
 import kotlinx.coroutines.launch
 
-class ArticleViewModel(private val repo: EducationRepository): ViewModel() {
+class VideoViewModel(private val repo: EducationRepository): ViewModel() {
     private val _getEducationByIdResult = MutableLiveData<State<Education>>()
     val getEducationByIdResult: LiveData<State<Education>> get() = _getEducationByIdResult
 
@@ -32,12 +33,12 @@ class ArticleViewModel(private val repo: EducationRepository): ViewModel() {
     }
 }
 
-class ArticleViewModelFactory(private val repo: EducationRepository) :
+class VideoViewModelFactory(private val repo: EducationRepository) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ArticleViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(VideoViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return ArticleViewModel(repo) as T
+            return VideoViewModel(repo) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:paddingTop="5dp"
+        android:paddingTop="3dp"
         android:clipToPadding="false">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -44,7 +44,7 @@
             android:layout_width="70dp"
             android:layout_height="6dp"
             android:elevation="20dp"
-            android:layout_marginTop="-5dp"
+            android:layout_marginTop="-3dp"
             android:background="@drawable/bg_indicator"/>
 
     </FrameLayout>

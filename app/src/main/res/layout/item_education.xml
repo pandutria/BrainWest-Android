@@ -41,10 +41,11 @@
     
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="5 Dampak Minum Kopi Setiap Hari, Bisa Tingkatkan Kesehatan Otak?"
         android:maxLines="2"
+        android:justificationMode="inter_word"
         android:ellipsize="end"
         android:textColor="@color/white"
         android:fontFamily="@font/ptsans_bold"
@@ -53,7 +54,8 @@
 
     <TextView
         android:id="@+id/tvDesc"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:justificationMode="inter_word"
         android:layout_height="wrap_content"
         android:text="kopi tidak buruk untuk diminum setiap hari. Kecuali, Anda telah disarankan oleh tim layanan..."
         android:maxLines="2"

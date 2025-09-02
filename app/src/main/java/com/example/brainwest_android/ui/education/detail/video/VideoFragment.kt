@@ -1,0 +1,79 @@
+package com.example.brainwest_android.ui.education.detail.video
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.brainwest_android.R
+import com.example.brainwest_android.data.repository.EducationRepository
+import com.example.brainwest_android.databinding.FragmentArticleBinding
+import com.example.brainwest_android.databinding.FragmentVideoBinding
+import com.example.brainwest_android.ui.education.detail.article.ArticleViewModel
+import com.example.brainwest_android.ui.education.detail.article.ArticleViewModelFactory
+import com.example.brainwest_android.utils.State
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.MediaItem
+
+class VideoFragment : Fragment() {
+    lateinit var binding: FragmentVideoBinding
+
+    private val viewModel: VideoViewModel by viewModels {
+        VideoViewModelFactory(EducationRepository())
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        binding = FragmentVideoBinding.inflate(layoutInflater)
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        binding.layoutContent.visibility = View.GONE
+        binding.pbLoading.visibility = View.VISIBLE
+
+        showData()
+        return binding.root
+    }
+
+    fun showData() {
+        val id = arguments?.getInt("id", 0)
+        viewModel.getEducationById(requireContext(), id!!)
+        viewModel.getEducationByIdResult.observe(viewLifecycleOwner) {state ->
+            when (state) {
+                is State.Loading -> {
+                    binding.layoutContent.visibility = View.GONE
+                    binding.pbLoading.visibility = View.VISIBLE
+                }
+
+                is State.Success -> {
+                    binding.tvTitle.text = state.data.title
+                    binding.tvDesc.text = state.data.text
+
+                    val player = ExoPlayer.Builder(requireContext()).build()
+                    binding.pvVideo.player = player
+
+                    val mediaItem = MediaItem.fromUri(state.data.link!!)
+                    player.setMediaItem(mediaItem)
+                    player.prepare()
+                    player.play()
+
+                    binding.layoutContent.visibility = View.VISIBLE
+                    binding.pbLoading.visibility = View.GONE
+                }
+
+                is State.Error -> {
+                    findNavController().navigate(R.id.action_videoFragment_to_educationFragment)
+                }
+            }
+        }
+    }
+
+
+}

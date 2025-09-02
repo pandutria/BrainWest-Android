@@ -130,6 +130,13 @@
             app:exitAnim="@anim/zoom_fade_out"
             app:popEnterAnim="@anim/zoom_fade_in"
             app:popExitAnim="@anim/zoom_fade_out"/>
+        <action
+            android:id="@+id/action_educationFragment_to_videoFragment"
+            app:destination="@id/videoFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
     </fragment>
 
     <fragment
@@ -139,6 +146,19 @@
 
         <action
             android:id="@+id/action_articleFragment_to_educationFragment"
+            app:destination="@id/educationFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/videoFragment"
+        tools:layout="@layout/fragment_video"
+        android:name="com.example.brainwest_android.ui.education.detail.video.VideoFragment">
+        <action
+            android:id="@+id/action_videoFragment_to_educationFragment"
             app:destination="@id/educationFragment"
             app:enterAnim="@anim/zoom_fade_in"
             app:exitAnim="@anim/zoom_fade_out"
