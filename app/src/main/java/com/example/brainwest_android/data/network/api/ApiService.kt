@@ -1,6 +1,7 @@
 package com.example.brainwest_android.data.network.api
 
 import com.example.brainwest_android.data.model.Education
+import com.example.brainwest_android.data.model.Event
 import com.example.brainwest_android.data.model.User
 import com.example.brainwest_android.data.network.request.LoginRequest
 import com.example.brainwest_android.data.network.request.RegisterRequest
@@ -28,4 +29,13 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("id") id: Int
         ): Response<BaseResponse<Education>>
+
+    @GET("event")
+    suspend fun getAllEvent(@Header("Authorization") token: String): Response<BaseResponse<List<Event>>>
+
+    @GET("event/{id}")
+    suspend fun getEventById(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Response<BaseResponse<Event>>
 }

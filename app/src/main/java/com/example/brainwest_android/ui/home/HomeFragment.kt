@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
 import com.example.brainwest_android.databinding.FragmentHomeBinding
 import com.example.brainwest_android.ui.adapter.SliderAdapter
@@ -24,8 +25,15 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
         setupImageSlider()
+        navigate()
 
         return binding.root
+    }
+
+    fun navigate() {
+        binding.btnEvent.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_eventFragment)
+        }
     }
 
     fun setupImageSlider() {

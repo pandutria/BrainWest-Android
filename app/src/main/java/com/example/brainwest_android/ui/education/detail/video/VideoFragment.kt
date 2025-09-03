@@ -13,6 +13,7 @@ import com.example.brainwest_android.databinding.FragmentArticleBinding
 import com.example.brainwest_android.databinding.FragmentVideoBinding
 import com.example.brainwest_android.ui.education.detail.article.ArticleViewModel
 import com.example.brainwest_android.ui.education.detail.article.ArticleViewModelFactory
+import com.example.brainwest_android.utils.Helper
 import com.example.brainwest_android.utils.State
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
@@ -69,7 +70,8 @@ class VideoFragment : Fragment() {
                 }
 
                 is State.Error -> {
-                    findNavController().navigate(R.id.action_videoFragment_to_educationFragment)
+                    Helper.showErrorToast(requireContext(), state.message)
+                    findNavController().popBackStack()
                 }
             }
         }

@@ -116,6 +116,9 @@
         tools:layout="@layout/fragment_home"
         android:name="com.example.brainwest_android.ui.home.HomeFragment">
 
+        <action
+            android:id="@+id/action_homeFragment_to_eventFragment"
+            app:destination="@id/eventFragment" />
     </fragment>
 
     <fragment
@@ -165,6 +168,11 @@
             app:popEnterAnim="@anim/zoom_fade_in"
             app:popExitAnim="@anim/zoom_fade_out"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/eventFragment"
+        tools:layout="@layout/fragment_event"
+        android:name="com.example.brainwest_android.ui.event.EventFragment"/>
 
 
 </navigation>

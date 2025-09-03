@@ -13,6 +13,7 @@ import com.example.brainwest_android.data.repository.EducationRepository
 import com.example.brainwest_android.databinding.FragmentArticleBinding
 import com.example.brainwest_android.ui.education.EducationViewModel
 import com.example.brainwest_android.ui.education.EducationViewModelFactory
+import com.example.brainwest_android.utils.Helper
 import com.example.brainwest_android.utils.State
 
 class ArticleFragment : Fragment() {
@@ -77,7 +78,8 @@ class ArticleFragment : Fragment() {
                 }
 
                 is State.Error -> {
-                    findNavController().navigate(R.id.action_articleFragment_to_educationFragment)
+                    Helper.showErrorToast(requireContext(), state.message)
+                    findNavController().popBackStack()
                 }
             }
         }
