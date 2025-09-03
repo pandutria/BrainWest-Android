@@ -5,29 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.brainwest_android.R
+import com.example.brainwest_android.data.repository.EventRepository
+import com.example.brainwest_android.databinding.FragmentDetailEventBinding
+import com.example.brainwest_android.ui.event.EventViewModel
+import com.example.brainwest_android.ui.event.EventViewModelfactory
+import com.example.brainwest_android.utils.Helper
+import com.example.brainwest_android.utils.State
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DetailEventFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DetailEventFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    lateinit var binding: FragmentDetailEventBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private val viewModel: DetailEventViewModel by viewModels {
+        DetailEventViewModelfactory(EventRepository())
     }
 
     override fun onCreateView(
@@ -35,26 +28,43 @@ class DetailEventFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail_event, container, false)
+        binding = FragmentDetailEventBinding.inflate(layoutInflater)
+        showData()
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DetailEventFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DetailEventFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    fun showData() {
+        val id = arguments?.getInt("id")
+        viewModel.getEventById(requireContext(), id!!)
+        viewModel.getEventBydIdResult.observe(viewLifecycleOwner) {state ->
+            when (state) {
+                is State.Loading -> {
+                    binding.layoutContent.visibility = View.GONE
+                    binding.layoutBtnBuy.visibility = View.GONE
+                    binding.pbLoading.visibility = View.VISIBLE
+                }
+                is State.Success -> {
+                    binding.layoutContent.visibility = View.VISIBLE
+                    binding.layoutBtnBuy.visibility = View.VISIBLE
+                    binding.pbLoading.visibility = View.GONE
+
+                    binding.tvTitle.text = state.data.title
+                    binding.tvCity.text = state.data.city
+                    binding.tvDate.text = state.data.date
+                    binding.tvDesc.text = state.data.desc
+                    binding.tvTime.text = state.data.time
+                    binding.tvAddress.text = state.data.address
+                    binding.tvPrice.text = state.data.price
+
+                    Glide.with(requireContext())
+                        .load(state.data.image)
+                        .into(binding.imgImage)
+                }
+                is State.Error -> {
+                    findNavController().popBackStack()
+                    Helper.showErrorToast(requireContext(), state.message)
                 }
             }
+        }
     }
 }
