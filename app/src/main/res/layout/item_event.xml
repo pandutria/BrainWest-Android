@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginHorizontal="20dp"
-    android:layout_marginTop="15dp"
+    android:layout_marginTop="10dp"
     app:cardCornerRadius="10dp">
 
     <LinearLayout
@@ -22,7 +22,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="10dp"
+            android:paddingHorizontal="17dp"
             android:paddingVertical="10dp"
             android:orientation="vertical">
 
@@ -32,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="Mari Bicara Tentang Kesehatan Otak"
                 android:fontFamily="@font/poppins_semibold"
+                android:justificationMode="inter_word"
                 android:textSize="15sp"/>
 
             <LinearLayout
@@ -71,7 +72,7 @@
                     android:src="@drawable/ic_clock"/>
 
                 <TextView
-                    android:id="@+id/tvClock"
+                    android:id="@+id/tvTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="09.00 - 12.00 WIB"

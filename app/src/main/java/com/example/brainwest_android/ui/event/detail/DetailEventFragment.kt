@@ -13,6 +13,7 @@ import com.example.brainwest_android.data.repository.EventRepository
 import com.example.brainwest_android.databinding.FragmentDetailEventBinding
 import com.example.brainwest_android.ui.event.EventViewModel
 import com.example.brainwest_android.ui.event.EventViewModelfactory
+import com.example.brainwest_android.utils.FormatRupiah
 import com.example.brainwest_android.utils.Helper
 import com.example.brainwest_android.utils.State
 
@@ -29,6 +30,11 @@ class DetailEventFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentDetailEventBinding.inflate(layoutInflater)
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         showData()
         return binding.root
     }
@@ -52,9 +58,9 @@ class DetailEventFragment : Fragment() {
                     binding.tvCity.text = state.data.city
                     binding.tvDate.text = state.data.date
                     binding.tvDesc.text = state.data.desc
-                    binding.tvTime.text = state.data.time
+                    binding.tvTime.text = state.data.timestamp
                     binding.tvAddress.text = state.data.address
-                    binding.tvPrice.text = state.data.price
+                    binding.tvPrice.text = FormatRupiah.format(state.data.price!!)
 
                     Glide.with(requireContext())
                         .load(state.data.image)

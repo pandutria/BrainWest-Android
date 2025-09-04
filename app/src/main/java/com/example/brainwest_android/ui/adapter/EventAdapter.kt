@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.brainwest_android.data.model.Education
 import com.example.brainwest_android.data.model.Event
 import com.example.brainwest_android.databinding.ItemEventBinding
+import com.example.brainwest_android.utils.FormatRupiah
 
 class EventAdapter(
     private val eventList: MutableList<Event> = mutableListOf(),
@@ -15,16 +16,20 @@ class EventAdapter(
 ): RecyclerView.Adapter<EventAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemEventBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(event: Event) {
+        fun bind(event: Event, onClick: (Event) -> Unit) {
             binding.tvTitle.text = event.title
             binding.tvDate.text = event.date
-            binding.tvClock.text = event.time
+            binding.tvTime.text = event.timestamp
             binding.tvAddress.text = event.address
-            binding.tvPrice.text = event.price
+            binding.tvPrice.text = FormatRupiah.format(event.price!!)
 
             Glide.with(binding.root.context)
                 .load(event.image)
                 .into(binding.imgThumbnail)
+
+            binding.root.setOnClickListener {
+                onClick(event)
+            }
         }
     }
 
@@ -34,7 +39,7 @@ class EventAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(eventList[position])
+        holder.bind(eventList[position], onClick)
     }
 
     override fun getItemCount(): Int {

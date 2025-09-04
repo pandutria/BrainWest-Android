@@ -38,4 +38,9 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("id") id: Int
     ): Response<BaseResponse<Event>>
+
+    @GET("me/event/transaction")
+    suspend fun getMyTransaction(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int): Response<BaseResponse<List<Event>>>
 }

@@ -34,8 +34,15 @@ class EventFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentEventBinding.inflate(layoutInflater)
 
-        eventAdapter = EventAdapter {event ->
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
+        eventAdapter = EventAdapter {event ->
+            val bundle = Bundle().apply {
+                putInt("id", event.id!!)
+            }
+            findNavController().navigate(R.id.action_eventFragment_to_eventDetailFragment, bundle)
         }
 
         showData()
@@ -53,6 +60,8 @@ class EventFragment : Fragment() {
                 is State.Success -> {
                     eventAdapter.setData(state.data)
                     binding.rvEvent.adapter = eventAdapter
+                    binding.rvEvent.visibility = View.VISIBLE
+                    binding.pbLoading.visibility = View.GONE
                 }
                 is State.Error -> {
                     Helper.showErrorToast(requireContext(), state.message)

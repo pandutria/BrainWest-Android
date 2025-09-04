@@ -6,8 +6,8 @@ data class Event(
     val desc: String? = null,
     val image: String? = null,
     val date: String? = null,
-    val time: String? = null,
-    val price: String? = null,
+    val timestamp: String? = null,
+    val price: Int? = null,
     val address: String? = null,
     val city: String? = null
 )
