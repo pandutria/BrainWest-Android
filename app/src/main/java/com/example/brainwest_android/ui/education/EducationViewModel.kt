@@ -25,7 +25,7 @@ class EducationViewModel(private val repo: EducationRepository): ViewModel() {
             try {
                 val res = repo.getAllEducation(context)
 
-                if (res.isSuccessful) _getAllEducationResult.postValue(State.Success(res.body()!!.data, res.body()!!.message))
+                if (res.isSuccessful) _getAllEducationResult.postValue(State.Success(res.body()!!.data, res.body()!!.message!!))
                 else _getAllEducationResult.postValue(State.Error(ApiErrorHandler.parseError(res)))
             } catch (e: Exception) {
                 Helper.showErrorLog(e.message!!)

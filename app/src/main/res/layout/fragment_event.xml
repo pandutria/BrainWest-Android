@@ -65,7 +65,6 @@
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_event"
-            android:paddingTop="5dp"
             android:paddingBottom="10dp"
             android:overScrollMode="never"
             android:clipToPadding="false"/>

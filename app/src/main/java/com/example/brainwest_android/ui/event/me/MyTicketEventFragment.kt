@@ -35,11 +35,15 @@ class MyTicketEventFragment : Fragment() {
         binding = FragmentMyTicketEventBinding.inflate(layoutInflater)
 
         binding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_myEventTransactionFragment_to_eventFragment)
         }
 
         myEventAdapter = MyEventAdapter {event ->
-
+            val bundle = Bundle().apply {
+                putInt("id", event.event!!.id!!)
+                putBoolean("is", true)
+            }
+            findNavController().navigate(R.id.action_myEventTransactionFragment_to_eventDetailFragment, bundle)
         }
 
         showData()

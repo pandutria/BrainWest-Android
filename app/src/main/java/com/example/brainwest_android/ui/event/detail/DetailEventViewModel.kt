@@ -28,7 +28,7 @@ class DetailEventViewModel(private val repo: EventRepository): ViewModel() {
             try {
                 val res = repo.getEventById(context,id)
 
-                if (res.isSuccessful) _getEventByIdResult.postValue(State.Success(res.body()!!.data, res.body()!!.message))
+                if (res.isSuccessful) _getEventByIdResult.postValue(State.Success(res.body()!!.data, res.body()!!.message!!))
                 else _getEventByIdResult.postValue(State.Error(ApiErrorHandler.parseError(res)))
             } catch (e: Exception) {
                 Helper.showErrorLog(e.message)
@@ -43,7 +43,7 @@ class DetailEventViewModel(private val repo: EventRepository): ViewModel() {
             try {
                 val res = repo.postEventTransaction(context, id)
 
-                if (res.isSuccessful) _postEventTransactionResult.postValue(State.Success(res.body()!!.data, res.body()!!.message))
+                if (res.isSuccessful) _postEventTransactionResult.postValue(State.Success(res.body()!!.data, res.body()!!.message!!))
                 else _postEventTransactionResult.postValue(State.Error(ApiErrorHandler.parseError(res)))
             } catch (e: Exception) {
                 Helper.showErrorLog(e.message)

@@ -209,12 +209,35 @@
     <fragment
         android:id="@+id/eventTransactionFragment"
         tools:layout="@layout/fragment_transaction_event"
-        android:name="com.example.brainwest_android.ui.event.transaction.TransactionEventFragment"/>
+        android:name="com.example.brainwest_android.ui.event.transaction.TransactionEventFragment">
+        <action
+            android:id="@+id/action_eventTransactionFragment_to_myEventTransactionFragment"
+            app:destination="@id/myEventTransactionFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
+    </fragment>
 
     <fragment
         android:id="@+id/myEventTransactionFragment"
         tools:layout="@layout/fragment_my_ticket_event"
-        android:name="com.example.brainwest_android.ui.event.me.MyTicketEventFragment"/>
+        android:name="com.example.brainwest_android.ui.event.me.MyTicketEventFragment">
+        <action
+            android:id="@+id/action_myEventTransactionFragment_to_eventDetailFragment"
+            app:destination="@id/eventDetailFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
+        <action
+            android:id="@+id/action_myEventTransactionFragment_to_eventFragment"
+            app:destination="@id/eventFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
+    </fragment>
 
 
 </navigation>

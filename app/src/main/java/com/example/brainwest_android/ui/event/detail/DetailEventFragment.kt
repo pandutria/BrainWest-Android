@@ -24,6 +24,8 @@ class DetailEventFragment : Fragment() {
         DetailEventViewModelfactory(EventRepository())
     }
 
+    var isFromMyTicket = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,7 +41,9 @@ class DetailEventFragment : Fragment() {
             buyEvent()
         }
 
+        isFromMyTicket = requireArguments().getBoolean("is")
         showData()
+
         return binding.root
     }
 
@@ -82,8 +86,16 @@ class DetailEventFragment : Fragment() {
                 }
                 is State.Success -> {
                     binding.layoutContent.visibility = View.VISIBLE
-                    binding.layoutBtnBuy.visibility = View.VISIBLE
                     binding.pbLoading.visibility = View.GONE
+
+                    if (isFromMyTicket == false) {
+                        binding.layoutBtnBuy.visibility = View.VISIBLE
+                        binding.layoutBtnPrint.visibility = View.GONE
+                    }
+                    else {
+                        binding.layoutBtnBuy.visibility = View.GONE
+                        binding.layoutBtnPrint.visibility = View.VISIBLE
+                    }
 
                     binding.tvTitle.text = state.data.title
                     binding.tvCity.text = state.data.city

@@ -9,9 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
 import com.example.brainwest_android.databinding.FragmentTransactionEventBinding
+import com.example.brainwest_android.utils.Helper
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class TransactionEventFragment : Fragment() {
     lateinit var binding: FragmentTransactionEventBinding
@@ -56,7 +60,11 @@ class TransactionEventFragment : Fragment() {
                 if (url != null) {
                     when {
                         url.contains("finish") || url.contains("successful") -> {
-                            findNavController().popBackStack()
+                            viewLifecycleOwner.lifecycleScope.launch {
+                                delay(3000)
+                                Helper.showSuccessToast(requireContext(), "Tiket berhasil di beli")
+                                findNavController().navigate(R.id.action_eventTransactionFragment_to_myEventTransactionFragment)
+                            }
                         }
                         url.contains("pending") -> {
                             findNavController().popBackStack()
@@ -68,26 +76,26 @@ class TransactionEventFragment : Fragment() {
                 }
             }
 
-            @Deprecated("Deprecated in Java")
-            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                if (url != null) {
-                    when {
-                        url.contains("finish") || url.contains("successful") -> {
-                            findNavController().popBackStack()
-                            return true
-                        }
-                        url.contains("pending") -> {
-                            findNavController().popBackStack()
-                            return true
-                        }
-                        url.contains("error") || url.contains("cancel") -> {
-                            findNavController().popBackStack()
-                            return true
-                        }
-                    }
-                }
-                return false
-            }
+//            @Deprecated("Deprecated in Java")
+//            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+//                if (url != null) {
+//                    when {
+//                        url.contains("finish") || url.contains("successful") -> {
+//                            findNavController().popBackStack()
+//                            return true
+//                        }
+//                        url.contains("pending") -> {
+//                            findNavController().popBackStack()
+//                            return true
+//                        }
+//                        url.contains("error") || url.contains("cancel") -> {
+//                            findNavController().popBackStack()
+//                            return true
+//                        }
+//                    }
+//                }
+//                return false
+//            }
         }
         binding.wvSnap.loadUrl(snapUrl)
 

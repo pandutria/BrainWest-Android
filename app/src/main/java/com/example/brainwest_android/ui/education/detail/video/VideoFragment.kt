@@ -39,8 +39,12 @@ class VideoFragment : Fragment() {
         binding.layoutContent.visibility = View.GONE
         binding.pbLoading.visibility = View.VISIBLE
 
-        showData()
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        showData()
     }
 
     fun showData() {

@@ -25,7 +25,7 @@ class EventViewModel(private val repo: EventRepository): ViewModel() {
             try {
                 val res = repo.getAllEvent(context)
 
-                if (res.isSuccessful) _getAllEventResult.postValue(State.Success(res.body()!!.data, res.body()!!.message))
+                if (res.isSuccessful) _getAllEventResult.postValue(State.Success(res.body()!!.data, res.body()!!.message!!))
                 else _getAllEventResult.postValue(State.Error(ApiErrorHandler.parseError(res)))
             } catch (e: Exception) {
                 Helper.showErrorLog(e.message)

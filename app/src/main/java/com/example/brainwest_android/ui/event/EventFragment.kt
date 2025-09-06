@@ -45,6 +45,7 @@ class EventFragment : Fragment() {
         eventAdapter = EventAdapter {event ->
             val bundle = Bundle().apply {
                 putInt("id", event.id!!)
+                putBoolean("is", false)
             }
             findNavController().navigate(R.id.action_eventFragment_to_eventDetailFragment, bundle)
         }

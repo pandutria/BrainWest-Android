@@ -33,7 +33,7 @@ class RegisterViewModel(private val repo: AuthRepository): ViewModel() {
             try {
                 val res = repo.regsiter(username, fullname, password)
 
-                if (res.isSuccessful) _registerResult.postValue(State.Success(res.body()!!.data, res.body()!!.message))
+                if (res.isSuccessful) _registerResult.postValue(State.Success(res.body()!!.data, res.body()!!.message!!))
                 else _registerResult.postValue(State.Error(ApiErrorHandler.parseError(res)))
             } catch (err: Exception) {
                 _registerResult.postValue(State.Error("${err.message}"))

@@ -24,7 +24,7 @@ class MyTicketEventViewModel(private val repo: EventRepository): ViewModel() {
             try {
                 val res = repo.getMyEventTransaction(context)
 
-                if (res.isSuccessful) _getMyEventResult.postValue(State.Success(res.body()!!.data, res.body()!!.message))
+                if (res.isSuccessful) _getMyEventResult.postValue(State.Success(res.body()!!.data, res.body()!!.message!!))
                 else _getMyEventResult.postValue(State.Error(ApiErrorHandler.parseError(res)))
             } catch (e: Exception) {
                 Helper.showErrorLog(e.message)
