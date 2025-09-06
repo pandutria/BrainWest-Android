@@ -36,9 +36,12 @@ class ArticleFragment : Fragment() {
 
         binding.pbLoading.visibility = View.VISIBLE
         binding.wvArticle.visibility = View.GONE
-        showData()
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        showData()
     }
 
     @SuppressLint("SetJavaScriptEnabled")

@@ -35,8 +35,39 @@ class DetailEventFragment : Fragment() {
             findNavController().popBackStack()
         }
 
+        binding.btnBuy.setOnClickListener {
+            buyEvent()
+        }
+
         showData()
         return binding.root
+    }
+
+    fun buyEvent() {
+        val id = arguments?.getInt("id")
+        viewModel.postEventTransaction(requireContext(), id!!)
+        viewModel.postEventTransactionResult.observe(viewLifecycleOwner) {state ->
+            when (state) {
+                is State.Loading -> {
+                    binding.btnBuy.visibility = View.GONE
+                    binding.pbLoadingBtn.visibility = View.VISIBLE
+                }
+                is State.Success -> {
+                    binding.btnBuy.visibility = View.VISIBLE
+                    binding.pbLoadingBtn.visibility = View.GONE
+
+                    val bundle = Bundle().apply {
+                        putString("snap_token", state.data.snap_token)
+                    }
+
+                    findNavController().navigate(R.id.action_eventDetailFragment_to_eventTransactionFragment, bundle)
+                }
+                is State.Error -> {
+                    findNavController().popBackStack()
+                    Helper.showErrorToast(requireContext(), state.message)
+                }
+            }
+        }
     }
 
     fun showData() {

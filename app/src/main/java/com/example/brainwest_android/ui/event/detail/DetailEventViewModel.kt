@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.brainwest_android.data.model.Event
+import com.example.brainwest_android.data.model.MidtransEventTransaction
 import com.example.brainwest_android.data.repository.EventRepository
 import com.example.brainwest_android.ui.event.EventViewModel
 import com.example.brainwest_android.utils.ApiErrorHandler
@@ -17,6 +18,9 @@ import kotlinx.coroutines.launch
 class DetailEventViewModel(private val repo: EventRepository): ViewModel() {
     private val _getEventByIdResult = MutableLiveData<State<Event>>()
     val getEventBydIdResult: LiveData<State<Event>> get() = _getEventByIdResult
+
+    private val _postEventTransactionResult = MutableLiveData<State<MidtransEventTransaction>>()
+    val postEventTransactionResult: LiveData<State<MidtransEventTransaction>> get() = _postEventTransactionResult
 
     fun getEventById(context: Context, id: Int) {
         viewModelScope.launch {
@@ -29,6 +33,21 @@ class DetailEventViewModel(private val repo: EventRepository): ViewModel() {
             } catch (e: Exception) {
                 Helper.showErrorLog(e.message)
                 _getEventByIdResult.postValue(State.Error(e.message!!))
+            }
+        }
+    }
+
+    fun postEventTransaction(context: Context, id: Int) {
+        viewModelScope.launch {
+            _postEventTransactionResult.postValue(State.Loading)
+            try {
+                val res = repo.postEventTransaction(context, id)
+
+                if (res.isSuccessful) _postEventTransactionResult.postValue(State.Success(res.body()!!.data, res.body()!!.message))
+                else _postEventTransactionResult.postValue(State.Error(ApiErrorHandler.parseError(res)))
+            } catch (e: Exception) {
+                Helper.showErrorLog(e.message)
+                _postEventTransactionResult.postValue(State.Error(e.message!!))
             }
         }
     }

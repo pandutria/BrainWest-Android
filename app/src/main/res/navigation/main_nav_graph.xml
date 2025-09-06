@@ -118,7 +118,11 @@
 
         <action
             android:id="@+id/action_homeFragment_to_eventFragment"
-            app:destination="@id/eventFragment" />
+            app:destination="@id/eventFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
     </fragment>
 
     <fragment
@@ -180,12 +184,37 @@
             app:exitAnim="@anim/zoom_fade_out"
             app:popEnterAnim="@anim/zoom_fade_in"
             app:popExitAnim="@anim/zoom_fade_out"/>
+        <action
+            android:id="@+id/action_eventFragment_to_myEventTransactionFragment"
+            app:destination="@id/myEventTransactionFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
     </fragment>
 
     <fragment
         android:id="@+id/eventDetailFragment"
         tools:layout="@layout/fragment_detail_event"
-        android:name="com.example.brainwest_android.ui.event.detail.DetailEventFragment"/>
+        android:name="com.example.brainwest_android.ui.event.detail.DetailEventFragment">
+        <action
+            android:id="@+id/action_eventDetailFragment_to_eventTransactionFragment"
+            app:destination="@id/eventTransactionFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/eventTransactionFragment"
+        tools:layout="@layout/fragment_transaction_event"
+        android:name="com.example.brainwest_android.ui.event.transaction.TransactionEventFragment"/>
+
+    <fragment
+        android:id="@+id/myEventTransactionFragment"
+        tools:layout="@layout/fragment_my_ticket_event"
+        android:name="com.example.brainwest_android.ui.event.me.MyTicketEventFragment"/>
 
 
 </navigation>

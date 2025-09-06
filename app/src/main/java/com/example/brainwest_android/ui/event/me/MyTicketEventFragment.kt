@@ -1,4 +1,4 @@
-package com.example.brainwest_android.ui.event
+package com.example.brainwest_android.ui.event.me
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,62 +8,56 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
-import com.example.brainwest_android.data.model.Event
 import com.example.brainwest_android.data.repository.EducationRepository
 import com.example.brainwest_android.data.repository.EventRepository
-import com.example.brainwest_android.databinding.FragmentEventBinding
+import com.example.brainwest_android.databinding.FragmentMyTicketEventBinding
 import com.example.brainwest_android.ui.adapter.EventAdapter
-import com.example.brainwest_android.ui.education.EducationViewModel
-import com.example.brainwest_android.ui.education.EducationViewModelFactory
+import com.example.brainwest_android.ui.adapter.MyEventAdapter
+import com.example.brainwest_android.ui.education.detail.article.ArticleViewModel
+import com.example.brainwest_android.ui.education.detail.article.ArticleViewModelFactory
 import com.example.brainwest_android.utils.Helper
 import com.example.brainwest_android.utils.State
 
-class EventFragment : Fragment() {
-    lateinit var binding: FragmentEventBinding
+class MyTicketEventFragment : Fragment() {
+    lateinit var binding: FragmentMyTicketEventBinding
 
-    private val viewModel: EventViewModel by viewModels {
-        EventViewModelfactory(EventRepository())
+    private val viewModel: MyTicketEventViewModel by viewModels {
+        MyEventViewModelfactory(EventRepository())
     }
 
-    lateinit var eventAdapter: EventAdapter
+    lateinit var myEventAdapter: MyEventAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentEventBinding.inflate(layoutInflater)
+        binding = FragmentMyTicketEventBinding.inflate(layoutInflater)
 
         binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
 
-        binding.btnTicket.setOnClickListener {
-            findNavController().navigate(R.id.action_eventFragment_to_myEventTransactionFragment)
-        }
+        myEventAdapter = MyEventAdapter {event ->
 
-        eventAdapter = EventAdapter {event ->
-            val bundle = Bundle().apply {
-                putInt("id", event.id!!)
-            }
-            findNavController().navigate(R.id.action_eventFragment_to_eventDetailFragment, bundle)
         }
 
         showData()
+
         return binding.root
     }
 
     fun showData() {
-        viewModel.getAllEvent(requireContext())
-        viewModel.getAllEventResult.observe(viewLifecycleOwner) {state ->
+        viewModel.getMyEvent(requireContext())
+        viewModel.getMyEventResult.observe(viewLifecycleOwner) {state ->
             when(state) {
                 is State.Loading -> {
                     binding.rvEvent.visibility = View.GONE
                     binding.pbLoading.visibility = View.VISIBLE
                 }
                 is State.Success -> {
-                    eventAdapter.setData(state.data)
-                    binding.rvEvent.adapter = eventAdapter
+                    myEventAdapter.setData(state.data)
+                    binding.rvEvent.adapter = myEventAdapter
                     binding.rvEvent.visibility = View.VISIBLE
                     binding.pbLoading.visibility = View.GONE
                 }
@@ -74,5 +68,4 @@ class EventFragment : Fragment() {
             }
         }
     }
-
 }

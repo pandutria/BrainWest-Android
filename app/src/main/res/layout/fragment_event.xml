@@ -38,8 +38,10 @@
             android:textSize="18sp"/>
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:id="@+id/btnTicket"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:padding="2.5dp"
             android:src="@drawable/ic_ticket"/>
 
     </LinearLayout>
@@ -63,7 +65,8 @@
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_event"
-            android:paddingVertical="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp"
             android:overScrollMode="never"
             android:clipToPadding="false"/>
 

@@ -2,7 +2,10 @@ package com.example.brainwest_android.data.network.api
 
 import com.example.brainwest_android.data.model.Education
 import com.example.brainwest_android.data.model.Event
+import com.example.brainwest_android.data.model.EventTransaction
+import com.example.brainwest_android.data.model.MidtransEventTransaction
 import com.example.brainwest_android.data.model.User
+import com.example.brainwest_android.data.network.request.EventTransactionRequest
 import com.example.brainwest_android.data.network.request.LoginRequest
 import com.example.brainwest_android.data.network.request.RegisterRequest
 import com.example.brainwest_android.data.network.response.BaseResponse
@@ -28,7 +31,7 @@ interface ApiService {
     suspend fun getEducationById(
         @Header("Authorization") token: String,
         @Path("id") id: Int
-        ): Response<BaseResponse<Education>>
+    ): Response<BaseResponse<Education>>
 
     @GET("event")
     suspend fun getAllEvent(@Header("Authorization") token: String): Response<BaseResponse<List<Event>>>
@@ -39,8 +42,12 @@ interface ApiService {
         @Path("id") id: Int
     ): Response<BaseResponse<Event>>
 
-    @GET("me/event/transaction")
-    suspend fun getMyTransaction(
+    @POST("event/transaction")
+    suspend fun postEventTransaction(
         @Header("Authorization") token: String,
-        @Path("id") id: Int): Response<BaseResponse<List<Event>>>
+        @Body request: EventTransactionRequest
+    ): Response<BaseResponse<MidtransEventTransaction>>
+
+    @GET("me/event/transaction")
+    suspend fun getMyEventTransaction(@Header("Authorization") token: String): Response<BaseResponse<List<EventTransaction>>>
 }

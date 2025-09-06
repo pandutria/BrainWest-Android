@@ -12,12 +12,32 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imgThumbnail"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:src="@drawable/example_event"
-            android:scaleType="centerCrop"/>
+            android:layout_height="180dp">
+
+            <ImageView
+                android:id="@+id/imgThumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/example_event"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:id="@+id/tvRestDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9 Hari lagi"
+                android:layout_gravity="end"
+                android:background="@drawable/bg_time_my_event"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_semibold"
+                android:textAlignment="center"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="7dp"
+                android:textSize="12sp"/>
+
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,7 +66,7 @@
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:src="@drawable/ic_calendar"/>
-                
+
                 <TextView
                     android:id="@+id/tvDate"
                     android:layout_width="wrap_content"

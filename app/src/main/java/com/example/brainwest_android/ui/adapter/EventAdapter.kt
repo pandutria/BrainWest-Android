@@ -24,8 +24,8 @@ class EventAdapter(
             binding.tvPrice.text = FormatRupiah.format(event.price!!)
 
             Glide.with(binding.root.context)
-                .load(event.image)
-                .into(binding.imgThumbnail)
+                    .load(event.image)
+                    .into(binding.imgThumbnail)
 
             binding.root.setOnClickListener {
                 onClick(event)

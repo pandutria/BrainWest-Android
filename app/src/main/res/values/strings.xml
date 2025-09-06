@@ -63,4 +63,6 @@
     <string name="detail_event">Detail Webinar</string>
     <string name="buy_ticket">Beli Tiket Sekarang</string>
     <string name="desc_event_webinar">Deskripsi Event Webinar</string>
+    <string name="transaction">Pembayaran</string>
+    <string name="my_ticket">Tiket Saya</string>
 </resources>
