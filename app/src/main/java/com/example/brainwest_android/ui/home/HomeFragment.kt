@@ -7,15 +7,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.doOnPreDraw
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
+import com.example.brainwest_android.data.repository.EducationRepository
 import com.example.brainwest_android.databinding.FragmentHomeBinding
 import com.example.brainwest_android.ui.adapter.SliderAdapter
+import com.example.brainwest_android.ui.education.EducationViewModel
+import com.example.brainwest_android.ui.education.EducationViewModelFactory
 
 class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
     private val handler = Handler(Looper.getMainLooper())
     private var currentPage = 0
+
+    private val viewModel: HomeViewModel by viewModels {
+        HomeViewModelfactory()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,9 +39,21 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+//        binding.nestedScroll.doOnPreDraw {
+//            val savedScroll = viewModel.scrollY.value ?: 0
+//            binding.nestedScroll.scrollTo(0, savedScroll)
+//        }
+    }
+
     fun navigate() {
         binding.btnEvent.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_eventFragment)
+
+        }
+        binding.btnChatbot.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_chatBotFragment)
         }
     }
 
@@ -56,5 +77,23 @@ class HomeFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         handler.removeCallbacksAndMessages(null)
+    }
+
+    override fun onPause() {
+        super.onPause()
+//        viewModel.scrollY.value = binding.nestedScroll.scrollY
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+//        viewModel.scrollY.value = binding.nestedScroll.scrollY
+    }
+
+    override fun onResume() {
+        super.onResume()
+//        binding.nestedScroll.viewTreeObserver.addOnGlobalLayoutListener {
+//            val savedScroll = viewModel.scrollY.value ?: 0
+//            binding.nestedScroll.scrollTo(0, savedScroll)
+//        }
     }
 }

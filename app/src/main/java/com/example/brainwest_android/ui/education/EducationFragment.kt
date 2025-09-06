@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
 import com.example.brainwest_android.data.repository.EducationRepository
@@ -43,6 +44,7 @@ class EducationFragment : Fragment() {
                 putInt("id", edu.id!!)
             }
             findNavController().navigate(R.id.action_educationFragment_to_articleFragment, bundle)
+
         }
 
         videoAdapter = VideoAdapter { edu ->
@@ -66,6 +68,7 @@ class EducationFragment : Fragment() {
                 is State.Success -> {
                     videoAdapter.setData(state.data.filter { x -> x.category == "video" })
                     binding.rvVideo.adapter = videoAdapter
+                    binding.rvVideo.layoutManager?.onRestoreInstanceState(viewModel.videoRvState)
                 }
                 is State.Error -> {
                     Helper.showErrorToast(requireContext(), state.message)
@@ -82,6 +85,7 @@ class EducationFragment : Fragment() {
                 is State.Success -> {
                     articleAdapter.setData(state.data.filter { x -> x.category == "article" })
                     binding.rvArticle.adapter = articleAdapter
+                    binding.rvArticle.layoutManager?.onRestoreInstanceState(viewModel.articleRvState)
                 }
                 is State.Error -> {
                     Helper.showErrorToast(requireContext(), state.message)
@@ -111,14 +115,30 @@ class EducationFragment : Fragment() {
             override fun run() {
                 if (currentPage == images.size) currentPage = 0
                 binding.viewPager.setCurrentItem(currentPage++, true)
-                handler.postDelayed(this, 3000)
+                handler.postDelayed(this, 4000)
             }
         }
-        handler.postDelayed(runnable, 3000)
+        handler.postDelayed(runnable, 4000)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         handler.removeCallbacksAndMessages(null)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.scrollY.value = binding.nestedScroll.scrollY
+        viewModel.articleRvState = binding.rvArticle.layoutManager?.onSaveInstanceState()
+        viewModel.videoRvState = binding.rvVideo.layoutManager?.onSaveInstanceState()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.nestedScroll.post {
+            binding.nestedScroll.scrollTo(0, viewModel.scrollY.value ?: 0)
+        }
+        binding.rvArticle.layoutManager?.onRestoreInstanceState(viewModel.articleRvState)
+        binding.rvVideo.layoutManager?.onRestoreInstanceState(viewModel.videoRvState)
     }
 }

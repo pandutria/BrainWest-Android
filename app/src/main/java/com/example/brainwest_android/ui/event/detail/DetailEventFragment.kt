@@ -82,6 +82,7 @@ class DetailEventFragment : Fragment() {
                 is State.Loading -> {
                     binding.layoutContent.visibility = View.GONE
                     binding.layoutBtnBuy.visibility = View.GONE
+                    binding.layoutBtnPrint.visibility = View.GONE
                     binding.pbLoading.visibility = View.VISIBLE
                 }
                 is State.Success -> {

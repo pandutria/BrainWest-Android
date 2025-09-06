@@ -20,6 +20,7 @@ import com.google.android.exoplayer2.MediaItem
 
 class VideoFragment : Fragment() {
     lateinit var binding: FragmentVideoBinding
+    private var player: ExoPlayer? = null
 
     private val viewModel: VideoViewModel by viewModels {
         VideoViewModelFactory(EducationRepository())
@@ -61,13 +62,13 @@ class VideoFragment : Fragment() {
                     binding.tvTitle.text = state.data.title
                     binding.tvDesc.text = state.data.text
 
-                    val player = ExoPlayer.Builder(requireContext()).build()
+                    player = ExoPlayer.Builder(requireContext()).build()
                     binding.pvVideo.player = player
 
                     val mediaItem = MediaItem.fromUri(state.data.link!!)
-                    player.setMediaItem(mediaItem)
-                    player.prepare()
-                    player.play()
+                    player?.setMediaItem(mediaItem)
+                    player?.prepare()
+                    player?.play()
 
                     binding.layoutContent.visibility = View.VISIBLE
                     binding.pbLoading.visibility = View.GONE
@@ -81,5 +82,9 @@ class VideoFragment : Fragment() {
         }
     }
 
-
+    override fun onStop() {
+        super.onStop()
+        player?.release()
+        player = null
+    }
 }

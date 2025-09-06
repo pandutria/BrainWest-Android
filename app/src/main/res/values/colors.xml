@@ -11,4 +11,5 @@
     <color name="successToast">#248852</color>
     <color name="warningToast">#FFAF23</color>
     <color name="errorToast">#D73B52</color>
+    <color name="line">#4D939CBE</color>
 </resources>

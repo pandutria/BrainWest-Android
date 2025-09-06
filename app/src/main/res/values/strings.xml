@@ -66,4 +66,9 @@
     <string name="transaction">Pembayaran</string>
     <string name="my_ticket">Tiket Saya</string>
     <string name="print">Cetak Tiket</string>
+    <string name="chatbot_asistant">Asisten Kesehatan Otak Pintar</string>
+    <string name="can_i_help_you_today">Apa yang bisa saya bantu hari ini!</string>
+    <string name="start">Mulai</string>
+    <string name="health_asistant">Asisten Kesehatan </string>\
+    <string name="hint_write_chat">Ketik pesan...</string>
 </resources>

@@ -35,7 +35,7 @@ class EventFragment : Fragment() {
         binding = FragmentEventBinding.inflate(layoutInflater)
 
         binding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().popBackStack(R.id.homeFragment, false)
         }
 
         binding.btnTicket.setOnClickListener {

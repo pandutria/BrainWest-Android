@@ -119,6 +119,15 @@
         <action
             android:id="@+id/action_homeFragment_to_eventFragment"
             app:destination="@id/eventFragment"
+            app:popUpToSaveState="@id/homeFragment"
+            app:restoreState="true"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
+        <action
+            android:id="@+id/action_homeFragment_to_chatBotFragment"
+            app:destination="@id/chatBotFragment"
             app:enterAnim="@anim/zoom_fade_in"
             app:exitAnim="@anim/zoom_fade_out"
             app:popEnterAnim="@anim/zoom_fade_in"
@@ -238,6 +247,24 @@
             app:popEnterAnim="@anim/zoom_fade_in"
             app:popExitAnim="@anim/zoom_fade_out"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/chatBotFragment"
+        tools:layout="@layout/fragment_chat_bot"
+        android:name="com.example.brainwest_android.ui.chatbot.ChatBotFragment">
+        <action
+            android:id="@+id/action_chatBotFragment_to_chatingChatBotFragment"
+            app:destination="@id/chatingChatBotFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatingChatBotFragment"
+        tools:layout="@layout/fragment_chatbot_chating"
+        android:name="com.example.brainwest_android.ui.chatbot.chating.ChatbotChatingFragment"/>
 
 
 </navigation>

@@ -1,6 +1,7 @@
 package com.example.brainwest_android.ui.education
 
 import android.content.Context
+import android.os.Parcelable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,6 +19,10 @@ import kotlinx.coroutines.launch
 class EducationViewModel(private val repo: EducationRepository): ViewModel() {
     private val _getAllEducationResult = MutableLiveData<State<List<Education>>>()
     val getAllEducationResult: LiveData<State<List<Education>>> get() = _getAllEducationResult
+
+    val scrollY = MutableLiveData<Int>()
+    var articleRvState: Parcelable? = null
+    var videoRvState: Parcelable? = null
 
     fun getAllArticle(context: Context) {
         viewModelScope.launch {

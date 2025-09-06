@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg"
+    tools:context=".ui.chatbot.ChatBotFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="10dp"
+            android:elevation="1dp"
+            android:paddingBottom="15dp">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:padding="2.5dp"
+                android:src="@drawable/arrow_left"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chatbot_asistant"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_regular"
+                android:background="@drawable/bg_header_gradient"
+                android:paddingVertical="5dp"
+                android:paddingHorizontal="20dp"/>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_below="@id/header"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="340dp"
+                android:layout_height="370dp"
+                android:src="@drawable/robot_chat"/>
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="@string/can_i_help_you_today"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginTop="15dp"
+                android:textAlignment="center"/>
+
+            <RelativeLayout
+                android:layout_width="320dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="60dp"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnStart"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:textColor="@color/white"
+                    app:cornerRadius="8dp"
+                    android:background="@drawable/bg_gradient"
+                    android:text="@string/start"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="15sp"/>
+
+                <ProgressBar
+                    android:id="@+id/pbLoading"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:indeterminateTint="@color/primary"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="170dp"
+        android:layout_height="800dp"
+        android:src="@drawable/glow_left"
+        android:layout_gravity="bottom"/>
+
+    <ImageView
+        android:layout_width="185dp"
+        android:layout_height="800dp"
+        android:src="@drawable/glow_right"
+        android:elevation="2dp"
+        android:layout_gravity="right|top"/>
+
+
+</FrameLayout>
