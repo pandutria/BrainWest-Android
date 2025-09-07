@@ -1,17 +1,15 @@
-package com.example.brainwest_android
+package com.example.brainwest_android.parent
 
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.doOnLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.brainwest_android.R
 import com.example.brainwest_android.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

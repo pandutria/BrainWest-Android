@@ -18,9 +18,15 @@ class ChatBotFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentChatBotBinding.inflate(layoutInflater)
 
+        binding.btnBack.setOnClickListener {
+            requireActivity().finish()
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+        }
+
         binding.btnStart.setOnClickListener {
             findNavController().navigate(R.id.action_chatBotFragment_to_chatingChatBotFragment)
         }
+
 
         return binding.root
     }

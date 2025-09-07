@@ -55,9 +55,25 @@ class ChatBotAdapter(private val messages: MutableList<GeminiChatMessage>):
         }
     }
 
-    fun addMessage(newMessages: List<GeminiChatMessage>) {
+    fun setMessages(newMessages: List<GeminiChatMessage>) {
         messages.clear()
         messages.addAll(newMessages)
         notifyDataSetChanged()
     }
+
+    fun addMessage(newMessage: GeminiChatMessage) {
+        messages.add(newMessage)
+        notifyItemInserted(messages.size - 1)
+    }
+
+
+    fun updateMessage(position: Int, newText: String) {
+        val oldMsg = messages[position]
+        messages[position] = GeminiChatMessage(
+            message = newText,
+            isUser = oldMsg.isUser
+        )
+        notifyItemChanged(position)
+    }
+
 }

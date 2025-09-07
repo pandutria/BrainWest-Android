@@ -35,7 +35,8 @@ class EventFragment : Fragment() {
         binding = FragmentEventBinding.inflate(layoutInflater)
 
         binding.btnBack.setOnClickListener {
-            findNavController().popBackStack(R.id.homeFragment, false)
+            requireActivity().finish()
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
         }
 
         binding.btnTicket.setOnClickListener {
@@ -75,5 +76,4 @@ class EventFragment : Fragment() {
             }
         }
     }
-
 }

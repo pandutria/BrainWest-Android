@@ -1,5 +1,6 @@
 package com.example.brainwest_android.ui.auth.login
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,11 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.brainwest_android.parent.MainActivity
 import com.example.brainwest_android.R
 import com.example.brainwest_android.data.repository.AuthRepository
 import com.example.brainwest_android.databinding.FragmentLoginBinding
-import com.example.brainwest_android.ui.auth.register.RegisterViewModel
-import com.example.brainwest_android.ui.auth.register.RegisterViewModelFactory
 import com.example.brainwest_android.utils.Helper
 import com.example.brainwest_android.utils.State
 
@@ -31,10 +31,6 @@ class LoginFragment : Fragment() {
 
         binding.tvRegister.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
-        }
-
-        binding.btnLogin.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
 
         handleLogin()
@@ -61,7 +57,12 @@ class LoginFragment : Fragment() {
                     }
                     is State.Success -> {
                         Helper.showSuccessToast(requireContext(), state.message)
-                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+
+                        val intent = Intent(requireContext(), MainActivity::class.java)
+                        startActivity(intent)
+                        requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+                        requireActivity().finish()
+
                         binding.pbLoading.visibility = View.GONE
                         binding.btnLogin.visibility = View.VISIBLE
                     }

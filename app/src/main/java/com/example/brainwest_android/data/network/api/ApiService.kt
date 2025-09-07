@@ -33,10 +33,10 @@ interface ApiService {
         @Path("id") id: Int
     ): Response<BaseResponse<Education>>
 
-    @GET("event")
+    @GET("events")
     suspend fun getAllEvent(@Header("Authorization") token: String): Response<BaseResponse<List<Event>>>
 
-    @GET("event/{id}")
+    @GET("events/{id}")
     suspend fun getEventById(
         @Header("Authorization") token: String,
         @Path("id") id: Int
