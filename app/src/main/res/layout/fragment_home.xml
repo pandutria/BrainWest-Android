@@ -107,7 +107,8 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="205dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="20dp"
                     android:orientation="vertical">
@@ -270,6 +271,7 @@
                     android:baselineAligned="false">
 
                     <LinearLayout
+                        android:id="@+id/btnDonation"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"

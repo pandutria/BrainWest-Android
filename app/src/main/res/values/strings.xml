@@ -71,4 +71,11 @@
     <string name="start">Mulai</string>
     <string name="health_asistant">Asisten Kesehatan </string>\
     <string name="hint_write_chat">Ketik pesan...</string>
+    <string name="transaction_menu">Transaksi</string>
+    <string name="hint_donation">Cari donasi...</string>
+    <string name="submit_your_donation">Ajukan Pengajuan Penerima Donasi Sekarang!</string>
+    <string name="submit_now">Ajukan Sekarang!</string>
+    <string name="urgent_fundraising">Penggalangan Dana Mendesak</string>
+    <string name="collected">Terkumpul</string>
+    <string name="rest_day">Sisa Hari</string>
 </resources>

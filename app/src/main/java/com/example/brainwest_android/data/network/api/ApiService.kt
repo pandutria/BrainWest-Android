@@ -1,5 +1,6 @@
 package com.example.brainwest_android.data.network.api
 
+import com.example.brainwest_android.data.model.Donation
 import com.example.brainwest_android.data.model.Education
 import com.example.brainwest_android.data.model.Event
 import com.example.brainwest_android.data.model.EventTransaction
@@ -50,4 +51,7 @@ interface ApiService {
 
     @GET("me/event/transaction")
     suspend fun getMyEventTransaction(@Header("Authorization") token: String): Response<BaseResponse<List<EventTransaction>>>
+
+    @GET("donates")
+    suspend fun getAllDonation(@Header("Authorization") token: String): Response<BaseResponse<List<Donation>>>
 }

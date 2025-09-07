@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.parent.ChatBotActivity
 import com.example.brainwest_android.R
 import com.example.brainwest_android.databinding.FragmentHomeBinding
+import com.example.brainwest_android.parent.DonationActivity
 import com.example.brainwest_android.parent.EventActivity
 import com.example.brainwest_android.ui.adapter.SliderAdapter
 
@@ -47,6 +48,11 @@ class HomeFragment : Fragment() {
         }
         binding.btnChatbot.setOnClickListener {
             val intent = Intent(requireContext(), ChatBotActivity::class.java)
+            startActivity(intent)
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+        }
+        binding.btnDonation.setOnClickListener {
+            val intent = Intent(requireContext(), DonationActivity::class.java)
             startActivity(intent)
             requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
         }

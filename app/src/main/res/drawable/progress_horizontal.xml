@@ -1,0 +1,17 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background (kosong) -->
+    <item android:id="@android:id/background">
+        <shape>-
+            <solid android:color="@android:color/white"/>
+        </shape>
+    </item>
+
+    <!-- Progress (isi) -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>-
+                <solid android:color="@color/primary"/>
+            </shape>
+        </clip>
+    </item>
+</layer-list>

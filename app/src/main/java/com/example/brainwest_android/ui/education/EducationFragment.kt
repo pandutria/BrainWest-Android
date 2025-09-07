@@ -61,6 +61,7 @@ class EducationFragment : Fragment() {
     }
 
     fun showDataVideo() {
+        if (articleAdapter.itemCount > 0) return
         viewModel.getAllArticle(requireContext())
         viewModel.getAllEducationResult.observe(viewLifecycleOwner) {state ->
             when (state) {
@@ -78,6 +79,7 @@ class EducationFragment : Fragment() {
     }
 
     fun showDataArticle() {
+        if (articleAdapter.itemCount > 0) return
         viewModel.getAllArticle(requireContext())
         viewModel.getAllEducationResult.observe(viewLifecycleOwner) {state ->
             when (state) {

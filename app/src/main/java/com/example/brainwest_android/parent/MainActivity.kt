@@ -3,12 +3,15 @@ package com.example.brainwest_android.parent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.doOnLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.brainwest_android.R
 import com.example.brainwest_android.databinding.ActivityMainBinding
 
@@ -18,14 +21,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
+        enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.bottomNavbar) { v, insets ->
 //            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -57,11 +60,12 @@ class MainActivity : AppCompatActivity() {
         bottomNav.doOnLayout {
             moveIndicatorTo(bottomNav.selectedItemId)
 
-
             val navHost = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
             navController = navHost.navController
 
-            bottomNav.setOnItemSelectedListener { item ->
+            bottomNav.setupWithNavController(navController)
+
+            bottomNav.setOnNavigationItemSelectedListener  { item ->
                 moveIndicatorTo(item.itemId)
                 when (item.itemId) {
                     R.id.homeMenu -> {
@@ -72,14 +76,6 @@ class MainActivity : AppCompatActivity() {
                         navController.navigate(R.id.educationFragment)
                         true
                     }
-//                    R.id.communityMenu -> {
-//                        navController.navigate(R.id.communityFragment)
-//                        true
-//                    }
-//                    R.id.profileMenu -> {
-//                        navController.navigate(R.id.profileFragment)
-//                        true
-//                    }
                     else -> false
                 }
             }

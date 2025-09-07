@@ -71,7 +71,8 @@ class EventFragment : Fragment() {
                 }
                 is State.Error -> {
                     Helper.showErrorToast(requireContext(), state.message)
-                    findNavController().popBackStack()
+                    requireActivity().finish()
+                    requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
                 }
             }
         }
