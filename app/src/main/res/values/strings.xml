@@ -83,4 +83,8 @@
     <string name="target_donate">Target Donasi</string>
     <string name="story_donation">Cerita Penggalangan Donasi</string>
     <string name="donate_now">Donasi Sekarang</string>
+    <string name="input_nominal">Masukan Nominal</string>
+    <string name="choose_nominal_donation">Pilih Nominal Donasi</string>
+    <string name="or_input_manual">Atau Masukan Nominal Manual</string>
+    <string name="hint_nominal">Masukan nominal...</string>
 </resources>
