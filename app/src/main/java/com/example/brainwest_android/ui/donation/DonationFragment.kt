@@ -1,5 +1,6 @@
 package com.example.brainwest_android.ui.donation
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +32,6 @@ class DonationFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentDonationBinding.inflate(layoutInflater)
 
-        requireActivity().window.statusBarColor = ContextCompat.getColor(requireActivity(), R.color.bg)
 
         binding.btnBack.setOnClickListener {
             requireActivity().finish()
@@ -46,8 +46,22 @@ class DonationFragment : Fragment() {
         }
 
         showData()
+        setupAppBar()
         return binding.root
     }
+
+    fun setupAppBar() {
+        binding.scroll.setOnScrollChangeListener { _, _, scrollY, _, _ ->
+            if (scrollY > 0) {
+                binding.header.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.bg))
+                requireActivity().window.statusBarColor = ContextCompat.getColor(requireActivity(), R.color.bg)
+            } else {
+                binding.header.setBackgroundColor(Color.TRANSPARENT)
+                requireActivity().window.statusBarColor = Color.parseColor("#0059D0")
+            }
+        }
+    }
+
 
     fun showData() {
         viewModel.getAllDonation(requireContext())

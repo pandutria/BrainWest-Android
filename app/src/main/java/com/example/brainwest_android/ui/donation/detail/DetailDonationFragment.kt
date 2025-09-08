@@ -19,7 +19,6 @@ import com.example.brainwest_android.utils.FormatRupiah
 import com.example.brainwest_android.utils.Helper
 import java.text.Normalizer.Form
 
-
 class DetailDonationFragment : Fragment() {
     lateinit var binding: FragmentDetailDonationBinding
 
@@ -34,6 +33,11 @@ class DetailDonationFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentDetailDonationBinding.inflate(layoutInflater)
         requireActivity().window.statusBarColor = ContextCompat.getColor(requireActivity(), R.color.bg)
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         showData()
         return binding.root
     }
