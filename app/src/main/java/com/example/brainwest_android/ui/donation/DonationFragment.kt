@@ -32,6 +32,8 @@ class DonationFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentDonationBinding.inflate(layoutInflater)
 
+        binding.header.setBackgroundColor(Color.TRANSPARENT)
+        requireActivity().window.statusBarColor = Color.parseColor("#0059D0")
 
         binding.btnBack.setOnClickListener {
             requireActivity().finish()
