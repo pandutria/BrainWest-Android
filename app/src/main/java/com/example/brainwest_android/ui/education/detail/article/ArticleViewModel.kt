@@ -10,7 +10,7 @@ import com.example.brainwest_android.data.model.Education
 import com.example.brainwest_android.data.repository.EducationRepository
 import com.example.brainwest_android.utils.ApiErrorHandler
 import com.example.brainwest_android.utils.Helper
-import com.example.brainwest_android.utils.State
+import com.example.brainwest_android.data.state.State
 import kotlinx.coroutines.launch
 
 class ArticleViewModel(private val repo: EducationRepository): ViewModel() {

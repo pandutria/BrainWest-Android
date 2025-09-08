@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
 import com.example.brainwest_android.data.repository.EducationRepository
@@ -17,7 +16,7 @@ import com.example.brainwest_android.ui.adapter.ArticleAdapter
 import com.example.brainwest_android.ui.adapter.SliderArticleAdapter
 import com.example.brainwest_android.ui.adapter.VideoAdapter
 import com.example.brainwest_android.utils.Helper
-import com.example.brainwest_android.utils.State
+import com.example.brainwest_android.data.state.State
 
 class EducationFragment : Fragment() {
     lateinit var binding: FragmentEducationBinding

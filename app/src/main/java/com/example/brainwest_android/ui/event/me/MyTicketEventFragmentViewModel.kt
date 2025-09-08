@@ -8,10 +8,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.brainwest_android.data.model.EventTransaction
 import com.example.brainwest_android.data.repository.EventRepository
-import com.example.brainwest_android.ui.event.EventViewModel
 import com.example.brainwest_android.utils.ApiErrorHandler
 import com.example.brainwest_android.utils.Helper
-import com.example.brainwest_android.utils.State
+import com.example.brainwest_android.data.state.State
 import kotlinx.coroutines.launch
 
 class MyTicketEventViewModel(private val repo: EventRepository): ViewModel() {

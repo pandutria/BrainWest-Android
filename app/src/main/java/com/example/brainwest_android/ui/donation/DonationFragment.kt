@@ -1,18 +1,19 @@
 package com.example.brainwest_android.ui.donation
 
 import android.os.Bundle
-import android.provider.Telephony.ServiceStateTable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.brainwest_android.R
 import com.example.brainwest_android.data.repository.DonationRepository
 import com.example.brainwest_android.databinding.FragmentDonationBinding
 import com.example.brainwest_android.ui.adapter.DonationAdapter
-import com.example.brainwest_android.utils.State
+import com.example.brainwest_android.data.state.State
 
 class DonationFragment : Fragment() {
     lateinit var binding: FragmentDonationBinding
@@ -30,8 +31,18 @@ class DonationFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentDonationBinding.inflate(layoutInflater)
 
-        adapter = DonationAdapter {donation ->
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireActivity(), R.color.bg)
 
+        binding.btnBack.setOnClickListener {
+            requireActivity().finish()
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+        }
+
+        adapter = DonationAdapter {donation ->
+            val bundle = Bundle().apply {
+                putInt("id", donation.id!!)
+            }
+            findNavController().navigate(R.id.action_donationFragment_to_detailDonationFragment, bundle)
         }
 
         showData()
@@ -43,9 +54,12 @@ class DonationFragment : Fragment() {
         viewModel.getAllDonationResult.observe(viewLifecycleOwner) {state ->
             when(state) {
                 is State.Loading -> {
-
+                    binding.rvDonation.visibility = View.GONE
+                    binding.pbLoading.visibility = View.VISIBLE
                 }
                 is State.Success -> {
+                    binding.rvDonation.visibility = View.VISIBLE
+                    binding.pbLoading.visibility = View.GONE
                     adapter.setData(state.data)
                     binding.rvDonation.layoutManager = LinearLayoutManager(requireContext())
                     binding.rvDonation.adapter = adapter

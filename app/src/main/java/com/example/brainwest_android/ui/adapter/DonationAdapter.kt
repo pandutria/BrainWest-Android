@@ -21,9 +21,22 @@ class DonationAdapter(
             binding.tvCurrentDona.text = FormatRupiah.format(donation.current_donate!!)
             binding.tvInstitution.text = donation.institution
 
+            val target = donation.target ?: 1L
+            val current = donation.current_donate
+            val progress = ((current.toDouble() / target.toDouble()) * 100).toInt()
+
+            binding.progressBar.max = 100
+            binding.progressBar.progress = progress.coerceAtMost(100)
+
+            binding.tvProgress.text = "$progress%"
+
             Glide.with(binding.root.context)
                 .load(donation.image)
                 .into(binding.imgImage)
+
+            binding.root.setOnClickListener {
+                onClick(donation)
+            }
         }
     }
 

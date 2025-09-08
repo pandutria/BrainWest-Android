@@ -7,12 +7,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.brainwest_android.data.model.User
-import com.example.brainwest_android.data.network.response.LoginResponse
 import com.example.brainwest_android.data.repository.AuthRepository
-import com.example.brainwest_android.ui.auth.register.RegisterViewModel
 import com.example.brainwest_android.utils.ApiErrorHandler
 import com.example.brainwest_android.utils.Helper
-import com.example.brainwest_android.utils.State
+import com.example.brainwest_android.data.state.State
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val repo: AuthRepository): ViewModel() {

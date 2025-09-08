@@ -78,4 +78,9 @@
     <string name="urgent_fundraising">Penggalangan Dana Mendesak</string>
     <string name="collected">Terkumpul</string>
     <string name="rest_day">Sisa Hari</string>
+    <string name="donation_detail">Detail Donasi</string>
+    <string name="current_donate">Donasi Terkumpul</string>
+    <string name="target_donate">Target Donasi</string>
+    <string name="story_donation">Cerita Penggalangan Donasi</string>
+    <string name="donate_now">Donasi Sekarang</string>
 </resources>

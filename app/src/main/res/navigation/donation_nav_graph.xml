@@ -8,6 +8,19 @@
     <fragment
         android:id="@+id/donationFragment"
         tools:layout="@layout/fragment_donation"
-        android:name="com.example.brainwest_android.ui.donation.DonationFragment"/>
+        android:name="com.example.brainwest_android.ui.donation.DonationFragment">
+        <action
+            android:id="@+id/action_donationFragment_to_detailDonationFragment"
+            app:destination="@id/detailDonationFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailDonationFragment"
+        tools:layout="@layout/fragment_detail_donation"
+        android:name="com.example.brainwest_android.ui.donation.detail.DetailDonationFragment"/>
 
 </navigation>

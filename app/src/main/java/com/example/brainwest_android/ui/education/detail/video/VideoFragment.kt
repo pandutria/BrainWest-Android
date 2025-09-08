@@ -7,14 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.brainwest_android.R
 import com.example.brainwest_android.data.repository.EducationRepository
-import com.example.brainwest_android.databinding.FragmentArticleBinding
 import com.example.brainwest_android.databinding.FragmentVideoBinding
-import com.example.brainwest_android.ui.education.detail.article.ArticleViewModel
-import com.example.brainwest_android.ui.education.detail.article.ArticleViewModelFactory
 import com.example.brainwest_android.utils.Helper
-import com.example.brainwest_android.utils.State
+import com.example.brainwest_android.data.state.State
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 

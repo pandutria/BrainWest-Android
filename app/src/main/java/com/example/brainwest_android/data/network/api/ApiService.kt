@@ -54,4 +54,10 @@ interface ApiService {
 
     @GET("donates")
     suspend fun getAllDonation(@Header("Authorization") token: String): Response<BaseResponse<List<Donation>>>
+
+    @GET("donates/{id}")
+    suspend fun getDonationById(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Response<BaseResponse<Donation>>
 }

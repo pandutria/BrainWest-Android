@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    tools:context=".ui.event.detail.DetailEventFragment">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="15dp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:padding="2.5dp"
+            android:src="@drawable/arrow_left" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="25dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/donation_detail"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/layoutBtnBuy"
+        android:layout_below="@id/header"
+        android:fillViewport="true">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/layoutContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/example_event" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="15dp">
+
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:justificationMode="inter_word"
+                        android:text="Mari Bicara Tentang Kesehatan Otak: Langkah Kecil untuk Perubahan Besa"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/current_donate"
+                                android:textColor="@color/white"
+                                android:textSize="8sp"
+                                android:fontFamily="@font/poppins_regular"/>
+
+                            <TextView
+                                android:id="@+id/tvCurrentDonate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Rp. 82.000,00"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:fontFamily="@font/poppins_semibold"/>
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="33dp"
+                            android:layout_marginHorizontal="15dp"
+                            android:background="#CCFFFFFF" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1.2"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/target_donate"
+                                android:textColor="@color/white"
+                                android:textSize="8sp"
+                                android:fontFamily="@font/poppins_regular"/>
+
+                            <TextView
+                                android:id="@+id/tvTargetDonate"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="Rp. 150.000.000"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/poppins_semibold"/>
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="33dp"
+                            android:background="#CCFFFFFF"
+                            android:layout_marginHorizontal="15dp"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/rest_day"
+                                android:textColor="@color/white"
+                                android:textSize="8sp"
+                                android:fontFamily="@font/poppins_regular"/>
+
+                            <TextView
+                                android:id="@+id/tvRestDay"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="12 Hari"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/poppins_semibold"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/bg_announcement"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_marginTop="3dp"
+                            android:src="@drawable/ic_announcement"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Ingin ikut webinar ini? Segera dapatkan tiketmu sekarang juga dengan menghubungi Admin lewat chat!"
+                            android:textColor="@color/white"
+                            android:textSize="10sp"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/poppins_regular"/>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/white"
+                        android:layout_marginVertical="15dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/story_donation"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:id="@+id/tvDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sahabat, ada ratusan anak menderita sakit kanker di pelosok yang saat ini nyawanya terancam karena sulit berobat. Pasien anak-anak ini datang dari dari daerah untuk berobat ke Jakarta. Penyakit kronis yang mereka derita tak bisa ditangani oleh rumah sakit daerah.  Sehingga harus melakukan perawatan di Jakarta yang lebih lengkap. Banyak para pasien berkumpul dari berbagai daerah untuk berobat ke  Jakarta mengobati penyakit kronis mereka. Karena terkendala biaya,  satu-satunya tempat tinggal yang dapat mereka andalkan adalah sebuah  rumah singgah yang layak. Karena itu, kami mengajakmu patungan  membangun rumah singgah dan kebutuhan para pasien agar adik kecil ini  semangat untuk sembuh! Faqih, masih berusia 4 bulan, harus menerima  penyakit ini sejak 3 bulan lalu, tepat disaat umurnya masih 1 bulan.  Faqih sakit sesak nafas dan pertumbuhannya lambat, karena itulah  orangtuanDonasiya khawatir dan memeriksakan kondisi anaknya."
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        android:justificationMode="inter_word"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_marginTop="5dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/pbLoading"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/primary"
+                android:visibility="gone" />
+        </FrameLayout>
+
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/layoutBtnBuy"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/bg"
+        android:gravity="center">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#939CBE"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBuy"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:backgroundTint="@color/primary"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_gravity="center_vertical"
+            android:text="@string/buy_ticket"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="20dp"
+            android:textSize="15sp"
+            app:cornerRadius="8dp" />
+
+        <ProgressBar
+            android:id="@+id/pbLoadingBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/primary"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/layoutBtnPrint"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/bg">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#939CBE"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPrint"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:backgroundTint="@color/primary"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_gravity="center_vertical"
+            android:text="@string/donate_now"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:cornerRadius="8dp"
+            android:layout_marginHorizontal="20dp"/>
+
+        <ProgressBar
+            android:id="@+id/pbLoadingBtnPrint"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/primary"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+
+</RelativeLayout>

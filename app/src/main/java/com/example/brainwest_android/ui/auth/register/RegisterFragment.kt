@@ -11,7 +11,7 @@ import com.example.brainwest_android.R
 import com.example.brainwest_android.data.repository.AuthRepository
 import com.example.brainwest_android.databinding.FragmentRegisterBinding
 import com.example.brainwest_android.utils.Helper
-import com.example.brainwest_android.utils.State
+import com.example.brainwest_android.data.state.State
 
 class RegisterFragment : Fragment() {
    lateinit var binding: FragmentRegisterBinding

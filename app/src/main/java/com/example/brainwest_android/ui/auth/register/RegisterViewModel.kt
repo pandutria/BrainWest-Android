@@ -5,14 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.brainwest_android.R
 import com.example.brainwest_android.data.model.User
 import com.example.brainwest_android.data.repository.AuthRepository
 import com.example.brainwest_android.utils.ApiErrorHandler
 import com.example.brainwest_android.utils.Helper
-import com.example.brainwest_android.utils.State
+import com.example.brainwest_android.data.state.State
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 
 class RegisterViewModel(private val repo: AuthRepository): ViewModel() {
     private val _registerResult = MutableLiveData<State<User>>()

@@ -2,10 +2,18 @@ package com.example.brainwest_android.ui.chatbot.chating
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.speech.RecognizerIntent
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.BackgroundColorSpan
+import android.text.style.StrikethroughSpan
+import android.text.style.StyleSpan
+import android.text.style.TypefaceSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +28,7 @@ import com.example.brainwest_android.data.network.response.gemini.GeminiChatMess
 import com.example.brainwest_android.data.repository.GeminiRepository
 import com.example.brainwest_android.databinding.FragmentChatbotChatingBinding
 import com.example.brainwest_android.ui.adapter.ChatBotAdapter
+import java.util.regex.Pattern
 
 
 class ChatbotChatingFragment : Fragment() {
@@ -100,7 +109,7 @@ class ChatbotChatingFragment : Fragment() {
                     adapter.updateMessage(position, currentText)
                     binding.rvChat.scrollToPosition(position)
                     index++
-                    handler.postDelayed(this, 100)
+                    handler.postDelayed(this, 20)
                 }
             }
         }

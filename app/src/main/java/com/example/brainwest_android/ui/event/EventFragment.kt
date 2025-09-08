@@ -8,15 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
-import com.example.brainwest_android.data.model.Event
-import com.example.brainwest_android.data.repository.EducationRepository
 import com.example.brainwest_android.data.repository.EventRepository
 import com.example.brainwest_android.databinding.FragmentEventBinding
 import com.example.brainwest_android.ui.adapter.EventAdapter
-import com.example.brainwest_android.ui.education.EducationViewModel
-import com.example.brainwest_android.ui.education.EducationViewModelFactory
 import com.example.brainwest_android.utils.Helper
-import com.example.brainwest_android.utils.State
+import com.example.brainwest_android.data.state.State
 
 class EventFragment : Fragment() {
     lateinit var binding: FragmentEventBinding

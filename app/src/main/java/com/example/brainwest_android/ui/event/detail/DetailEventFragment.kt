@@ -11,11 +11,9 @@ import com.bumptech.glide.Glide
 import com.example.brainwest_android.R
 import com.example.brainwest_android.data.repository.EventRepository
 import com.example.brainwest_android.databinding.FragmentDetailEventBinding
-import com.example.brainwest_android.ui.event.EventViewModel
-import com.example.brainwest_android.ui.event.EventViewModelfactory
 import com.example.brainwest_android.utils.FormatRupiah
 import com.example.brainwest_android.utils.Helper
-import com.example.brainwest_android.utils.State
+import com.example.brainwest_android.data.state.State
 
 class DetailEventFragment : Fragment() {
     lateinit var binding: FragmentDetailEventBinding

@@ -1,7 +1,5 @@
 package com.example.brainwest_android.data.model
 
-import java.math.BigInteger
-
 data class Donation(
     val id: Int? = null,
     val title: String? = null,
@@ -10,7 +8,7 @@ data class Donation(
     val institution: String? = null,
     val image_institution: String? = null,
     val date: String? = null,
-    val target: Long? = null,
+    val target: Int? = null,
     val deadline: String? = null,
     val current_donate: Int? = null,
     val user_donate: List<User>? = null

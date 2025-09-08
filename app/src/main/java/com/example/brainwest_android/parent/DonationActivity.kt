@@ -26,6 +26,17 @@ class DonationActivity : AppCompatActivity() {
             insets
         }
 
+        ViewCompat.setOnApplyWindowInsetsListener(binding.bottomNavbar) { v, insets ->
+//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(0, 0, 0, 0)
+
+            (v.layoutParams as? ViewGroup.MarginLayoutParams)?.let { lp ->
+                lp.bottomMargin = 0
+                v.layoutParams = lp
+            }
+            insets
+        }
+
         window.statusBarColor = Color.parseColor("#0059D0")
         window.navigationBarColor = getColor(R.color.bg)
 
@@ -44,17 +55,14 @@ class DonationActivity : AppCompatActivity() {
             moveIndicatorTo(item.itemId)
             when (item.itemId) {
                 R.id.donationMenu -> {
-                    // TODO: navigate to donate fragment/activity
                     true
                 }
                 R.id.transactionMenu -> {
-                    // TODO: navigate to history fragment/activity
                     true
                 }
                 else -> false
             }
         }
-
     }
 
     private fun moveIndicatorTo(itemId: Int) {

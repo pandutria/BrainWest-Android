@@ -13,7 +13,7 @@ import com.example.brainwest_android.R
 import com.example.brainwest_android.data.repository.AuthRepository
 import com.example.brainwest_android.databinding.FragmentLoginBinding
 import com.example.brainwest_android.utils.Helper
-import com.example.brainwest_android.utils.State
+import com.example.brainwest_android.data.state.State
 
 class LoginFragment : Fragment() {
     lateinit var binding: FragmentLoginBinding

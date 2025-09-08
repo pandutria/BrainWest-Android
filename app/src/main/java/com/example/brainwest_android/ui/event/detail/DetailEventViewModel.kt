@@ -9,10 +9,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.brainwest_android.data.model.Event
 import com.example.brainwest_android.data.model.MidtransEventTransaction
 import com.example.brainwest_android.data.repository.EventRepository
-import com.example.brainwest_android.ui.event.EventViewModel
 import com.example.brainwest_android.utils.ApiErrorHandler
 import com.example.brainwest_android.utils.Helper
-import com.example.brainwest_android.utils.State
+import com.example.brainwest_android.data.state.State
 import kotlinx.coroutines.launch
 
 class DetailEventViewModel(private val repo: EventRepository): ViewModel() {
