@@ -1,5 +1,6 @@
-package com.example.brainwest_android.parent
+package com.example.brainwest_android.ui.parent
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -9,20 +10,19 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.doOnLayout
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import com.example.brainwest_android.R
-import com.example.brainwest_android.databinding.ActivityMainBinding
+import com.example.brainwest_android.databinding.ActivityDonationBinding
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var navController: NavController
-    lateinit var binding: ActivityMainBinding
-
+class DonationActivity : AppCompatActivity() {
+    lateinit var navController: NavController
+    lateinit var binding: ActivityDonationBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityDonationBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -49,67 +49,44 @@ class MainActivity : AppCompatActivity() {
         insetsController.isAppearanceLightNavigationBars = false
 
         val bottomNav = binding.bottomNavbar
-
-        bottomNav.selectedItemId = R.id.homeMenu
-
-        bottomNav.setOnItemSelectedListener { item ->
-            moveIndicatorTo(item.itemId)
-            true
-        }
+        bottomNav.selectedItemId = R.id.donationMenu
 
         bottomNav.doOnLayout {
             moveIndicatorTo(bottomNav.selectedItemId)
+        }
 
-            val navHost = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
-            navController = navHost.navController
-
-            bottomNav.setupWithNavController(navController)
-
-            bottomNav.setOnNavigationItemSelectedListener  { item ->
-                moveIndicatorTo(item.itemId)
-                when (item.itemId) {
-                    R.id.homeMenu -> {
-                        navController.navigate(R.id.homeFragment)
-                        true
-                    }
-                    R.id.eduMenu -> {
-                        navController.navigate(R.id.educationFragment)
-                        true
-                    }
-                    else -> false
+        bottomNav.setOnItemSelectedListener { item ->
+            moveIndicatorTo(item.itemId)
+            when (item.itemId) {
+                R.id.donationMenu -> {
+                    true
                 }
+                R.id.transactionMenu -> {
+                    true
+                }
+                else -> false
             }
+        }
 
+        val navHost = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
+        navController = navHost.navController
 
-            navController.addOnDestinationChangedListener { _, destination, _ ->
-                when (destination.id) {
-                    R.id.homeFragment -> {
-                        binding.frameNavbar.visibility = View.VISIBLE
-//                        binding.frameNavbar.doOnLayout {
-//                            moveIndicatorTo(R.id.homeMenu)
-//                        }
-                    }
-                    R.id.educationFragment -> {
-                        binding.frameNavbar.visibility = View.VISIBLE
-//                        binding.frameNavbar.doOnLayout {
-//                            moveIndicatorTo(R.id.eduMenu)
-//                        }
-                    }
-
-                    else -> {
-                        binding.frameNavbar.visibility = View.GONE
-                    }
-
+        navController.addOnDestinationChangedListener{_, destination, _ ->
+            when (destination.id) {
+                R.id.donationFragment -> {
+                    binding.frameNavbar.visibility = View.VISIBLE
+                }
+                R.id.detailDonationFragment -> {
+                    binding.frameNavbar.visibility = View.GONE
                 }
             }
         }
     }
+
     private fun moveIndicatorTo(itemId: Int) {
         val index = when (itemId) {
-            R.id.homeMenu -> 0
-            R.id.eduMenu -> 1
-            R.id.communityMenu -> 2
-            R.id.profileMenu -> 3
+            R.id.donationMenu -> 0
+            R.id.transactionMenu -> 1
             else -> 0
         }
 
@@ -132,4 +109,15 @@ class MainActivity : AppCompatActivity() {
                 .start()
         }
     }
+
+//    fun showFragment(fragment1: Fragment, fragment2: Fragment, fragment3: Fragment) {
+//        supportFragmentManager.beginTransaction()
+//            .add(R.id.container, fragment1, "F1")
+//            .add(R.id.container, fragment2, "F2")
+//            .add(R.id.container, fragment3, "F3")
+//            .show(fragment1)
+//            .hide(fragment2)
+//            .hide(fragment3)
+//            .commit()
+//    }
 }

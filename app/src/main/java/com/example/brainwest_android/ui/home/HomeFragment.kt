@@ -10,11 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.brainwest_android.parent.ChatBotActivity
+import com.example.brainwest_android.ui.parent.ChatBotActivity
 import com.example.brainwest_android.R
 import com.example.brainwest_android.databinding.FragmentHomeBinding
-import com.example.brainwest_android.parent.DonationActivity
-import com.example.brainwest_android.parent.EventActivity
+import com.example.brainwest_android.ui.parent.DonationActivity
+import com.example.brainwest_android.ui.parent.EventActivity
 import com.example.brainwest_android.ui.adapter.SliderAdapter
 
 class HomeFragment : Fragment() {

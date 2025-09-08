@@ -17,13 +17,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".parent.DonationActivity"
+            android:name=".ui.parent.DonationActivity"
             android:exported="false" />
         <activity
-            android:name=".parent.EventActivity"
+            android:name=".ui.parent.EventActivity"
             android:exported="false" />
         <activity
-            android:name=".parent.AuthActivity"
+            android:name=".ui.parent.AuthActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -33,11 +33,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".parent.MainActivity"
+            android:name=".ui.parent.MainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".parent.ChatBotActivity"
+            android:name=".ui.parent.ChatBotActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>

@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.brainwest_android.parent.MainActivity
+import com.example.brainwest_android.ui.parent.MainActivity
 import com.example.brainwest_android.R
 import com.example.brainwest_android.data.repository.AuthRepository
 import com.example.brainwest_android.databinding.FragmentLoginBinding
