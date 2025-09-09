@@ -84,6 +84,14 @@ object ArticleDummy {
                 text = "Bergaul dengan orang lain menjaga kesehatan mental.",
                 link = "https://www.halodoc.com/artikel/kenapa-interaksi-sosial-baik-untuk-otak",
                 desc = "Menjaga hubungan sosial membantu otak tetap aktif, bahagia, dan terhindar dari demensia."
+            ),
+            Education(
+                id = 10,
+                thumbnail = "https://d1bpj0tv6vfxyp.cloudfront.net/articles/eb44d3fa-f71f-4c70-88ae-d766a451e4d5_article_image_url.webp",
+                title = "Interaksi Sosial untuk Otak Sehat",
+                text = "Bergaul dengan orang lain menjaga kesehatan mental.",
+                link = "https://www.halodoc.com/artikel/kenapa-interaksi-sosial-baik-untuk-otak",
+                desc = "Menjaga hubungan sosial membantu otak tetap aktif, bahagia, dan terhindar dari demensia."
             )
         )
     }
