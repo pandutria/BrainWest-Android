@@ -17,6 +17,7 @@ class LoginViewModel(private val repo: AuthRepository): ViewModel() {
     private val _loginResult = MutableLiveData<State<User>>()
     val loginResult: LiveData<State<User>> get() = _loginResult
 
+
     fun login(
         username: String,
         password: String,
@@ -31,8 +32,14 @@ class LoginViewModel(private val repo: AuthRepository): ViewModel() {
             _loginResult.postValue(State.Loading)
             try {
                 val res = repo.login(username, password, context)
+                if (res.isSuccessful) {
+                    val resProfile = repo.me()
 
-                if (res.isSuccessful) _loginResult.postValue(State.Success(res.body()!!.data, res.body()!!.message!!))
+                    if (resProfile.isSuccessful) {
+                        _loginResult.postValue(State.Success(resProfile.body()!!.data, res.body()!!.message!!))
+                    }
+                    else _loginResult.postValue(State.Error(ApiErrorHandler.parseError(resProfile)))
+                }
                 else _loginResult.postValue(State.Error(ApiErrorHandler.parseError(res)))
             } catch (err: Exception) {
                 _loginResult.postValue(State.Error("${err.message}"))

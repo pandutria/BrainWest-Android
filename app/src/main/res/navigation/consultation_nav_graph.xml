@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/consultation_nav_graph"
+    app:startDestination="@id/listFragment">
+
+    <fragment
+        android:id="@+id/listFragment"
+        tools:layout="@layout/fragment_list_consultation"
+        android:name="com.example.brainwest_android.ui.consultation.list.ListConsultationFragment">
+        <action
+            android:id="@+id/action_listFragment_to_chatingFragment"
+            app:destination="@id/chatingFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
+        <action
+            android:id="@+id/action_listFragment_to_historyFragment"
+            app:destination="@id/historyFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/historyFragment"
+        tools:layout="@layout/fragment_history_consultation"
+        android:name="com.example.brainwest_android.ui.consultation.history.HistoryConsultationFragment">
+        <action
+            android:id="@+id/action_historyFragment_to_chatingFragment"
+            app:destination="@id/chatingFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatingFragment"
+        tools:layout="@layout/fragment_chating_consultation"
+        android:name="com.example.brainwest_android.ui.consultation.chating.ChatingConsultationFragment"/>
+
+</navigation>

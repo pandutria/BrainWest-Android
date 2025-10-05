@@ -87,4 +87,5 @@
     <string name="choose_nominal_donation">Pilih Nominal Donasi</string>
     <string name="or_input_manual">Atau Masukan Nominal Manual</string>
     <string name="hint_nominal">Masukan nominal...</string>
+    <string name="search_doctor">Cari dokter...</string>
 </resources>

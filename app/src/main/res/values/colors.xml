@@ -12,4 +12,5 @@
     <color name="warningToast">#FFAF23</color>
     <color name="errorToast">#D73B52</color>
     <color name="line">#4D939CBE</color>
+    <color name="stroke">#939CBE</color>
 </resources>

@@ -1,11 +1,14 @@
 package com.example.brainwest_android.data.network.api
 
+import com.example.brainwest_android.data.model.ConsultationHistoryMessage
+import com.example.brainwest_android.data.model.Doctor
 import com.example.brainwest_android.data.model.Donation
 import com.example.brainwest_android.data.model.Education
 import com.example.brainwest_android.data.model.Event
 import com.example.brainwest_android.data.model.EventTransaction
 import com.example.brainwest_android.data.model.MidtransEventTransaction
 import com.example.brainwest_android.data.model.User
+import com.example.brainwest_android.data.network.request.ConsultationRequest
 import com.example.brainwest_android.data.network.request.EventTransactionRequest
 import com.example.brainwest_android.data.network.request.LoginRequest
 import com.example.brainwest_android.data.network.request.RegisterRequest
@@ -24,6 +27,9 @@ interface ApiService {
 
     @POST("login")
     suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
+
+    @GET("me")
+    suspend fun me(@Header("Authorization") token: String): Response<BaseResponse<User>>
 
     @GET("education")
     suspend fun getAllEducation(@Header("Authorization") token: String): Response<BaseResponse<List<Education>>>
@@ -60,4 +66,20 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("id") id: Int
     ): Response<BaseResponse<Donation>>
+
+    @GET("doctor")
+    suspend fun getDoctor(): Response<BaseResponse<List<Doctor>>>
+
+    @GET("doctor/{id}")
+    suspend fun getDoctorById(@Path("id") id: Int): Response<BaseResponse<Doctor>>
+
+    @GET("consultation/history")
+    suspend fun getHistoryConsultation(@Header("Authorization") token: String)
+            : Response<BaseResponse<List<ConsultationHistoryMessage>>>
+
+    @POST("consultation")
+    suspend fun sendMessageConsultation(
+        @Header("Authorization") token: String,
+        @Body request: ConsultationRequest
+    ): Response<BaseResponse<List<ConsultationHistoryMessage>>>
 }

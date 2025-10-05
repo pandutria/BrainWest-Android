@@ -16,6 +16,7 @@ import com.example.brainwest_android.databinding.FragmentHomeBinding
 import com.example.brainwest_android.ui.parent.DonationActivity
 import com.example.brainwest_android.ui.parent.EventActivity
 import com.example.brainwest_android.ui.adapter.SliderAdapter
+import com.example.brainwest_android.ui.parent.ConsultationActivity
 
 class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
@@ -53,6 +54,11 @@ class HomeFragment : Fragment() {
         }
         binding.btnDonation.setOnClickListener {
             val intent = Intent(requireContext(), DonationActivity::class.java)
+            startActivity(intent)
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+        }
+        binding.layoutConsultation.setOnClickListener {
+            val intent = Intent(requireContext(), ConsultationActivity::class.java)
             startActivity(intent)
             requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
         }

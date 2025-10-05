@@ -17,7 +17,7 @@ class RegisterFragment : Fragment() {
    lateinit var binding: FragmentRegisterBinding
 
     private val viewModel: RegisterViewModel by viewModels {
-        RegisterViewModelFactory(AuthRepository())
+        RegisterViewModelFactory(AuthRepository(requireContext()))
     }
 
     override fun onCreateView(

@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.ui.parent.MainActivity
 import com.example.brainwest_android.R
+import com.example.brainwest_android.data.local.GeneralPref
 import com.example.brainwest_android.data.repository.AuthRepository
 import com.example.brainwest_android.databinding.FragmentLoginBinding
 import com.example.brainwest_android.utils.Helper
@@ -19,7 +20,7 @@ class LoginFragment : Fragment() {
     lateinit var binding: FragmentLoginBinding
 
     private val viewModel: LoginViewModel by viewModels {
-        LoginViewModelFactory(AuthRepository())
+        LoginViewModelFactory(AuthRepository(requireContext()))
     }
 
     override fun onCreateView(
@@ -57,6 +58,7 @@ class LoginFragment : Fragment() {
                     }
                     is State.Success -> {
                         Helper.showSuccessToast(requireContext(), state.message)
+                        GeneralPref(requireContext()).saveUserId(state.data.id!!)
 
                         val intent = Intent(requireContext(), MainActivity::class.java)
                         startActivity(intent)
