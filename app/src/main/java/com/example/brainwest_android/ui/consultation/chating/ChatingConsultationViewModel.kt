@@ -56,9 +56,6 @@ class ChatingConsultationViewModel(val repo: ConsultationRepository, val repoCha
                 val res = repoChat.sendMessageToAPI(doctorId, message)
                 if (res.isSuccessful) _sendResult.postValue(State.Success(res.body()!!.data, res.body()!!.message!!))
                 else _sendResult.postValue(State.Error(ApiErrorHandler.parseError(res)))
-                Log.e("API", "code: ${ApiErrorHandler.parseError(res)} - raw: ${res.raw()}")
-                Log.e("API", "errorBody: ${res.errorBody()?.string()}")
-                Log.e("API", "body: ${res.body()?.toString()}")
 
             } catch (e: Exception) {
                 _sendResult.postValue(State.Error(e.message!!))

@@ -32,7 +32,7 @@ class ChatConsultationRepository(val context: Context) {
         )
 
         messageRef.setValue(messageData)
-    }
+}
 
     suspend fun sendMessageToAPI(doctorId: Int, message: String): Response<BaseResponse<List<ConsultationHistoryMessage>>> {
         val token = TokenPref(context).getToken()
@@ -60,7 +60,7 @@ class ChatConsultationRepository(val context: Context) {
 
     suspend fun getHistory(): Response<BaseResponse<List<ConsultationHistoryMessage>>> {
         val token = TokenPref(context).getToken()
-        val res = RetrofitInstance.api.getHistoryConsultation(token)
+        val res = RetrofitInstance.api.getHistoryConsultation("Bearer $token")
         return res
     }
 }

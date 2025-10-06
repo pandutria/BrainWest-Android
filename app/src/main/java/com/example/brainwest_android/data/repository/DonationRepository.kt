@@ -16,7 +16,7 @@ class DonationRepository {
 
     suspend fun getDonationById(context: Context, id: Int): Response<BaseResponse<Donation>> {
         val token = TokenPref(context).getToken()
-        val res = RetrofitInstance.api.getDonationById("Bearer $token",id)
+        val res = RetrofitInstance.api.getDonationById("Bearer $token", id)
         return res
     }
 }

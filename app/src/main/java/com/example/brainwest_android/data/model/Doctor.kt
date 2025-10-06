@@ -4,7 +4,7 @@ data class Doctor(
     val id: Int,
     val specialization: String,
     val hospital: String,
-    val rating: Double,
+    val rating: String,
     val image: String,
     val experience: Int,
     val user: User
