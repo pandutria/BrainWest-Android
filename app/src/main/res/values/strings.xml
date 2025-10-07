@@ -89,4 +89,18 @@
     <string name="hint_nominal">Masukan nominal...</string>
     <string name="search_doctor">Cari dokter...</string>
     <string name="chat_in">Pesan Masuk</string>
+    <string name="upload_your_scan">Silakan unggah hasil scan otak anda untuk analisis.</string>
+    <string name="scan_brain">Scan Tumor Otak</string>
+    <string name="upload_x_ray">Unggah CT/MRI otak Anda</string>
+    <string name="upload_text">Temukan potensi risiko tumor otak lebih awal dengan pemindaian berbasis AI. Proses cepat, aman, dan akurat bersama teknologi canggih dan tenaga medis terpercaya.</string>
+    <string name="upload_media">Unggah Media</string>
+    <string name="upload_file">Unggah file Anda atau</string>
+    <string name="browse">telusuri</string>
+    <string name="file_size">Ukuran file yang diizinkan maksimal 10 MB</string>
+    <string name="address_media">Alamat Media</string>
+    <string name="detection_now">Deteksi Sekarang</string>
+    <string name="result_analytics_brain">Hasil Deteksi CT/MRI otak Anda</string>
+    <string name="warning_important">Peringatan Penting</string>
+    <string name="result_from_analytics_ai">Hasil ini merupakan analisis AI dan tidak 100% akurat. Konsultasikan selalu dengan tenaga medis profesional untuk diagnosis yang tepat.</string>
+
 </resources>

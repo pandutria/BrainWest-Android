@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scan_nav_graph">
+
+    <fragment
+        android:id="@+id/introduceFragment"
+        tools:layout="@layout/fragment_introduce_scan"
+        android:name="com.example.brainwest_android.ui.scan.introduce.IntroduceScanFragment">
+        <action
+            android:id="@+id/action_introduceFragment_to_uploadFragment"
+            app:destination="@id/uploadFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/uploadFragment"
+        tools:layout="@layout/fragment_upload_scan"
+        android:name="com.example.brainwest_android.ui.scan.upload.UploadScanFragment">
+
+    </fragment>
+
+</navigation>
