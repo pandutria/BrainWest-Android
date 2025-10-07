@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvCondition"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="1.   Kemungkinan besar merupakan tumor otak ganas."
+    android:fontFamily="@font/poppins_medium"
+    android:justificationMode="inter_word"
+    android:textColor="@color/black"
+    android:textSize="8sp"
+    >
+
+</TextView>

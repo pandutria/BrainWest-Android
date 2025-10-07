@@ -102,5 +102,14 @@
     <string name="result_analytics_brain">Hasil Deteksi CT/MRI otak Anda</string>
     <string name="warning_important">Peringatan Penting</string>
     <string name="result_from_analytics_ai">Hasil ini merupakan analisis AI dan tidak 100% akurat. Konsultasikan selalu dengan tenaga medis profesional untuk diagnosis yang tepat.</string>
+    <string name="ai_accuracy_level">Tingkat Akurasi AI</string>
+    <string name="disease_diagnosis">Diagnosa Penyakit</string>
+    <string name="clinical_risks">Risiko Klinis</string>
+    <string name="disease_explanation">Penjelasan Penyakit</string>
+    <string name="possible_conditions">Kemungkinan Kondisi</string>
+    <string name="recomendation_from_us">Rekomendasi Dari</string>
+    <string name="need_more_explenation">Butuh penjelasan lebih lanjut?</string>
+    <string name="consultation_the_result_now">Konsultasikan hasil Anda sekarang!</string>
+    <string name="back">Kembali</string>
 
 </resources>
