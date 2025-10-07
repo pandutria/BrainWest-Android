@@ -10,6 +10,7 @@
     android:paddingVertical="5dp"
     android:textSize="13sp"
     android:justificationMode="inter_word"
+    android:layout_marginLeft="20dp"
     android:fontFamily="@font/poppins_regular"
     android:layout_marginTop="10dp">
 

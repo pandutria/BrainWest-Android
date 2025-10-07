@@ -36,6 +36,14 @@
             android:text="@string/consultation"
             android:textColor="@color/white" />
 
+        <ImageView
+            android:id="@+id/btnChat"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center|end"
+            android:padding="2.5dp"
+            android:src="@drawable/ic_chat" />
+
 
     </FrameLayout>
 

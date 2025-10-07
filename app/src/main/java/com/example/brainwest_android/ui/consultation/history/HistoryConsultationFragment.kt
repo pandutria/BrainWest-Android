@@ -6,55 +6,65 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.brainwest_android.R
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.brainwest_android.data.repository.ChatConsultationRepository
+import com.example.brainwest_android.data.state.State
+import com.example.brainwest_android.databinding.FragmentHistoryConsultationBinding
+import com.example.brainwest_android.ui.adapter.HistoryConsultationAdapter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HistoryConsultationFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HistoryConsultationFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    lateinit var binding: FragmentHistoryConsultationBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private val viewModel: HistoryConsultationViewModel by viewModels {
+        HistoryConsultationViewModelFactory(ChatConsultationRepository(requireContext()))
     }
+
+    lateinit var adapter: HistoryConsultationAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history_consultation, container, false)
+        binding = FragmentHistoryConsultationBinding.inflate(layoutInflater)
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        adapter = HistoryConsultationAdapter { history ->
+            val bundle = Bundle().apply {
+                putInt("doctor_id", history.doctor.id)
+                putInt("doctor_user_id", history.doctor.user.id!!)
+            }
+            findNavController().navigate(R.id.action_historyFragment_to_chatingFragment, bundle)
+        }
+
+        showData()
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HistoryConsultationFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HistoryConsultationFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    fun showData() {
+        viewModel.getHistory()
+        viewModel.historyResult.observe(viewLifecycleOwner) {state ->
+            when (state) {
+                is State.Loading -> {
+                    binding.rvHistory.visibility = View.GONE
+                    binding.pbLoading.visibility = View.VISIBLE
+                }
+                is State.Success -> {
+                    adapter.setData(state.data)
+                    binding.rvHistory.adapter = adapter
+                    binding.rvHistory.visibility = View.VISIBLE
+                    binding.pbLoading.visibility = View.GONE
+                }
+                is State.Error -> {
+                    findNavController().popBackStack()
                 }
             }
+        }
     }
+
 }

@@ -1,6 +1,7 @@
 package com.example.brainwest_android.ui.consultation.list
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -35,6 +36,7 @@ class ListConsultationFragment : Fragment() {
                 putInt("doctor_id", doctor.id)
                 putInt("doctor_user_id", doctor.user.id!!)
             }
+            Log.d("DoctorDebug", "doctor.id=${doctor.id}, doctor.user.id=${doctor.user.id}")
             findNavController().navigate(R.id.action_listFragment_to_chatingFragment, bundle)
         }
 
@@ -43,9 +45,9 @@ class ListConsultationFragment : Fragment() {
             requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
         }
 
-//        binding.btnChat.setOnClickListener {
-//            findNavController().navigate(R.id.action_listFragment_to_historyFragment)
-//        }
+        binding.btnChat.setOnClickListener {
+            findNavController().navigate(R.id.action_listFragment_to_historyFragment)
+        }
 
         showData()
 

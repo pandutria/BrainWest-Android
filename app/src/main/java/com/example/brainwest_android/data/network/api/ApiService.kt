@@ -80,6 +80,7 @@ interface ApiService {
     @POST("consultation")
     suspend fun sendMessageConsultation(
         @Header("Authorization") token: String,
-        @Body request: ConsultationRequest
+        @Body request: ConsultationRequest,
+        @Header("Accept") accept: String = "application/json",
     ): Response<BaseResponse<List<ConsultationHistoryMessage>>>
 }

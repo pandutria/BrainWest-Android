@@ -13,6 +13,7 @@ object RetrofitInstance {
         }
         OkHttpClient.Builder()
             .addInterceptor(logging)
+            .followRedirects(false)
             .build()
     }
 

@@ -13,6 +13,7 @@ import com.example.brainwest_android.data.repository.ChatConsultationRepository
 import com.example.brainwest_android.data.repository.ConsultationRepository
 import com.example.brainwest_android.data.state.State
 import com.example.brainwest_android.utils.ApiErrorHandler
+import com.example.brainwest_android.utils.Helper
 import kotlinx.coroutines.launch
 
 class ChatingConsultationViewModel(val repo: ConsultationRepository, val repoChat: ChatConsultationRepository) : ViewModel() {
@@ -34,6 +35,7 @@ class ChatingConsultationViewModel(val repo: ConsultationRepository, val repoCha
                 if (res.isSuccessful) _getByIdResult.postValue(State.Success(res.body()!!.data, res.body()!!.message!!))
                 else _getByIdResult.postValue(State.Error(ApiErrorHandler.parseError(res)))
             } catch (e: Exception) {
+                Helper.showErrorLog(e.message)
                 _getByIdResult.postValue(State.Error(e.message!!))
             }
         }

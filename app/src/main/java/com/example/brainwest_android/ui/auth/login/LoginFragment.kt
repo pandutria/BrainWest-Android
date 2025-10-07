@@ -36,8 +36,8 @@ class LoginFragment : Fragment() {
 
         handleLogin()
 
-        binding.etUsername.setText("pandu")
-        binding.etPassword.setText("pandu")
+        binding.etUsername.setText("dapi")
+        binding.etPassword.setText("dapi")
 
         return binding.root
     }

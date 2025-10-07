@@ -88,4 +88,5 @@
     <string name="or_input_manual">Atau Masukan Nominal Manual</string>
     <string name="hint_nominal">Masukan nominal...</string>
     <string name="search_doctor">Cari dokter...</string>
+    <string name="chat_in">Pesan Masuk</string>
 </resources>
