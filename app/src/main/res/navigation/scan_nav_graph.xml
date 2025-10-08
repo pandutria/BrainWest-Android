@@ -2,7 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scan_nav_graph">
+    android:id="@+id/scan_nav_graph"
+    app:startDestination="@id/introduceFragment">
 
     <fragment
         android:id="@+id/introduceFragment"
@@ -21,6 +22,20 @@
         android:id="@+id/uploadFragment"
         tools:layout="@layout/fragment_upload_scan"
         android:name="com.example.brainwest_android.ui.scan.upload.UploadScanFragment">
+
+        <action
+            android:id="@+id/action_uploadFragment_to_resultFragment"
+            app:destination="@id/resultFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/resultFragment"
+        tools:layout="@layout/fragment_result_scan"
+        android:name="com.example.brainwest_android.ui.scan.result.ResultScanFragment">
 
     </fragment>
 

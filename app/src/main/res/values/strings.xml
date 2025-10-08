@@ -111,5 +111,11 @@
     <string name="need_more_explenation">Butuh penjelasan lebih lanjut?</string>
     <string name="consultation_the_result_now">Konsultasikan hasil Anda sekarang!</string>
     <string name="back">Kembali</string>
+    <string name="explanation_glioma">Glioma adalah tumor otak yang berasal dari sel glial yang mendukung neuron; dapat bersifat jinak atau ganas dan menyebabkan sakit kepala, kejang, serta gangguan fungsi otak.</string>
+    <string name="explanation_meningioma">Meningioma adalah tumor yang tumbuh pada selaput pelindung otak dan sumsum tulang belakang; biasanya jinak namun dapat menekan jaringan otak sehingga menimbulkan gejala neurologis.</string>
+    <string name="explanation_no_tumor">Tidak ditemukan tanda adanya tumor otak; kondisi otak tampak normal dan tidak menunjukkan kelainan struktural yang signifikan.</string>
+    <string name="explanation_pituitary">Pituitary tumor adalah tumor yang tumbuh pada kelenjar pituitari di dasar otak dan dapat memengaruhi hormon tubuh, menyebabkan gangguan penglihatan, kelelahan, atau perubahan berat badan.</string>
+    <string name="default_explanation">Hasil prediksi tidak dapat diidentifikasi. Silakan konsultasikan dengan tenaga medis profesional.</string>
+
 
 </resources>

@@ -1,60 +1,161 @@
 package com.example.brainwest_android.ui.scan.result
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
+import com.example.brainwest_android.databinding.FragmentResultScanBinding
+import com.example.brainwest_android.ui.adapter.ConditionAdapter
+import com.example.brainwest_android.ui.adapter.RecomendationAdapter
+import com.example.brainwest_android.ui.parent.MainActivity
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ResultScanFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ResultScanFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentResultScanBinding
+    private lateinit var conditionAdapter: ConditionAdapter
+    private lateinit var recomendationAdapter: RecomendationAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_result_scan, container, false)
+        binding = FragmentResultScanBinding.inflate(inflater, container, false)
+
+        setupButtons()
+        showScanResult()
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ResultScanFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ResultScanFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun setupButtons() {
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack(R.id.uploadFragment, false)
+        }
+
+        binding.btnHome.setOnClickListener {
+            val intent = Intent(requireActivity(), MainActivity::class.java)
+            startActivity(intent)
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+            requireActivity().finish()
+        }
+    }
+
+    private fun showScanResult() {
+        val prediction = arguments?.getString("prediction") ?: "unknown"
+        val rawConfidence = arguments?.getDouble("confidence") ?: 0.0
+
+        // Jika prediksi "notumor", tampilkan confidence 100%
+        val percent = if (prediction.lowercase() == "notumor" || prediction.lowercase() == "no_tumor") {
+            100
+        } else {
+            (rawConfidence * 100).toInt().coerceIn(0, 100)
+        }
+
+        binding.progressAccuration.progress = percent
+        binding.tvAccuration.text = "$percent%"
+
+        binding.tvDiagnose.text = prediction
+
+        val predictionArray = arrayListOf(
+            getString(R.string.explanation_glioma),
+            getString(R.string.explanation_meningioma),
+            getString(R.string.explanation_no_tumor),
+            getString(R.string.explanation_pituitary)
+        )
+
+        val index = when (prediction.lowercase()) {
+            "glioma" -> 0
+            "meningioma" -> 1
+            "notumor", "no_tumor" -> 2
+            "pituitary" -> 3
+            else -> -1
+        }
+
+        binding.tvExlpanation.text = if (index in predictionArray.indices) {
+            predictionArray[index]
+        } else {
+            getString(R.string.default_explanation)
+        }
+
+        showCondition(prediction)
+        showRecomendation(prediction)
+    }
+
+    private fun showCondition(prediction: String) {
+        conditionAdapter = ConditionAdapter()
+        binding.rvCondition.adapter = conditionAdapter
+
+        val conditionsList = when (prediction.lowercase()) {
+            "glioma" -> arrayListOf(
+                "Glioma adalah tumor otak yang berasal dari sel glial yang mendukung neuron dan dapat bersifat jinak atau ganas.",
+                "Segera konsultasikan hasil ini dengan dokter spesialis bedah saraf atau onkologi untuk pemeriksaan lanjutan.",
+                "Penanganan dapat meliputi pembedahan, radioterapi, atau kemoterapi tergantung pada tingkat keparahan dan lokasi tumor."
+            )
+            "meningioma" -> arrayListOf(
+                "Meningioma merupakan tumor yang tumbuh pada selaput pelindung otak dan biasanya bersifat jinak.",
+                "Meskipun jinak, tumor ini dapat menekan jaringan otak sehingga perlu pemeriksaan lanjutan oleh dokter spesialis saraf.",
+                "Pembedahan atau pemantauan rutin mungkin diperlukan tergantung pada ukuran dan gejala yang dialami."
+            )
+            "notumor", "no_tumor" -> arrayListOf(
+                "Hasil menunjukkan tidak ada tanda-tanda tumor otak pada citra MRI yang dianalisis.",
+                "Kondisi otak tampak normal, namun tetap disarankan untuk menjaga kesehatan dan melakukan pemeriksaan rutin.",
+                "Jika timbul gejala baru seperti sakit kepala berat, gangguan penglihatan, atau kejang, segera konsultasikan ke dokter."
+            )
+            "pituitary" -> arrayListOf(
+                "Tumor pituitari tumbuh pada kelenjar pituitari yang mengatur hormon tubuh dan dapat menyebabkan gangguan hormonal.",
+                "Gejalanya bisa berupa gangguan penglihatan, perubahan berat badan, kelelahan, atau gangguan siklus menstruasi.",
+                "Konsultasikan hasil ini dengan dokter spesialis endokrinologi atau bedah saraf untuk pemeriksaan lanjutan."
+            )
+            else -> arrayListOf(
+                "Hasil prediksi tidak dapat diidentifikasi secara pasti.",
+                "Disarankan melakukan pemeriksaan MRI lanjutan atau konsultasi dengan tenaga medis profesional.",
+                "Jangan hanya mengandalkan hasil ini untuk keputusan medis tanpa konfirmasi dokter."
+            )
+        }
+
+        conditionAdapter.setData(conditionsList)
+    }
+
+    private fun showRecomendation(prediction: String) {
+        recomendationAdapter = RecomendationAdapter()
+        binding.rvRecomendation.adapter = recomendationAdapter
+
+        val recomendationList = when (prediction.lowercase()) {
+            "glioma" -> arrayListOf(
+                "Segera periksakan diri ke dokter spesialis bedah saraf atau onkologi untuk evaluasi lebih lanjut.",
+                "Jaga pola makan sehat, cukup tidur, dan hindari stres berlebihan untuk mendukung pemulihan.",
+                "Ikuti semua prosedur medis yang disarankan seperti operasi, radioterapi, atau kemoterapi sesuai kondisi.",
+                "Libatkan keluarga dan dukungan emosional dalam proses pengobatan untuk menjaga kesehatan mental."
+            )
+            "meningioma" -> arrayListOf(
+                "Konsultasikan hasil ini dengan dokter spesialis saraf untuk menentukan langkah penanganan yang tepat.",
+                "Jika tidak menimbulkan gejala berat, dokter mungkin menyarankan observasi rutin melalui MRI berkala.",
+                "Hindari aktivitas berat jika mengalami pusing atau gangguan penglihatan.",
+                "Pertahankan pola hidup sehat untuk mendukung fungsi otak secara optimal."
+            )
+            "notumor", "no_tumor" -> arrayListOf(
+                "Tidak ditemukan tumor otak. Pertahankan gaya hidup sehat dan lakukan pemeriksaan rutin sesuai anjuran.",
+                "Konsumsi makanan bergizi seimbang dan cukup istirahat untuk menjaga kesehatan otak.",
+                "Hindari stres berlebihan dan pastikan pola tidur teratur.",
+                "Jika mengalami gejala baru yang mencurigakan, segera lakukan pemeriksaan medis."
+            )
+            "pituitary" -> arrayListOf(
+                "Konsultasikan hasil ini dengan dokter spesialis endokrinologi atau bedah saraf.",
+                "Pemantauan kadar hormon mungkin diperlukan untuk menilai dampak tumor pada fungsi tubuh.",
+                "Jaga keseimbangan gaya hidup dengan pola makan bergizi dan aktivitas ringan.",
+                "Catat perubahan gejala seperti penglihatan kabur atau perubahan berat badan untuk dilaporkan ke dokter."
+            )
+            else -> arrayListOf(
+                "Hasil prediksi tidak jelas. Sebaiknya lakukan pemeriksaan MRI lanjutan atau konsultasi dengan dokter spesialis saraf.",
+                "Jangan mengandalkan hasil otomatis ini untuk pengambilan keputusan medis.",
+                "Pantau gejala yang dirasakan dan segera cari pertolongan medis jika memburuk.",
+                "Dokumentasikan gejala dan waktu kemunculannya untuk membantu dokter dalam diagnosis."
+            )
+        }
+
+        recomendationAdapter.setData(recomendationList)
     }
 }
