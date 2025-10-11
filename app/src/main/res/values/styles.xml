@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomRadioTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorControlActivated">@android:color/transparent</item>
+        <item name="colorControlNormal">@android:color/transparent</item>
+        <item name="android:button">@drawable/custom_radio_button_selector</item>
+    </style>
+</resources>

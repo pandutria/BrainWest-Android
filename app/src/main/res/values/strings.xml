@@ -116,6 +116,13 @@
     <string name="explanation_no_tumor">Tidak ditemukan tanda adanya tumor otak; kondisi otak tampak normal dan tidak menunjukkan kelainan struktural yang signifikan.</string>
     <string name="explanation_pituitary">Pituitary tumor adalah tumor yang tumbuh pada kelenjar pituitari di dasar otak dan dapat memengaruhi hormon tubuh, menyebabkan gangguan penglihatan, kelelahan, atau perubahan berat badan.</string>
     <string name="default_explanation">Hasil prediksi tidak dapat diidentifikasi. Silakan konsultasikan dengan tenaga medis profesional.</string>
-
-
+    <string name="your_age">Usia Kamu</string>
+    <string name="hint_age">Ketik usia...</string>
+    <string name="gender">Jenis Kelamin</string>
+    <string name="man">Laki-Laki</string>
+    <string name="woman">Perempuan</string>
+    <string name="choose_status_medice">Status Medis Saat Ini</string>
+    <string name="start_rehabilitation">Mulai Latihan Rehabilitasi</string>
+    <string name="rehabilitation_program">Program Pemulihan</string>
+    <string name="save">Simpan</string>
 </resources>

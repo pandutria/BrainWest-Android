@@ -18,6 +18,7 @@ import com.example.brainwest_android.ui.parent.EventActivity
 import com.example.brainwest_android.ui.adapter.SliderAdapter
 import com.example.brainwest_android.ui.parent.ConsultationActivity
 import com.example.brainwest_android.ui.parent.ScanActivity
+import com.example.brainwest_android.ui.rehabilitation.RehabilitationActivity
 
 class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
@@ -64,6 +65,11 @@ class HomeFragment : Fragment() {
         }
         binding.btnDetection.setOnClickListener {
             val intent = Intent(requireContext(), ScanActivity::class.java)
+            startActivity(intent)
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+        }
+        binding.btnRehabilitation.setOnClickListener {
+            val intent = Intent(requireContext(), RehabilitationActivity::class.java)
             startActivity(intent)
             requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
         }
