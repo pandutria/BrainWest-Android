@@ -7,11 +7,13 @@ import com.example.brainwest_android.data.model.Education
 import com.example.brainwest_android.data.model.Event
 import com.example.brainwest_android.data.model.EventTransaction
 import com.example.brainwest_android.data.model.MidtransEventTransaction
+import com.example.brainwest_android.data.model.RehabilitationVideo
 import com.example.brainwest_android.data.model.User
 import com.example.brainwest_android.data.network.request.ConsultationRequest
 import com.example.brainwest_android.data.network.request.EventTransactionRequest
 import com.example.brainwest_android.data.network.request.LoginRequest
 import com.example.brainwest_android.data.network.request.RegisterRequest
+import com.example.brainwest_android.data.network.request.VideoByRehabRequest
 import com.example.brainwest_android.data.network.response.BaseResponse
 import com.example.brainwest_android.data.network.response.LoginResponse
 import retrofit2.Response
@@ -83,4 +85,7 @@ interface ApiService {
         @Body request: ConsultationRequest,
         @Header("Accept") accept: String = "application/json",
     ): Response<BaseResponse<List<ConsultationHistoryMessage>>>
+
+    @POST("rehabilitation/video/by-rehab")
+    suspend fun getVideoByRehab(@Body request: VideoByRehabRequest): Response<BaseResponse<List<RehabilitationVideo>>>
 }

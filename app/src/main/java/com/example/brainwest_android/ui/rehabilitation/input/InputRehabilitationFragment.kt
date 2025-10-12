@@ -5,29 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
+import com.example.brainwest_android.data.repository.RehabilitationRepository
+import com.example.brainwest_android.data.state.State
+import com.example.brainwest_android.databinding.FragmentInputRehabilitationBinding
+import com.example.brainwest_android.utils.Helper
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [InputRehabilitationFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class InputRehabilitationFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    lateinit var binding: FragmentInputRehabilitationBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private val viewModel: InputRehabilitationViewModel by viewModels {
+        InputRehabilitationViewModelFactory(RehabilitationRepository())
     }
 
     override fun onCreateView(
@@ -35,26 +27,79 @@ class InputRehabilitationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_input_rehabilitation, container, false)
+        binding = FragmentInputRehabilitationBinding.inflate(inflater, container, false)
+        setupSpinner()
+
+        binding.btnStart.setOnClickListener {
+            if (binding.etAge.text.toString().isEmpty() ||
+                (!binding.rbMale.isChecked && !binding.rbFemale.isChecked) ||
+                binding.spinnerHint.text.toString() == "Pilih status..." ||
+                (!binding.rb1.isChecked && !binding.rb2.isChecked && !binding.rb3.isChecked && !binding.rb4.isChecked)) {
+                Helper.showErrorToast(requireContext(), "Semua data harus diisi")
+                return@setOnClickListener
+            }
+            sendData()
+        }
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment InputRehabilitationFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            InputRehabilitationFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    fun sendData() {
+        val age = binding.etAge.text.toString()
+        val gender = if (binding.rbMale.isChecked) "laki-laki" else "perempuan"
+        val medical_status = binding.spinnerHint.text.toString()
+        val time_of_diagnosis = if (binding.rb1.isChecked) "< 1 bulan"
+                                else if (binding.rb2.isChecked) "1–2 bulan"
+                                else if (binding.rb3.isChecked) "3 bulan"
+                                else "3 bulan lebih"
+
+        viewModel.getVideoByRehab(age, gender, medical_status, time_of_diagnosis)
+        viewModel.result.observe(viewLifecycleOwner) {state ->
+            when (state) {
+                is State.Loading -> {
+                    binding.pbLoading.visibility = View.VISIBLE
+                    binding.btnStart.visibility = View.GONE
+                }
+                is State.Success -> {
+                    binding.pbLoading.visibility = View.GONE
+                    binding.btnStart.visibility = View.VISIBLE
+                    val bundle = Bundle().apply {
+                        putParcelableArrayList("videos", ArrayList(state.data))
+                    }
+                    findNavController().navigate(R.id.action_inputFragment_to_listFragment, bundle)
+                }
+                is State.Error -> {
+                    binding.pbLoading.visibility = View.GONE
+                    binding.btnStart.visibility = View.VISIBLE
+                    Helper.showErrorToast(requireContext(), state.message)
+                    Helper.showErrorLog(state.message)
                 }
             }
+        }
+    }
+
+    fun setupSpinner() {
+        val statusList = listOf("Stroke ringan", "Stroke sedang", "Stroke berat")
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            statusList
+        )
+        binding.spinnerMedice.adapter = adapter
+        binding.spinnerMedice.setSelection(-1, false)
+
+        binding.spinnerMedice.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                binding.spinnerHint.text = statusList[position]
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                binding.spinnerHint.text = "Pilih status..."
+            }
+        }
     }
 }

@@ -8,7 +8,15 @@
     <fragment
         android:id="@+id/inputFragment"
         tools:layout="@layout/fragment_input_rehabilitation"
-        android:name="com.example.brainwest_android.ui.rehabilitation.input.InputRehabilitationFragment"/>
+        android:name="com.example.brainwest_android.ui.rehabilitation.input.InputRehabilitationFragment">
+        <action
+            android:id="@+id/action_inputFragment_to_listFragment"
+            app:destination="@id/listFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
+    </fragment>
 
     <fragment
         android:id="@+id/listFragment"
