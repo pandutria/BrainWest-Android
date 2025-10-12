@@ -21,6 +21,19 @@
     <fragment
         android:id="@+id/listFragment"
         tools:layout="@layout/fragment_list_rehabilitation"
-        android:name="com.example.brainwest_android.ui.rehabilitation.list.ListRehabilitationFragment"/>
+        android:name="com.example.brainwest_android.ui.rehabilitation.list.ListRehabilitationFragment">
+        <action
+            android:id="@+id/action_listFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        tools:layout="@layout/fragment_detail_rehabilitation"
+        android:name="com.example.brainwest_android.ui.rehabilitation.detail.DetailRehabilitationFragment"/>
 
 </navigation>

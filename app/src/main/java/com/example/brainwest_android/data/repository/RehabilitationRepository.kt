@@ -16,4 +16,9 @@ class RehabilitationRepository {
         val res = RetrofitInstance.api.getVideoByRehab(VideoByRehabRequest(age, gender, medical_status, time_of_diagnosis))
         return res
     }
+
+    suspend fun getVideoRehabById(id: Int): Response<BaseResponse<RehabilitationVideo>> {
+        val res = RetrofitInstance.api.getVideoRehabById(id)
+        return res
+    }
 }

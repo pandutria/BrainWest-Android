@@ -88,4 +88,7 @@ interface ApiService {
 
     @POST("rehabilitation/video/by-rehab")
     suspend fun getVideoByRehab(@Body request: VideoByRehabRequest): Response<BaseResponse<List<RehabilitationVideo>>>
+
+    @GET("rehabilitation/video/{id}")
+    suspend fun getVideoRehabById(@Path("id") id: Int): Response<BaseResponse<RehabilitationVideo>>
 }

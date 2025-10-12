@@ -30,6 +30,10 @@ class InputRehabilitationFragment : Fragment() {
         binding = FragmentInputRehabilitationBinding.inflate(inflater, container, false)
         setupSpinner()
 
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         binding.btnStart.setOnClickListener {
             if (binding.etAge.text.toString().isEmpty() ||
                 (!binding.rbMale.isChecked && !binding.rbFemale.isChecked) ||

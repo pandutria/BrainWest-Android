@@ -18,6 +18,10 @@ class RehabilitationAdapter(
             Glide.with(binding.root.context)
                 .load(rehabilitationVideo.thumbnail)
                 .into(binding.imgImage)
+
+            binding.root.setOnClickListener {
+                onClick(rehabilitationVideo)
+            }
         }
     }
 

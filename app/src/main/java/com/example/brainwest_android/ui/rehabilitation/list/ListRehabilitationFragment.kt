@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
 import com.example.brainwest_android.data.model.RehabilitationVideo
 import com.example.brainwest_android.databinding.FragmentListRehabilitationBinding
@@ -23,7 +24,10 @@ class ListRehabilitationFragment : Fragment() {
         binding = FragmentListRehabilitationBinding.inflate(inflater, container, false)
 
         adapter = RehabilitationAdapter {rehab ->
-
+            val bundle = Bundle().apply {
+                putInt("id", rehab.id)
+            }
+            findNavController().navigate(R.id.action_listFragment_to_detailFragment, bundle)
         }
 
         val data = requireArguments().getParcelableArrayList<RehabilitationVideo>("videos")
