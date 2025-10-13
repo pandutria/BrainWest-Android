@@ -11,7 +11,7 @@ object ArticleDummy {
                 title = "Manfaat Olahraga untuk Kesehatan Otak",
                 text = "Olahraga teratr dapat meningkatkan aliran darah ke otak.",
                 link = "https://www.halodoc.com/artikel/9-manfaat-olahraga-untuk-kesehatan-otak",
-                desc = "Olahraga bukan hanya menyehatkan tubuh, tapi juga dapat meningkatkan fungsi kognitif dan daya ingat."
+                desc = "Olahraga bukan hanya menyehatkan tubuh,tapi juga dapat meningkatkan fungsi kognitif dan daya ingat."
             ),
             Education(
                 id = 2,
