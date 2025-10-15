@@ -13,7 +13,7 @@ class MyWalletPref(context: Context) {
     }
 
     fun getWallet(): Int {
-        return shared.getInt(walletKey, 0)
+        return shared.getInt(walletKey, 2000000)
     }
 
     fun plusWallet(plus: Int) {

@@ -3,13 +3,16 @@ package com.example.brainwest_android.data.network.api
 import com.example.brainwest_android.data.model.ConsultationHistoryMessage
 import com.example.brainwest_android.data.model.Doctor
 import com.example.brainwest_android.data.model.Donation
+import com.example.brainwest_android.data.model.DonationTransaction
 import com.example.brainwest_android.data.model.Education
 import com.example.brainwest_android.data.model.Event
 import com.example.brainwest_android.data.model.EventTransaction
+import com.example.brainwest_android.data.model.MidtransDonationTransaction
 import com.example.brainwest_android.data.model.MidtransEventTransaction
 import com.example.brainwest_android.data.model.RehabilitationVideo
 import com.example.brainwest_android.data.model.User
 import com.example.brainwest_android.data.network.request.ConsultationRequest
+import com.example.brainwest_android.data.network.request.DonationTransactionRequest
 import com.example.brainwest_android.data.network.request.EventTransactionRequest
 import com.example.brainwest_android.data.network.request.LoginRequest
 import com.example.brainwest_android.data.network.request.RegisterRequest
@@ -34,7 +37,8 @@ interface ApiService {
     suspend fun me(@Header("Authorization") token: String): Response<BaseResponse<User>>
 
     @GET("education")
-    suspend fun getAllEducation(@Header("Authorization") token: String): Response<BaseResponse<List<Education>>>
+    suspend fun getAllEducation(@Header("Authorization") token: String)
+    : Response<BaseResponse<List<Education>>>
 
     @GET("education/{id}")
     suspend fun getEducationById(
@@ -43,7 +47,8 @@ interface ApiService {
     ): Response<BaseResponse<Education>>
 
     @GET("events")
-    suspend fun getAllEvent(@Header("Authorization") token: String): Response<BaseResponse<List<Event>>>
+    suspend fun getAllEvent(@Header("Authorization") token: String)
+    : Response<BaseResponse<List<Event>>>
 
     @GET("events/{id}")
     suspend fun getEventById(
@@ -58,16 +63,27 @@ interface ApiService {
     ): Response<BaseResponse<MidtransEventTransaction>>
 
     @GET("me/event/transaction")
-    suspend fun getMyEventTransaction(@Header("Authorization") token: String): Response<BaseResponse<List<EventTransaction>>>
+    suspend fun getMyEventTransaction(@Header("Authorization") token: String)
+    : Response<BaseResponse<List<EventTransaction>>>
 
     @GET("donates")
-    suspend fun getAllDonation(@Header("Authorization") token: String): Response<BaseResponse<List<Donation>>>
+    suspend fun getAllDonation(@Header("Authorization") token: String)
+    : Response<BaseResponse<List<Donation>>>
 
     @GET("donates/{id}")
     suspend fun getDonationById(
         @Header("Authorization") token: String,
         @Path("id") id: Int
     ): Response<BaseResponse<Donation>>
+
+    @POST("donate/transaction")
+    suspend fun postDonateTransaction(
+        @Header("Authorization") token: String, @Body request: DonationTransactionRequest)
+    : Response<BaseResponse<MidtransDonationTransaction>>
+
+    @GET("me/donate/transaction")
+    suspend fun getHistoryDonation(@Header("Authorization") token: String)
+    : Response<BaseResponse<List<DonationTransaction>>>
 
     @GET("doctor")
     suspend fun getDoctor(): Response<BaseResponse<List<Doctor>>>
@@ -87,7 +103,8 @@ interface ApiService {
     ): Response<BaseResponse<List<ConsultationHistoryMessage>>>
 
     @POST("rehabilitation/video/by-rehab")
-    suspend fun getVideoByRehab(@Body request: VideoByRehabRequest): Response<BaseResponse<List<RehabilitationVideo>>>
+    suspend fun getVideoByRehab(@Body request: VideoByRehabRequest)
+    : Response<BaseResponse<List<RehabilitationVideo>>>
 
     @GET("rehabilitation/video/{id}")
     suspend fun getVideoRehabById(@Path("id") id: Int): Response<BaseResponse<RehabilitationVideo>>

@@ -61,7 +61,6 @@ class DetailRehabilitationFragment : Fragment() {
 
                     binding.pbLoading.visibility = View.GONE
                     binding.layoutContent.visibility = View.VISIBLE
-
                 }
                 is State.Error -> {
                     findNavController().popBackStack()

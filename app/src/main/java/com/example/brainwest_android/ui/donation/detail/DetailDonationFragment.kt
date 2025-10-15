@@ -14,10 +14,8 @@ import com.example.brainwest_android.R
 import com.example.brainwest_android.data.repository.DonationRepository
 import com.example.brainwest_android.data.state.State
 import com.example.brainwest_android.databinding.FragmentDetailDonationBinding
-import com.example.brainwest_android.databinding.FragmentDetailEventBinding
 import com.example.brainwest_android.utils.FormatRupiah
 import com.example.brainwest_android.utils.Helper
-import java.text.Normalizer.Form
 
 class DetailDonationFragment : Fragment() {
     lateinit var binding: FragmentDetailDonationBinding
@@ -25,6 +23,8 @@ class DetailDonationFragment : Fragment() {
     private val viewModel: DetailDonationViewModel by viewModels {
         DetailDonationViewModelFactory(DonationRepository())
     }
+
+    var donation_id = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,13 +38,20 @@ class DetailDonationFragment : Fragment() {
             findNavController().popBackStack()
         }
 
+        binding.btnDonation.setOnClickListener {
+            val bundle = Bundle().apply {
+                putInt("id", donation_id)
+            }
+            findNavController().navigate(R.id.action_detailDonationFragment_to_transactionFragment, bundle)
+        }
+
         showData()
         return binding.root
     }
 
     fun showData() {
-        val id = arguments?.getInt("id")
-        viewModel.getDonationById(requireContext(), id!!)
+        val id = requireArguments().getInt("id")
+        viewModel.getDonationById(requireContext(), id)
         viewModel.getDonationByIdResult.observe(viewLifecycleOwner) {state ->
             when (state) {
                 is State.Loading -> {
@@ -55,6 +62,7 @@ class DetailDonationFragment : Fragment() {
                     binding.layoutContent.visibility = View.VISIBLE
                     binding.pbLoading.visibility = View.GONE
 
+                    donation_id = state.data.id!!
                     binding.tvTitle.text = state.data.title
                     binding.tvRestDay.text = state.data.deadline
                     binding.tvDesc.text = state.data.desc

@@ -125,4 +125,6 @@
     <string name="start_rehabilitation">Mulai Latihan Rehabilitasi</string>
     <string name="rehabilitation_program">Program Pemulihan</string>
     <string name="save">Simpan</string>
+    <string name="hint_transaction">Cari transaksi...</string>
+    <string name="kidness_donation">Donasi Kebaikan</string>
 </resources>

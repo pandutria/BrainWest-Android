@@ -11,10 +11,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.brainwest_android.R
+import com.example.brainwest_android.data.local.MyWalletPref
 import com.example.brainwest_android.data.repository.DonationRepository
 import com.example.brainwest_android.databinding.FragmentDonationBinding
 import com.example.brainwest_android.ui.adapter.DonationAdapter
 import com.example.brainwest_android.data.state.State
+import com.example.brainwest_android.utils.FormatRupiah
 
 class DonationFragment : Fragment() {
     lateinit var binding: FragmentDonationBinding
@@ -34,6 +36,8 @@ class DonationFragment : Fragment() {
 
         binding.header.setBackgroundColor(Color.TRANSPARENT)
         requireActivity().window.statusBarColor = Color.parseColor("#0059D0")
+
+        binding.tvWallet.text = FormatRupiah.format(MyWalletPref(requireContext()).getWallet())
 
         binding.btnBack.setOnClickListener {
             requireActivity().finish()

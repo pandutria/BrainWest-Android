@@ -19,8 +19,39 @@
     </fragment>
 
     <fragment
+        android:id="@+id/historyFragment"
+        tools:layout="@layout/item_history_transaction_donation"
+        android:name="com.example.brainwest_android.ui.donation.history.HistoryTransactionDonationFragment"/>
+
+    <fragment
         android:id="@+id/detailDonationFragment"
         tools:layout="@layout/fragment_detail_donation"
-        android:name="com.example.brainwest_android.ui.donation.detail.DetailDonationFragment"/>
+        android:name="com.example.brainwest_android.ui.donation.detail.DetailDonationFragment">
+        <action
+            android:id="@+id/action_detailDonationFragment_to_transactionFragment"
+            app:destination="@id/transactionFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/transactionFragment"
+        tools:layout="@layout/fragment_transaction_donation"
+        android:name="com.example.brainwest_android.ui.donation.transaction.TransactionDonationFragment">
+        <action
+            android:id="@+id/action_transactionFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment"
+            app:enterAnim="@anim/zoom_fade_in"
+            app:exitAnim="@anim/zoom_fade_out"
+            app:popEnterAnim="@anim/zoom_fade_in"
+            app:popExitAnim="@anim/zoom_fade_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentFragment"
+        tools:layout="@layout/fragment_payment_donation"
+        android:name="com.example.brainwest_android.ui.donation.payment.PaymentDonationFragment"/>
 
 </navigation>

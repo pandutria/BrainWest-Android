@@ -59,9 +59,11 @@ class DonationActivity : AppCompatActivity() {
             moveIndicatorTo(item.itemId)
             when (item.itemId) {
                 R.id.donationMenu -> {
+                    navController.navigate(R.id.donationFragment)
                     true
                 }
                 R.id.transactionMenu -> {
+                    navController.navigate(R.id.historyFragment)
                     true
                 }
                 else -> false

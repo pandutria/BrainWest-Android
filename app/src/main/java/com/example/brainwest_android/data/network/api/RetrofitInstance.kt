@@ -1,5 +1,6 @@
 package com.example.brainwest_android.data.network.api
 
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -17,10 +18,15 @@ object RetrofitInstance {
             .build()
     }
 
+    private val gson = GsonBuilder()
+        .setLenient()
+        .serializeNulls()
+        .create()
+
     val api: ApiService by lazy {
         Retrofit.Builder()
             .baseUrl(baseurl)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .client(client)
             .build()
             .create(ApiService::class.java)

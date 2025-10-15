@@ -1,60 +1,95 @@
 package com.example.brainwest_android.ui.donation.transaction
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
+import com.example.brainwest_android.data.local.MyWalletPref
+import com.example.brainwest_android.data.repository.DonationRepository
+import com.example.brainwest_android.data.state.State
+import com.example.brainwest_android.databinding.FragmentTransactionDonationBinding
+import com.example.brainwest_android.utils.FormatRupiah
+import com.example.brainwest_android.utils.Helper
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [TransactionDonationFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TransactionDonationFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    lateinit var binding: FragmentTransactionDonationBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private val viewModel: TransactionDonationViewModel by viewModels {
+        TransactionDonationViewModelFactory(DonationRepository())
     }
+
+    var nominal = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transaction_donation, container, false)
+        binding = FragmentTransactionDonationBinding.inflate(inflater, container, false)
+
+        binding.tvWallet.text = FormatRupiah.format(MyWalletPref(requireContext()).getWallet())
+        clickCard()
+
+        binding.etNominal.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                nominal = binding.etNominal.text.toString().replace("Rp ", "").replace(".", "").toInt()
+            }
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+
+        binding.btnDonation.setOnClickListener {
+            if (nominal == 0) return@setOnClickListener Helper.showSuccessToast(requireContext(), "Tolong isi nominal")
+            sendTransaction()
+        }
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TransactionDonationFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TransactionDonationFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    fun sendTransaction() {
+        val id = requireArguments().getInt("id")
+        viewModel.postDonateTransaction(requireContext(), id, nominal)
+        viewModel.result.observe(viewLifecycleOwner) {state ->
+            when (state) {
+                is State.Loading -> {
+                    binding.btnDonation.visibility = View.GONE
+                    binding.pbLoading.visibility = View.VISIBLE
+                }
+                is State.Success -> {
+                    binding.btnDonation.visibility = View.VISIBLE
+                    binding.pbLoading.visibility = View.GONE
+                    MyWalletPref(requireContext()).minusWallet(nominal)
+                    binding.tvWallet.text = FormatRupiah.format(MyWalletPref(requireContext()).getWallet())
+                    val bundle = Bundle().apply {
+                        putString("snap_token", state.data.snap_token)
+                    }
+                    findNavController().navigate(R.id.action_transactionFragment_to_paymentFragment, bundle)
+                }
+                is State.Error -> {
+                    binding.btnDonation.visibility = View.VISIBLE
+                    binding.pbLoading.visibility = View.GONE
+                    Helper.showErrorToast(requireContext(), state.message)
+                    findNavController().popBackStack()
                 }
             }
+        }
+    }
+
+    fun clickCard() {
+        binding.layout25k.setOnClickListener {
+            binding.etNominal.setText(FormatRupiah.format(25000))
+        }
+        binding.layout65k.setOnClickListener {
+            binding.etNominal.setText(FormatRupiah.format(65000))
+        }
+        binding.layout75k.setOnClickListener {
+            binding.etNominal.setText(FormatRupiah.format(75000))
+        }
     }
 }
