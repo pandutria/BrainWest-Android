@@ -19,6 +19,11 @@ class IntroduceScanFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentIntroduceScanBinding.inflate(layoutInflater)
 
+        binding.btnBack.setOnClickListener {
+            requireActivity().finish()
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+        }
+
         binding.btnStart.setOnClickListener {
             findNavController().navigate(R.id.action_introduceFragment_to_uploadFragment)
         }

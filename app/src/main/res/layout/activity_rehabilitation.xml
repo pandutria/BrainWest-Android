@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/rehabilitation_navgraph"
+        app:navGraph="@navigation/rehabilitation_nav_graph"
         android:clipToPadding="true"
         />
 

@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.example.brainwest_android.R
 
 class ConsultationActivity : AppCompatActivity() {
@@ -18,6 +19,12 @@ class ConsultationActivity : AppCompatActivity() {
 //            insets
 //        }
 
+        window.navigationBarColor = getColor(R.color.bg)
+
+        val insetsController = WindowInsetsControllerCompat(window, window.decorView)
+        insetsController.isAppearanceLightStatusBars = false
+        insetsController.isAppearanceLightNavigationBars = false
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
@@ -27,5 +34,11 @@ class ConsultationActivity : AppCompatActivity() {
 
             insets
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+        overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
     }
 }

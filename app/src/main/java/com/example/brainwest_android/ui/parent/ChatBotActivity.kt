@@ -38,4 +38,10 @@ class ChatBotActivity : AppCompatActivity() {
         insetsController.isAppearanceLightStatusBars = false
         insetsController.isAppearanceLightNavigationBars = false
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+        overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+    }
 }

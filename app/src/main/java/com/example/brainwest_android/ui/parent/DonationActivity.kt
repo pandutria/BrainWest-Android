@@ -112,6 +112,12 @@ class DonationActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+        overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+    }
+
 //    fun showFragment(fragment1: Fragment, fragment2: Fragment, fragment3: Fragment) {
 //        supportFragmentManager.beginTransaction()
 //            .add(R.id.container, fragment1, "F1")

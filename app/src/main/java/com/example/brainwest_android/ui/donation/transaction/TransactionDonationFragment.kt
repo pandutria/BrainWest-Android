@@ -33,6 +33,10 @@ class TransactionDonationFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentTransactionDonationBinding.inflate(inflater, container, false)
 
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         binding.tvWallet.text = FormatRupiah.format(MyWalletPref(requireContext()).getWallet())
         clickCard()
 

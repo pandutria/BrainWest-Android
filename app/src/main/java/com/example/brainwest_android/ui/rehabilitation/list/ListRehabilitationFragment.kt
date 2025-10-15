@@ -23,6 +23,10 @@ class ListRehabilitationFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentListRehabilitationBinding.inflate(inflater, container, false)
 
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         adapter = RehabilitationAdapter {rehab ->
             val bundle = Bundle().apply {
                 putInt("id", rehab.id)

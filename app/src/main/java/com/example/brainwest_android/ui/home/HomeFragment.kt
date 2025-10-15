@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.ui.parent.ChatBotActivity
 import com.example.brainwest_android.R
 import com.example.brainwest_android.databinding.FragmentHomeBinding
@@ -18,7 +17,7 @@ import com.example.brainwest_android.ui.parent.EventActivity
 import com.example.brainwest_android.ui.adapter.SliderAdapter
 import com.example.brainwest_android.ui.parent.ConsultationActivity
 import com.example.brainwest_android.ui.parent.ScanActivity
-import com.example.brainwest_android.ui.rehabilitation.RehabilitationActivity
+import com.example.brainwest_android.ui.parent.RehabilitationActivity
 
 class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
