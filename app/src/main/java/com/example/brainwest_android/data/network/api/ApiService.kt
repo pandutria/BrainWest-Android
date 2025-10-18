@@ -1,5 +1,6 @@
 package com.example.brainwest_android.data.network.api
 
+import com.example.brainwest_android.data.model.Community
 import com.example.brainwest_android.data.model.ConsultationHistoryMessage
 import com.example.brainwest_android.data.model.Doctor
 import com.example.brainwest_android.data.model.Donation
@@ -108,4 +109,7 @@ interface ApiService {
 
     @GET("rehabilitation/video/{id}")
     suspend fun getVideoRehabById(@Path("id") id: Int): Response<BaseResponse<RehabilitationVideo>>
+
+    @GET("community")
+    suspend fun getAllCommunity(): Response<BaseResponse<List<Community>>>
 }

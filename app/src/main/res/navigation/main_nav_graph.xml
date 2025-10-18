@@ -59,6 +59,11 @@
             app:popExitAnim="@anim/zoom_fade_out"/>
     </fragment>
 
+    <fragment
+        android:id="@+id/communityFragment"
+        tools:layout="@layout/fragment_community"
+        android:name="com.example.brainwest_android.ui.community.CommunityFragment"/>
+
 
 
 </navigation>

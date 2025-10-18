@@ -127,4 +127,7 @@
     <string name="save">Simpan</string>
     <string name="hint_transaction">Cari transaksi...</string>
     <string name="kidness_donation">Donasi Kebaikan</string>
+    <string name="community_header">Bergabunglah dengan komunitas yang mendukung dan memberdayakan!</string>
+    <string name="hint_community">Cari komunitas...</string>
+    <string name="join">Gabung</string>
 </resources>

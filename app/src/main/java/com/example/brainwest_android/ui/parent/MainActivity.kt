@@ -76,6 +76,10 @@ class MainActivity : AppCompatActivity() {
                         navController.navigate(R.id.educationFragment)
                         true
                     }
+                    R.id.communityMenu -> {
+                        navController.navigate(R.id.communityFragment)
+                        true
+                    }
                     else -> false
                 }
             }
