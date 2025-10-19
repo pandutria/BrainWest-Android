@@ -99,6 +99,12 @@ class MainActivity : AppCompatActivity() {
 //                            moveIndicatorTo(R.id.eduMenu)
 //                        }
                     }
+                    R.id.communityFragment -> {
+                        binding.frameNavbar.visibility = View.VISIBLE
+//                        binding.frameNavbar.doOnLayout {
+//                            moveIndicatorTo(R.id.eduMenu)
+//                        }
+                    }
 
                     else -> {
                         binding.frameNavbar.visibility = View.GONE

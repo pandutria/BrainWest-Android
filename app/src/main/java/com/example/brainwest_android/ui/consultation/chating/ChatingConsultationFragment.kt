@@ -69,12 +69,6 @@ class ChatingConsultationFragment : Fragment() {
             sendMessage()
         }
 
-        return binding.root
-    }
-
-    fun sendMessage() {
-        val id = requireArguments().getInt("doctor_id")
-        viewModel.sendMessageToAPI(id, binding.etMessage.text.toString())
         viewModel.sendResult.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is State.Loading -> {
@@ -97,6 +91,13 @@ class ChatingConsultationFragment : Fragment() {
                 }
             }
         }
+
+        return binding.root
+    }
+
+    fun sendMessage() {
+        val id = requireArguments().getInt("doctor_id")
+        viewModel.sendMessageToAPI(id, binding.etMessage.text.toString())
     }
 
     fun showData() {

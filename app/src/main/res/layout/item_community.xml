@@ -19,6 +19,7 @@
             >
 
             <ImageView
+                android:id="@+id/imgImage"
                 android:layout_width="match_parent"
                 android:layout_height="95dp"
                 android:src="@drawable/example_videos"
@@ -38,6 +39,7 @@
                     android:padding="0.5dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgImageLogo"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:src="@drawable/example_videos"/>
@@ -57,14 +59,19 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="3dp"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Otaku Pintar"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/tvMembers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -74,10 +81,11 @@
                 android:textSize="11sp" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnJoin"
                 android:layout_width="90dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="8dp"
                 android:backgroundTint="@color/primary"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/join"

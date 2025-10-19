@@ -62,7 +62,7 @@
     <fragment
         android:id="@+id/communityFragment"
         tools:layout="@layout/fragment_community"
-        android:name="com.example.brainwest_android.ui.community.CommunityFragment"/>
+        android:name="com.example.brainwest_android.ui.community.list.CommunityFragment"/>
 
 
 
