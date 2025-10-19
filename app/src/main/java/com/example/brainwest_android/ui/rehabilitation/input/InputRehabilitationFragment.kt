@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
@@ -31,7 +32,12 @@ class InputRehabilitationFragment : Fragment() {
         setupSpinner()
 
         binding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
+            requireActivity().finish()
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+        }
+
+        binding.btnTicket.setOnClickListener {
+            findNavController().navigate(R.id.action_inputFragment_to_saveFragment)
         }
 
         binding.btnStart.setOnClickListener {
@@ -84,11 +90,18 @@ class InputRehabilitationFragment : Fragment() {
 
     fun setupSpinner() {
         val statusList = listOf("Stroke ringan", "Stroke sedang", "Stroke berat")
-        val adapter = ArrayAdapter(
+        val adapter = object : ArrayAdapter<String>(
             requireContext(),
             android.R.layout.simple_spinner_dropdown_item,
             statusList
-        )
+        ) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val v = TextView(context)
+                v.text = ""
+                v.height = 0
+                return v
+            }
+        }
         binding.spinnerMedice.adapter = adapter
         binding.spinnerMedice.setSelection(-1, false)
 

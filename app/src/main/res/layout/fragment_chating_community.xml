@@ -96,6 +96,18 @@
             android:layout_above="@id/layoutChat"
             android:fillViewport="true">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvChat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:overScrollMode="never"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_message_sender" />
+
 
 
         </androidx.core.widget.NestedScrollView>
@@ -152,6 +164,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:hint="@string/hint_write_chat"
                         android:paddingLeft="15dp"
+                        android:paddingRight="10dp"
                         android:maxLines="1"
                         android:inputType="text"
                         android:textColor="@color/white"
@@ -167,13 +180,28 @@
 
                 </LinearLayout>
 
-                <ImageButton
-                    android:id="@+id/btnSend"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:src="@drawable/btn_send"
-                    android:scaleType="centerCrop"
-                    android:background="@android:color/transparent"/>
+                <FrameLayout
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <ProgressBar
+                        android:id="@+id/pbLoadingChat"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:indeterminateTint="@color/primary"
+                        android:visibility="gone"/>
+
+                    <ImageButton
+                        android:id="@+id/btnSend"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:background="@android:color/transparent"
+                        android:scaleType="centerCrop"
+                        android:layout_gravity="center"
+                        android:src="@drawable/btn_send" />
+
+                </FrameLayout>
 
             </LinearLayout>
 

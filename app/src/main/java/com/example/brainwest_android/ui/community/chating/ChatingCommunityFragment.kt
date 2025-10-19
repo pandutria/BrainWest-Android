@@ -6,18 +6,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.brainwest_android.R
+import com.example.brainwest_android.data.local.GeneralPref
+import com.example.brainwest_android.data.repository.ChatCommunityRepository
 import com.example.brainwest_android.data.repository.CommunityRepository
 import com.example.brainwest_android.data.state.State
 import com.example.brainwest_android.databinding.FragmentChatingCommunityBinding
 import com.example.brainwest_android.databinding.FragmentChatingConsultationBinding
+import com.example.brainwest_android.ui.adapter.ChatCommunityAdapter
+import com.example.brainwest_android.utils.Helper
 
 class ChatingCommunityFragment : Fragment() {
     lateinit var binding: FragmentChatingCommunityBinding
 
     private val viewModel: ChatingCommunityViewModel by viewModels {
-        ChatingCommunityViewModelFactory(CommunityRepository())
+        ChatingCommunityViewModelFactory(CommunityRepository(), ChatCommunityRepository(requireContext()))
     }
+
+    lateinit var adapter: ChatCommunityAdapter
+    var groupId = 0
+    var userId = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +41,48 @@ class ChatingCommunityFragment : Fragment() {
         }
 
         showData()
+
+        groupId = requireActivity().intent.getIntExtra("id", 0)
+        userId = GeneralPref(requireContext()).getUserId()
+
+        adapter = ChatCommunityAdapter(mutableListOf(), userId)
+        binding.rvChat.adapter = adapter
+
+        viewModel.startListening(groupId)
+        viewModel.messages.observe(viewLifecycleOwner) { newMessages ->
+            adapter.setMessages(newMessages)
+            binding.rvChat.scrollToPosition(newMessages.size - 1)
+        }
+
+        binding.btnSend.setOnClickListener {
+            val messageText = binding.etMessage.text.toString()
+            if (messageText.isEmpty()) {
+                Helper.showErrorToast(requireContext(), "Message cannot be empty")
+                return@setOnClickListener
+            }
+            viewModel.sendMessageToApi(groupId, binding.etMessage.text.toString())
+        }
+
+        viewModel.post.observe(viewLifecycleOwner) {state ->
+            when (state) {
+                is State.Loading -> {
+                    binding.pbLoadingChat.visibility = View.VISIBLE
+                    binding.btnSend.visibility = View.GONE
+                }
+                is State.Success -> {
+                    binding.pbLoadingChat.visibility = View.GONE
+                    binding.btnSend.visibility = View.VISIBLE
+                    viewModel.sendMessage(groupId, binding.etMessage.text.toString())
+                    binding.etMessage.text.clear()
+                }
+                is State.Error -> {
+                    binding.pbLoadingChat.visibility = View.GONE
+                    binding.btnSend.visibility = View.VISIBLE
+                    binding.etMessage.text.clear()
+                    Helper.showErrorToast(requireContext(), state.message)
+                }
+            }
+        }
 
         return binding.root
     }

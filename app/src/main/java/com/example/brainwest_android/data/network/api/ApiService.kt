@@ -1,6 +1,7 @@
 package com.example.brainwest_android.data.network.api
 
 import com.example.brainwest_android.data.model.Community
+import com.example.brainwest_android.data.model.CommunityHistoryMessage
 import com.example.brainwest_android.data.model.CommunityMember
 import com.example.brainwest_android.data.model.ConsultationHistoryMessage
 import com.example.brainwest_android.data.model.Doctor
@@ -11,9 +12,11 @@ import com.example.brainwest_android.data.model.Event
 import com.example.brainwest_android.data.model.EventTransaction
 import com.example.brainwest_android.data.model.MidtransDonationTransaction
 import com.example.brainwest_android.data.model.MidtransEventTransaction
+import com.example.brainwest_android.data.model.Rehabilitation
 import com.example.brainwest_android.data.model.RehabilitationVideo
 import com.example.brainwest_android.data.model.User
 import com.example.brainwest_android.data.network.request.CommunityMemberRequest
+import com.example.brainwest_android.data.network.request.CommunityMessageRequest
 import com.example.brainwest_android.data.network.request.ConsultationRequest
 import com.example.brainwest_android.data.network.request.DonationTransactionRequest
 import com.example.brainwest_android.data.network.request.EventTransactionRequest
@@ -105,6 +108,9 @@ interface ApiService {
         @Header("Accept") accept: String = "application/json",
     ): Response<BaseResponse<List<ConsultationHistoryMessage>>>
 
+    @GET("rehabilitation/video/by-rehab/{id}")
+    suspend fun getRehabById(@Path("id") id: Int): Response<BaseResponse<List<RehabilitationVideo>>>
+
     @POST("rehabilitation/video/by-rehab")
     suspend fun getVideoByRehab(@Body request: VideoByRehabRequest)
     : Response<BaseResponse<List<RehabilitationVideo>>>
@@ -123,4 +129,10 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body request: CommunityMemberRequest
     ): Response<BaseResponse<CommunityMember>>
+
+    @POST("community/message")
+    suspend fun sendMessageCommunity(
+        @Header("Authorization") token: String,
+        @Body request: CommunityMessageRequest,
+    ): Response<BaseResponse<CommunityHistoryMessage>>
 }

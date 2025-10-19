@@ -23,9 +23,6 @@ class EventActivity : AppCompatActivity() {
             insets
         }
 
-        window.statusBarColor = Color.parseColor("#0059D0")
-        window.navigationBarColor = getColor(R.color.bg)
-
         val insetsController = WindowInsetsControllerCompat(window, window.decorView)
         insetsController.isAppearanceLightStatusBars = false
         insetsController.isAppearanceLightNavigationBars = false

@@ -6,11 +6,13 @@ class GeneralPref(context: Context) {
     val key = "name_key"
     val pref = "name_pref"
     val keyId = "id_key"
+    val rehab_key = "rehab_key"
+    val rehab_pref = "rehab_pref"
 
     val shared = context.getSharedPreferences(pref, Context.MODE_PRIVATE)
 
-    fun saveFullname(token: String) {
-        shared.edit().putString(key, token).apply()
+    fun saveFullname(name: String) {
+        shared.edit().putString(key, name).apply()
     }
 
     fun getFullname(): String {
@@ -24,4 +26,13 @@ class GeneralPref(context: Context) {
     fun getUserId(): Int {
         return shared.getInt(keyId, 0)
     }
+
+    fun saveRehabId(id: Int) {
+        shared.edit().putInt(rehab_key, id).apply()
+    }
+
+    fun getRehabId(): Int {
+        return shared.getInt(rehab_key, 0)
+    }
+
 }

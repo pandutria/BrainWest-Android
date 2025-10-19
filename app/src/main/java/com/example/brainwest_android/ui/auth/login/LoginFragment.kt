@@ -59,6 +59,7 @@ class LoginFragment : Fragment() {
                     is State.Success -> {
                         Helper.showSuccessToast(requireContext(), state.message)
                         GeneralPref(requireContext()).saveUserId(state.data.id!!)
+                        GeneralPref(requireContext()).saveFullname(state.data.fullname!!)
 
                         val intent = Intent(requireContext(), MainActivity::class.java)
                         startActivity(intent)

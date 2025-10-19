@@ -1,5 +1,6 @@
 package com.example.brainwest_android.data.repository
 
+import com.example.brainwest_android.data.model.Rehabilitation
 import com.example.brainwest_android.data.model.RehabilitationVideo
 import com.example.brainwest_android.data.network.api.RetrofitInstance
 import com.example.brainwest_android.data.network.request.VideoByRehabRequest
@@ -7,6 +8,11 @@ import com.example.brainwest_android.data.network.response.BaseResponse
 import retrofit2.Response
 
 class RehabilitationRepository {
+    suspend fun getRehabById(id: Int): Response<BaseResponse<List<RehabilitationVideo>>> {
+        val res = RetrofitInstance.api.getRehabById(id)
+        return res
+    }
+
     suspend fun getVideoByRehab(
         age: String,
         gender: String,
