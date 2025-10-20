@@ -27,6 +27,7 @@
                 android:fontFamily="@font/poppins_medium"/>
 
             <ImageView
+                android:id="@+id/imgHistory"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="end|center_vertical"

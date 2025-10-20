@@ -130,4 +130,5 @@
     <string name="community_header">Bergabunglah dengan komunitas yang mendukung dan memberdayakan!</string>
     <string name="hint_community">Cari komunitas...</string>
     <string name="join">Gabung</string>
+    <string name="community_message">Pesan Komunitas</string>
 </resources>

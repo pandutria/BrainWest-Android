@@ -33,7 +33,7 @@
             android:paddingHorizontal="20dp"
             android:paddingVertical="5dp"
             android:textSize="18sp"
-            android:text="@string/chat_in"
+            android:text="@string/community_message"
             android:textColor="@color/white" />
 
 

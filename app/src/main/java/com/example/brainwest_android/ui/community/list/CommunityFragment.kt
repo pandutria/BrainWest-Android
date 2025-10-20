@@ -41,6 +41,16 @@ class CommunityFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentCommunityBinding.inflate(inflater, container, false)
 
+        binding.imgHistory.setOnClickListener {
+            val intent = Intent(requireContext(), CommunityActivity::class.java)
+            intent.putExtra("isDetail", false)
+            startActivity(intent)
+            requireActivity().overridePendingTransition(
+                R.anim.zoom_fade_in,
+                R.anim.zoom_fade_out
+            )
+        }
+
         bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet)
         bottomSheetBehavior.isHideable = true
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
@@ -149,6 +159,7 @@ class CommunityFragment : Fragment() {
                         binding.pbLoading.visibility = View.GONE
 
                         val intent = Intent(requireContext(), CommunityActivity::class.java)
+                        intent.putExtra("isDetail", true)
                         intent.putExtra("id", group_id)
                         startActivity(intent)
                         requireActivity().overridePendingTransition(

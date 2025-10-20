@@ -10,4 +10,9 @@
         tools:layout="@layout/fragment_chating_community"
         android:name="com.example.brainwest_android.ui.community.chating.ChatingCommunityFragment"/>
 
+    <fragment
+        android:id="@+id/historyFragment"
+        tools:layout="@layout/fragment_history_community"
+        android:name="com.example.brainwest_android.ui.community.history.HistoryCommunityFragment"/>
+
 </navigation>

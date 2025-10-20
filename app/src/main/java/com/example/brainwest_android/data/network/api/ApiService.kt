@@ -135,4 +135,9 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body request: CommunityMessageRequest,
     ): Response<BaseResponse<CommunityHistoryMessage>>
+
+    @GET("community/message/history")
+    suspend fun historyCommunityMessage(@Header("Authorization") token: String)
+    : Response<BaseResponse<List<CommunityHistoryMessage>>>
+
 }
