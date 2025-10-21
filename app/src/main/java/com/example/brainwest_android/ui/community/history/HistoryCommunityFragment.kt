@@ -1,16 +1,21 @@
 package com.example.brainwest_android.ui.community.history
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
 import com.example.brainwest_android.data.repository.CommunityRepository
 import com.example.brainwest_android.data.state.State
 import com.example.brainwest_android.databinding.FragmentHistoryCommunityBinding
 import com.example.brainwest_android.ui.adapter.HistoryCommunityAdapter
+import com.example.brainwest_android.ui.community.chating.ChatingCommunityFragment
+import com.example.brainwest_android.ui.parent.CommunityActivity
 
 class HistoryCommunityFragment : Fragment() {
     lateinit var binding: FragmentHistoryCommunityBinding
@@ -28,8 +33,18 @@ class HistoryCommunityFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHistoryCommunityBinding.inflate(inflater, container, false)
 
-        adapter = HistoryCommunityAdapter {history ->
+        binding.btnBack.setOnClickListener {
+            requireActivity().finish()
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+        }
 
+        adapter = HistoryCommunityAdapter { history ->
+            val intent = Intent(requireContext(), CommunityActivity::class.java).apply {
+                putExtra("id", history.group.id)
+                putExtra("isDetail", true)
+            }
+            startActivity(intent)
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
         }
 
         showData()

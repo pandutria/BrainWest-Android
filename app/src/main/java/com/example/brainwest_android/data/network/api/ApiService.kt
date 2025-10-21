@@ -12,6 +12,7 @@ import com.example.brainwest_android.data.model.Event
 import com.example.brainwest_android.data.model.EventTransaction
 import com.example.brainwest_android.data.model.MidtransDonationTransaction
 import com.example.brainwest_android.data.model.MidtransEventTransaction
+import com.example.brainwest_android.data.model.Product
 import com.example.brainwest_android.data.model.Rehabilitation
 import com.example.brainwest_android.data.model.RehabilitationVideo
 import com.example.brainwest_android.data.model.User
@@ -140,4 +141,6 @@ interface ApiService {
     suspend fun historyCommunityMessage(@Header("Authorization") token: String)
     : Response<BaseResponse<List<CommunityHistoryMessage>>>
 
+    @GET("product")
+    suspend fun getProduct(): Response<BaseResponse<List<Product>>>
 }

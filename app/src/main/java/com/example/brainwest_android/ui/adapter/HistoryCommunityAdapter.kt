@@ -2,10 +2,8 @@ package com.example.brainwest_android.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brainwest_android.data.model.CommunityHistoryMessage
-import com.example.brainwest_android.data.model.ConsultationHistoryMessage
 import com.example.brainwest_android.databinding.ItemHistoryConsultationBinding
 
 class HistoryCommunityAdapter(
@@ -16,6 +14,10 @@ class HistoryCommunityAdapter(
         fun bind(history: CommunityHistoryMessage, onClick: (CommunityHistoryMessage) -> Unit) {
             binding.tvName.text = history.group.name
             binding.tvLastMessage.text = history.message
+
+            binding.root.setOnClickListener {
+                onClick(history)
+            }
         }
     }
 

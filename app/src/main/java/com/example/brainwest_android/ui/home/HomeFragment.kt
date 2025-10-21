@@ -11,7 +11,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.brainwest_android.ui.parent.ChatBotActivity
 import com.example.brainwest_android.R
+import com.example.brainwest_android.data.repository.ProductRepository
+import com.example.brainwest_android.data.state.State
 import com.example.brainwest_android.databinding.FragmentHomeBinding
+import com.example.brainwest_android.ui.adapter.ProductAdapter
 import com.example.brainwest_android.ui.parent.DonationActivity
 import com.example.brainwest_android.ui.parent.EventActivity
 import com.example.brainwest_android.ui.adapter.SliderAdapter
@@ -25,8 +28,10 @@ class HomeFragment : Fragment() {
     private var currentPage = 0
 
     private val viewModel: HomeViewModel by viewModels {
-        HomeViewModelfactory()
+        HomeViewModelfactory(ProductRepository())
     }
+
+    lateinit var productAdapter: ProductAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +42,12 @@ class HomeFragment : Fragment() {
 
         setupImageSlider()
         navigate()
+
+        productAdapter = ProductAdapter {product ->
+
+        }
+
+        showData()
 
         return binding.root
     }
@@ -71,6 +82,29 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireContext(), RehabilitationActivity::class.java)
             startActivity(intent)
             requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+        }
+    }
+
+    fun showData() {
+        viewModel.getProduct()
+        viewModel.productResult.observe(viewLifecycleOwner) { state ->
+             when (state) {
+                 is State.Loading -> {
+                     binding.pbLoading.visibility = View.VISIBLE
+                     binding.rvProduct.visibility = View.GONE
+                 }
+                 is State.Success -> {
+                     binding.pbLoading.visibility = View.GONE
+                     binding.rvProduct.visibility = View.VISIBLE
+
+                     productAdapter.setData(state.data)
+                     binding.rvProduct.adapter = productAdapter
+                 }
+                 is State.Error -> {
+                     binding.pbLoading.visibility = View.GONE
+                     binding.rvProduct.visibility = View.VISIBLE
+                 }
+             }
         }
     }
 

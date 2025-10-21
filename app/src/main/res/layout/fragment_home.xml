@@ -438,7 +438,7 @@
                 android:paddingHorizontal="20dp"
                 android:layout_marginTop="15dp"
                 android:gravity="center_vertical"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -460,6 +460,37 @@
                     android:textColor="@color/white"/>
 
             </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <ProgressBar
+                    android:id="@+id/pbLoading"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="@color/primary"
+                    android:visibility="gone"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    tools:listitem="@layout/item_product"
+                    android:layout_marginHorizontal="10dp"
+                    app:spanCount="2"
+                    android:overScrollMode="never"
+                    android:visibility="gone"
+                    android:clipToPadding="false"/>
+
+            </FrameLayout>
+
 
         </LinearLayout>
 
