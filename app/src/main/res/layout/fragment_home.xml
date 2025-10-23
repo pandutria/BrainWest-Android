@@ -450,8 +450,8 @@
                     android:textSize="18sp"
                     android:textColor="@color/white"/>
 
-
                 <TextView
+                    android:id="@+id/tvSeeAll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/see_all"

@@ -131,4 +131,6 @@
     <string name="hint_community">Cari komunitas...</string>
     <string name="join">Gabung</string>
     <string name="community_message">Pesan Komunitas</string>
+    <string name="list_medicine">List Obat</string>
+    <string name="hint_medicine">Cari obat...</string>
 </resources>

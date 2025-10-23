@@ -6,8 +6,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetrofitInstance {
+object  RetrofitInstance {
     val baseurl = "http://10.0.2.2:8000/api/"
+//    val baseurl = "https://brainwest-backend.setionugraha.my.id/api"
     private val client by lazy {
         val logging = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY

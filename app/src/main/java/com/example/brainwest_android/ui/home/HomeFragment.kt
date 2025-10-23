@@ -19,6 +19,7 @@ import com.example.brainwest_android.ui.parent.DonationActivity
 import com.example.brainwest_android.ui.parent.EventActivity
 import com.example.brainwest_android.ui.adapter.SliderAdapter
 import com.example.brainwest_android.ui.parent.ConsultationActivity
+import com.example.brainwest_android.ui.parent.ProductActivity
 import com.example.brainwest_android.ui.parent.ScanActivity
 import com.example.brainwest_android.ui.parent.RehabilitationActivity
 
@@ -80,6 +81,12 @@ class HomeFragment : Fragment() {
         }
         binding.btnRehabilitation.setOnClickListener {
             val intent = Intent(requireContext(), RehabilitationActivity::class.java)
+            startActivity(intent)
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+        }
+        binding.tvSeeAll.setOnClickListener {
+            val intent = Intent(requireContext(), ProductActivity::class.java)
+            intent.putExtra("isDetail", false)
             startActivity(intent)
             requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
         }

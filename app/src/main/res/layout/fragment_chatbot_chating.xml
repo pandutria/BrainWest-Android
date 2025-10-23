@@ -205,8 +205,7 @@
                 tools:listitem="@layout/item_message_sender"
                 android:paddingBottom="10dp"
                 android:overScrollMode="never"
-                android:clipToPadding="false"
-                android:paddingHorizontal="20dp"/>
+                android:clipToPadding="false"/>
 
         </LinearLayout>
 
