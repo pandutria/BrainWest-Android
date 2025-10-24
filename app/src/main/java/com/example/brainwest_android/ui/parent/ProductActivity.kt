@@ -5,11 +5,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.commit
 import com.example.brainwest_android.R
 import com.example.brainwest_android.databinding.ActivityProductBinding
 import com.example.brainwest_android.ui.community.chating.ChatingCommunityFragment
 import com.example.brainwest_android.ui.community.history.HistoryCommunityFragment
+import com.example.brainwest_android.ui.product.cart.CartProductFragment
+import com.example.brainwest_android.ui.product.detail.DetailProductFragment
 import com.example.brainwest_android.ui.product.list.ListProductFragment
 
 class ProductActivity : AppCompatActivity() {
@@ -25,10 +28,19 @@ class ProductActivity : AppCompatActivity() {
             insets
         }
 
-        val isDetail = intent.getBooleanExtra("isDetail", false)
+        window.statusBarColor = getColor(R.color.bg)
+        window.navigationBarColor = getColor(R.color.bg)
 
-        val fragment = if (isDetail) {
-            ListProductFragment()
+        val insetsController = WindowInsetsControllerCompat(window, window.decorView)
+        insetsController.isAppearanceLightStatusBars = false
+        insetsController.isAppearanceLightNavigationBars = false
+
+        val from = intent.getStringExtra("from")
+
+        val fragment = if (from == "detail") {
+            DetailProductFragment()
+        } else if (from == "cart") {
+            CartProductFragment()
         } else {
             ListProductFragment()
         }

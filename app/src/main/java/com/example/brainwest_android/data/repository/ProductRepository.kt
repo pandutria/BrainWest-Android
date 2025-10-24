@@ -10,4 +10,8 @@ class ProductRepository {
         val res = RetrofitInstance.api.getProduct()
         return res
     }
+    suspend fun getProductById(id: Int): Response<BaseResponse<Product>> {
+        val res = RetrofitInstance.api.getProductById(id)
+        return res
+    }
 }

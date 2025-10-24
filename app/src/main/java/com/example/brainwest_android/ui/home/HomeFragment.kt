@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -45,7 +46,12 @@ class HomeFragment : Fragment() {
         navigate()
 
         productAdapter = ProductAdapter {product ->
-
+            val intent = Intent(requireActivity(), ProductActivity::class.java)
+            intent.putExtra("id", product.id)
+            Log.d("productId", product.id.toString())
+            intent.putExtra("from", "detail")
+            startActivity(intent)
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
         }
 
         showData()
@@ -101,11 +107,12 @@ class HomeFragment : Fragment() {
                      binding.rvProduct.visibility = View.GONE
                  }
                  is State.Success -> {
-                     binding.pbLoading.visibility = View.GONE
-                     binding.rvProduct.visibility = View.VISIBLE
-
+                     productAdapter.setPage("home")
                      productAdapter.setData(state.data)
                      binding.rvProduct.adapter = productAdapter
+
+                     binding.pbLoading.visibility = View.GONE
+                     binding.rvProduct.visibility = View.VISIBLE
                  }
                  is State.Error -> {
                      binding.pbLoading.visibility = View.GONE
@@ -116,7 +123,7 @@ class HomeFragment : Fragment() {
     }
 
     fun setupImageSlider() {
-        val images = listOf(R.drawable.image_slider1, R.drawable.image_slider1, R.drawable.image_slider1)
+        val images = listOf(R.drawable.image_slider1, R.drawable.image_slider2, R.drawable.image_slider3)
         val icons = listOf(R.drawable.image_slider_icon1, R.drawable.image_slider_icon2, R.drawable.image_slider_icon3)
 
         val adapter = SliderAdapter(images, icons)

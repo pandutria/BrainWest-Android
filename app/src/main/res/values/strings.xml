@@ -133,4 +133,15 @@
     <string name="community_message">Pesan Komunitas</string>
     <string name="list_medicine">List Obat</string>
     <string name="hint_medicine">Cari obat...</string>
+    <string name="pack">/pack</string>
+    <string name="description">Deskripsi</string>
+    <string name="add_to_cart">Masukan Keranjang</string>
+    <string name="cart">Keranjang</string>
+    <string name="sub_total">Sub total</string>
+    <string name="tax">Pajak &amp; Biaya</string>
+    <string name="delivery">Pengiriman</string>
+    <string name="total">Total</string>
+    <string name="address_delivery">Alamat Pengiriman</string>
+    <string name="hint_address">Ketik alamat...</string>"
+    <string name="boocking">Pesan</string>
 </resources>

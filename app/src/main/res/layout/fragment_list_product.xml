@@ -37,7 +37,7 @@
             android:textColor="@color/white" />
 
         <ImageView
-            android:id="@+id/btnChat"
+            android:id="@+id/btnOrder"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_gravity="center|end"
@@ -133,7 +133,7 @@
                     android:orientation="vertical"
                     android:layout_gravity="center_horizontal"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    tools:listitem="@layout/item_product"
+                    tools:listitem="@layout/item_product_vertical"
                     android:layout_marginHorizontal="10dp"
                     app:spanCount="2"
                     android:layout_marginTop="10dp"

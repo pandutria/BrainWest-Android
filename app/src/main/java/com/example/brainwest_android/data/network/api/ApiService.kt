@@ -143,4 +143,7 @@ interface ApiService {
 
     @GET("product")
     suspend fun getProduct(): Response<BaseResponse<List<Product>>>
+
+    @GET("product/{id}")
+    suspend fun getProductById(@Path("id") id: Int): Response<BaseResponse<Product>>
 }

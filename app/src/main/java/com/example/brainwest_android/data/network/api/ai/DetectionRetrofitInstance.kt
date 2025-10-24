@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object DetectionRetrofitInstance {
-    val baseurl = "https://pandutria-detection.hf.space/"
+    val baseurl = "https://Rayzen7-Brain-Detection.hf.space/"
     private val client by lazy {
         val logging = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY

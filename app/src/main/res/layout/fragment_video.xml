@@ -57,7 +57,9 @@
                     android:id="@+id/pvVideo"
                     android:layout_width="match_parent"
                     android:layout_height="240dp"
-                    app:resize_mode="zoom" />
+                    app:resize_mode="zoom"
+                    app:use_controller="true"
+                    app:show_buffering="when_playing"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"

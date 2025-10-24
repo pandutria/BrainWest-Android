@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:paddingTop="10dp"
+        android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:paddingHorizontal="20dp"
         android:background="@color/bg"
@@ -50,7 +50,6 @@
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:overScrollMode="never"/>
-
 
     <FrameLayout
         android:id="@+id/layoutBtn"

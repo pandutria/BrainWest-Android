@@ -2,6 +2,7 @@ package com.example.brainwest_android.ui.product.list
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -32,8 +33,17 @@ class ListProductFragment : Fragment() {
         binding = FragmentListProductBinding.inflate(layoutInflater)
 
         adapter = ProductAdapter {product ->
+                val intent = Intent(requireActivity(), ProductActivity::class.java)
+                intent.putExtra("id", product.id)
+                Log.d("productId", product.id.toString())
+                intent.putExtra("from", "detail")
+                startActivity(intent)
+                requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+        }
+
+        binding.btnOrder.setOnClickListener {
             val intent = Intent(requireActivity(), ProductActivity::class.java)
-            intent.putExtra("id", product.id)
+            intent.putExtra("from", "cart")
             startActivity(intent)
             requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
         }
@@ -52,11 +62,11 @@ class ListProductFragment : Fragment() {
                     binding.rvProduct.visibility = View.GONE
                 }
                 is State.Success -> {
-                    binding.pbLoading.visibility = View.GONE
-                    binding.rvProduct.visibility = View.VISIBLE
-
+                    adapter.setPage("!home")
                     adapter.setData(state.data)
                     binding.rvProduct.adapter = adapter
+                    binding.pbLoading.visibility = View.GONE
+                    binding.rvProduct.visibility = View.VISIBLE
                 }
                 is State.Error -> {
                     binding.pbLoading.visibility = View.GONE

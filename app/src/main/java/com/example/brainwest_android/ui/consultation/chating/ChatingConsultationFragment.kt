@@ -75,15 +75,13 @@ class ChatingConsultationFragment : Fragment() {
                     binding.btnSend.visibility = View.GONE
                     binding.pbLoadingChat.visibility = View.VISIBLE
                 }
-
                 is State.Success -> {
                     val messageText = binding.etMessage.text.toString()
-                    viewModel.sendMessage(userId, id, messageText)
+                    viewModel.sendMessage(userId, doctorId, messageText)
                     binding.etMessage.text.clear()
                     binding.btnSend.visibility = View.VISIBLE
                     binding.pbLoadingChat.visibility = View.GONE
                 }
-
                 is State.Error -> {
                     Helper.showErrorLog(state.message)
                     Helper.showErrorToast(requireContext(), state.message)

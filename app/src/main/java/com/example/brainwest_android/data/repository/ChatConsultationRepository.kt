@@ -24,6 +24,7 @@ class ChatConsultationRepository(val context: Context) {
         return if (userId < doctorId) "${userId}_${doctorId}" else "${doctorId}_${userId}"
     }
 
+
     fun sendMessage(userId: Int, doctorId: Int, message: String) {
         val chatId = generateChatId(userId, doctorId)
         val messageRef = database.child("chats").child(chatId).push()
@@ -56,24 +57,27 @@ class ChatConsultationRepository(val context: Context) {
     }
 
     fun listenMessages(userId: Int, doctorId: Int, callback: (List<ConsultationMessage>) -> Unit) {
-        val chatId = if (doctorId < userId) "${doctorId}_${userId}" else "${userId}_${doctorId}"
+        val chatId = generateChatId(userId, doctorId)
         val chatRef = FirebaseDatabase.getInstance("https://brainwest-ce733-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("chats").child(chatId)
 
         chatRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                Log.d("FirebaseDebug", "snapshot: $snapshot")
                 val messages = mutableListOf<ConsultationMessage>()
                 for (child in snapshot.children) {
                     val msg = child.getValue(ConsultationMessage::class.java)
+                    Log.d("FirebaseDebug", "msg: $msg")
                     if (msg != null) messages.add(msg)
                 }
                 callback(messages)
             }
 
             override fun onCancelled(e: DatabaseError) {
-                Helper.showErrorLog(e.message)
+                Log.d("FirebaseDebug", "Cancelled: ${e.message}")
             }
         })
+
     }
 
     suspend fun getHistory(): Response<BaseResponse<List<ConsultationHistoryMessage>>> {

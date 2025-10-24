@@ -120,7 +120,7 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_doctor"
                     android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
+                    android:paddingTop="10dp"
                     android:overScrollMode="never"
                     android:clipToPadding="false"/>
 
@@ -128,8 +128,6 @@
 
         </LinearLayout>
 
-
     </androidx.core.widget.NestedScrollView>
-
 
 </RelativeLayout>

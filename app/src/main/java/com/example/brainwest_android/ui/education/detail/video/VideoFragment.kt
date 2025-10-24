@@ -1,10 +1,14 @@
 package com.example.brainwest_android.ui.education.detail.video
 
+import android.graphics.text.LineBreaker
+import android.os.Build
 import android.os.Bundle
+import android.text.Layout
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.data.repository.EducationRepository
@@ -22,6 +26,7 @@ class VideoFragment : Fragment() {
         VideoViewModelFactory(EducationRepository())
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +40,12 @@ class VideoFragment : Fragment() {
 
         binding.layoutContent.visibility = View.GONE
         binding.pbLoading.visibility = View.VISIBLE
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            binding.tvDesc.justificationMode = LineBreaker.JUSTIFICATION_MODE_INTER_WORD
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            binding.tvDesc.justificationMode = LineBreaker.JUSTIFICATION_MODE_INTER_WORD
+        }
 
         return binding.root
     }
@@ -65,6 +76,7 @@ class VideoFragment : Fragment() {
                     player?.setMediaItem(mediaItem)
                     player?.prepare()
                     player?.play()
+
 
                     binding.layoutContent.visibility = View.VISIBLE
                     binding.pbLoading.visibility = View.GONE
