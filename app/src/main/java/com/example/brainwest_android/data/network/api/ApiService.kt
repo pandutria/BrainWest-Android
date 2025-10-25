@@ -12,8 +12,10 @@ import com.example.brainwest_android.data.model.Event
 import com.example.brainwest_android.data.model.EventTransaction
 import com.example.brainwest_android.data.model.MidtransDonationTransaction
 import com.example.brainwest_android.data.model.MidtransEventTransaction
+import com.example.brainwest_android.data.model.MidtransProductTransactionHeader
 import com.example.brainwest_android.data.model.Product
-import com.example.brainwest_android.data.model.Rehabilitation
+import com.example.brainwest_android.data.model.ProductTransactionDetail
+import com.example.brainwest_android.data.model.ProductTransactionHeader
 import com.example.brainwest_android.data.model.RehabilitationVideo
 import com.example.brainwest_android.data.model.User
 import com.example.brainwest_android.data.network.request.CommunityMemberRequest
@@ -22,12 +24,15 @@ import com.example.brainwest_android.data.network.request.ConsultationRequest
 import com.example.brainwest_android.data.network.request.DonationTransactionRequest
 import com.example.brainwest_android.data.network.request.EventTransactionRequest
 import com.example.brainwest_android.data.network.request.LoginRequest
+import com.example.brainwest_android.data.network.request.ProductTransactionDetailRequest
 import com.example.brainwest_android.data.network.request.RegisterRequest
+import com.example.brainwest_android.data.network.request.ProductTransactionHeaderRequest
 import com.example.brainwest_android.data.network.request.VideoByRehabRequest
 import com.example.brainwest_android.data.network.response.BaseResponse
 import com.example.brainwest_android.data.network.response.LoginResponse
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -146,4 +151,25 @@ interface ApiService {
 
     @GET("product/{id}")
     suspend fun getProductById(@Path("id") id: Int): Response<BaseResponse<Product>>
+
+    @POST("product/transaction")
+    suspend fun postProductHeader(
+        @Header("Authorization") token: String,
+        @Body request: ProductTransactionHeaderRequest,
+    ): Response<BaseResponse<MidtransProductTransactionHeader>>
+
+    @POST("product/transaction/detail")
+    suspend fun postProductDetail(
+        @Body request: ProductTransactionDetailRequest,
+    ): Response<BaseResponse<ProductTransactionHeader>>
+
+    @GET("product/transaction/by-user")
+    suspend fun getProductHeaderByUser(@Header("Authorization") token: String)
+    : Response<BaseResponse<List<ProductTransactionHeader>>>
+
+    @GET("product/transaction/detail")
+    suspend fun getProducrDetail(): Response<BaseResponse<List<ProductTransactionDetail>>>
+
+    @DELETE("product/transaction{id}")
+    suspend fun deleteProductHeader(@Path("id") id: Int): Response<BaseResponse<ProductTransactionHeader>>
 }

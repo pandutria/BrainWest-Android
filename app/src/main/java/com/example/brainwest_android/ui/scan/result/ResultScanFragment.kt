@@ -11,6 +11,7 @@ import com.example.brainwest_android.R
 import com.example.brainwest_android.databinding.FragmentResultScanBinding
 import com.example.brainwest_android.ui.adapter.ConditionAdapter
 import com.example.brainwest_android.ui.adapter.RecomendationAdapter
+import com.example.brainwest_android.ui.parent.ConsultationActivity
 import com.example.brainwest_android.ui.parent.MainActivity
 
 class ResultScanFragment : Fragment() {
@@ -41,6 +42,13 @@ class ResultScanFragment : Fragment() {
             requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
             requireActivity().finish()
         }
+
+        binding.btnConsul.setOnClickListener {
+            val intent = Intent(requireContext(), ConsultationActivity::class.java)
+            startActivity(intent)
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+            requireActivity().finish()
+        }
     }
 
     private fun showScanResult() {
@@ -54,8 +62,27 @@ class ResultScanFragment : Fragment() {
             (rawConfidence * 100).toInt().coerceIn(0, 100)
         }
 
+        val riskLevel: String
+
+        when {
+            percent <= 40 -> {
+                riskLevel = "Tinggi"
+            }
+            percent <= 70 -> {
+                riskLevel = "Sedang"
+            }
+            percent <= 90 -> {
+                riskLevel = "Rendah"
+            }
+            else -> {
+                riskLevel = "Sangat Rendah"
+            }
+        }
+
+        binding.progressAccuration.max = 100
         binding.progressAccuration.progress = percent
         binding.tvAccuration.text = "$percent%"
+        binding.tvRisk.text = riskLevel
 
         binding.tvDiagnose.text = prediction
 
@@ -87,6 +114,7 @@ class ResultScanFragment : Fragment() {
     private fun showCondition(prediction: String) {
         conditionAdapter = ConditionAdapter()
         binding.rvCondition.adapter = conditionAdapter
+
 
         val conditionsList = when (prediction.lowercase()) {
             "glioma" -> arrayListOf(

@@ -155,7 +155,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/disease_diagnosis"
+                        android:text="Skor Kesehatan"
                         android:fontFamily="@font/poppins_semibold"
                         android:textSize="10sp"
                         android:textColor="@color/white"/>
@@ -183,7 +183,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/clinical_risks"
+                        android:text="Tingkat Urgensi"
                         android:fontFamily="@font/poppins_semibold"
                         android:textSize="10sp"
                         android:textColor="@color/white"/>
@@ -249,6 +249,7 @@
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_condition"
+                    tools:itemCount="2"
                     android:overScrollMode="never"
                     android:clipToPadding="false"/>
 
@@ -277,6 +278,7 @@
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_recomendation"
+                    tools:itemCount="4"
                     android:overScrollMode="never"
                     android:clipToPadding="false"/>
 

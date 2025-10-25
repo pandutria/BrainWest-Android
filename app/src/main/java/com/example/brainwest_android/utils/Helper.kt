@@ -54,7 +54,7 @@ object Helper {
             .cornerRadius(5)
             .textBold()
             .textSize(14f)
-            .iconStart(R.drawable.ic_success)
+            .iconStart(R.drawable.ic_warning_white)
             .length(3000)
             .gravity(Gravity.TOP)
             .font(R.font.poppins_medium)

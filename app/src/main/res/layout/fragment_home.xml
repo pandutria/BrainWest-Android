@@ -192,6 +192,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/btnDiagnose"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -348,6 +349,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/btnProduct"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -424,6 +426,7 @@
                 </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTry"
                     android:layout_width="75dp"
                     android:layout_height="40dp"
                     android:text="@string/try_ai"

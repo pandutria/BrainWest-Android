@@ -107,6 +107,7 @@
                 </LinearLayout>
                 
                 <ImageView
+                    android:id="@+id/btnCart"
                     android:layout_width="52dp"
                     android:layout_height="50dp"
                     android:layout_marginRight="20dp"

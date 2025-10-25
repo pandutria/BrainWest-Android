@@ -144,4 +144,8 @@
     <string name="address_delivery">Alamat Pengiriman</string>
     <string name="hint_address">Ketik alamat...</string>"
     <string name="boocking">Pesan</string>
+    <string name="list_order">List Pesanan</string>
+    <string name="title_health_test">Tes Kesehatan Otak</string>
+    <string name="sub_health_test">Silakan jawab pertanyaan berikut untuk analisis kesehatan otak Anda.</string>
+    <string name="answer_the_quesion">Jawab Pertanyaan di Bawah</string>
 </resources>

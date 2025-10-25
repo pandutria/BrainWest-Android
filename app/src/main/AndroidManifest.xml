@@ -18,6 +18,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.parent.DiagnoseActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.parent.ProductActivity"
             android:exported="false" />
         <activity

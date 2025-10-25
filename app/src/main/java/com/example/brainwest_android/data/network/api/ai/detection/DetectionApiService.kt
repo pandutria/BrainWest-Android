@@ -1,4 +1,4 @@
-package com.example.brainwest_android.data.network.api.ai
+package com.example.brainwest_android.data.network.api.ai.detection
 
 import com.example.brainwest_android.data.model.Prediction
 import okhttp3.MultipartBody

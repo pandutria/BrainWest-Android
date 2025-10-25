@@ -20,6 +20,7 @@ import com.example.brainwest_android.ui.parent.DonationActivity
 import com.example.brainwest_android.ui.parent.EventActivity
 import com.example.brainwest_android.ui.adapter.SliderAdapter
 import com.example.brainwest_android.ui.parent.ConsultationActivity
+import com.example.brainwest_android.ui.parent.DiagnoseActivity
 import com.example.brainwest_android.ui.parent.ProductActivity
 import com.example.brainwest_android.ui.parent.ScanActivity
 import com.example.brainwest_android.ui.parent.RehabilitationActivity
@@ -47,9 +48,8 @@ class HomeFragment : Fragment() {
 
         productAdapter = ProductAdapter {product ->
             val intent = Intent(requireActivity(), ProductActivity::class.java)
-            intent.putExtra("id", product.id)
-            Log.d("productId", product.id.toString())
-            intent.putExtra("from", "detail")
+            intent.putExtra("product_id", product.id)
+            intent.putExtra("open_detail_direct", true)
             startActivity(intent)
             requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
         }
@@ -66,6 +66,11 @@ class HomeFragment : Fragment() {
             requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
         }
         binding.btnChatbot.setOnClickListener {
+            val intent = Intent(requireContext(), ChatBotActivity::class.java)
+            startActivity(intent)
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+        }
+        binding.btnTry.setOnClickListener {
             val intent = Intent(requireContext(), ChatBotActivity::class.java)
             startActivity(intent)
             requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
@@ -92,7 +97,16 @@ class HomeFragment : Fragment() {
         }
         binding.tvSeeAll.setOnClickListener {
             val intent = Intent(requireContext(), ProductActivity::class.java)
-            intent.putExtra("isDetail", false)
+            startActivity(intent)
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+        }
+        binding.btnProduct.setOnClickListener {
+            val intent = Intent(requireContext(), ProductActivity::class.java)
+            startActivity(intent)
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+        }
+        binding.btnDiagnose.setOnClickListener {
+            val intent = Intent(requireContext(), DiagnoseActivity::class.java)
             startActivity(intent)
             requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
         }
@@ -107,7 +121,6 @@ class HomeFragment : Fragment() {
                      binding.rvProduct.visibility = View.GONE
                  }
                  is State.Success -> {
-                     productAdapter.setPage("home")
                      productAdapter.setData(state.data)
                      binding.rvProduct.adapter = productAdapter
 

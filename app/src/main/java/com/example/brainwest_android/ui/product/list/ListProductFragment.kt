@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
 import com.example.brainwest_android.data.model.Product
 import com.example.brainwest_android.data.repository.ProductRepository
@@ -32,20 +33,25 @@ class ListProductFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentListProductBinding.inflate(layoutInflater)
 
+        binding.btnBack.setOnClickListener {
+            requireActivity().finish()
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+        }
+
         adapter = ProductAdapter {product ->
-                val intent = Intent(requireActivity(), ProductActivity::class.java)
-                intent.putExtra("id", product.id)
-                Log.d("productId", product.id.toString())
-                intent.putExtra("from", "detail")
-                startActivity(intent)
-                requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+            val bundle = Bundle().apply {
+                putInt("id", product.id)
+            }
+
+            findNavController().navigate(R.id.action_listFragment_to_detailFragment, bundle)
+        }
+
+        binding.btnCart.setOnClickListener {
+            findNavController().navigate(R.id.action_listFragment_to_cartFragment)
         }
 
         binding.btnOrder.setOnClickListener {
-            val intent = Intent(requireActivity(), ProductActivity::class.java)
-            intent.putExtra("from", "cart")
-            startActivity(intent)
-            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+            findNavController().navigate(R.id.action_listFragment_to_historyFragment)
         }
 
         showData()

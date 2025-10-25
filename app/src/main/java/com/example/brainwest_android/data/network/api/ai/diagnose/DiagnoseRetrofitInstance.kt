@@ -1,12 +1,13 @@
-package com.example.brainwest_android.data.network.api.ai
+package com.example.brainwest_android.data.network.api.ai.diagnose
 
+import com.example.brainwest_android.data.network.api.ai.detection.DetectionApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object DetectionRetrofitInstance {
-    val baseurl = "https://Rayzen7-Brain-Detection.hf.space/"
+object DiagnoseRetrofitInstance {
+    val baseurl = "https://pandutria-diagnosis.hf.space/"
     private val client by lazy {
         val logging = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
@@ -16,12 +17,12 @@ object DetectionRetrofitInstance {
             .build()
     }
 
-    val api: DetectionApiService by lazy {
+    val api: DiagnoseApiService by lazy {
         Retrofit.Builder()
             .baseUrl(baseurl)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
-            .create(DetectionApiService::class.java)
+            .create(DiagnoseApiService::class.java)
     }
 }

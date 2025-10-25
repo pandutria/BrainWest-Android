@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.brainwest_android.R
 import com.example.brainwest_android.data.local.CartList
@@ -41,8 +42,14 @@ class DetailProductFragment : Fragment() {
         binding = FragmentDetailProductBinding.inflate(layoutInflater)
 
         binding.btnBack.setOnClickListener {
-            requireActivity().finish()
-            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+            val navController = findNavController()
+            val canPop = navController.popBackStack()
+
+            if (!canPop) {
+                // Kalau nggak bisa pop (berarti fragment ini dibuka langsung)
+                requireActivity().finish()
+                requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+            }
         }
 
         binding.tvQty.text = qty.toString()
@@ -59,7 +66,8 @@ class DetailProductFragment : Fragment() {
         }
 
         binding.btnAddToCart.setOnClickListener {
-            if (qty == 0) return@setOnClickListener Helper.showErrorToast(requireContext(), "Jumlah minimal 1")
+            if (qty == 0)
+                return@setOnClickListener Helper.showErrorToast(requireContext(), "Jumlah minimal 1")
 
             for (i in CartList.CardData) {
                 if (i.product.id == productId) {
@@ -84,7 +92,7 @@ class DetailProductFragment : Fragment() {
     }
 
     fun showData() {
-        val id = requireActivity().intent.getIntExtra("id", 0)
+        val id = requireArguments().getInt("id", 0)
         viewModel.getProductById(id)
         viewModel.result.observe(viewLifecycleOwner) {state ->
             when (state) {
@@ -94,10 +102,6 @@ class DetailProductFragment : Fragment() {
                     binding.layoutBtn.visibility = View.GONE
                 }
                 is State.Success -> {
-                    binding.pbLoading.visibility = View.GONE
-                    binding.layoutContent.visibility = View.VISIBLE
-                    binding.layoutBtn.visibility = View.VISIBLE
-
                     productId = state.data.id
                     name = state.data.name
                     category = state.data.category
@@ -114,6 +118,11 @@ class DetailProductFragment : Fragment() {
                     Glide.with(requireContext())
                         .load(state.data.image)
                         .into(binding.imgImage)
+
+
+                    binding.pbLoading.visibility = View.GONE
+                    binding.layoutContent.visibility = View.VISIBLE
+                    binding.layoutBtn.visibility = View.VISIBLE
                 }
                 is State.Error -> {
                     Helper.showErrorToast(requireContext(), state.message)
