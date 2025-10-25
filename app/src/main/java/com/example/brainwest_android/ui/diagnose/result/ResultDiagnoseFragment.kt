@@ -77,7 +77,15 @@ class ResultDiagnoseFragment : Fragment() {
             else -> "Kesehatan Anda sangat baik! Terus pertahankan gaya hidup sehat dan jadikan kebiasaan baik ini sebagai contoh bagi orang lain."
         }
 
+        val risk = when {
+            percent <= 20 -> "Tinggi"
+            percent <= 50 -> "Sedang"
+            percent <= 80 -> "Rendah"
+            else -> "Sangat Rendah"
+        }
+
         binding.tvExlpanation.text = explanation
+        binding.tvRisk.text = risk
 
         // Tampilkan kondisi dan rekomendasi berdasarkan skor
         showCondition(totalScore)

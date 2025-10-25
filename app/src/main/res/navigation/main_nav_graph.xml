@@ -64,6 +64,11 @@
         tools:layout="@layout/fragment_community"
         android:name="com.example.brainwest_android.ui.community.list.CommunityFragment"/>
 
+    <fragment
+        android:id="@+id/profileFragment"
+        tools:layout="@layout/fragment_profile"
+        android:name="com.example.brainwest_android.ui.profile.ProfileFragment"/>
+
 
 
 </navigation>

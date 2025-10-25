@@ -80,6 +80,10 @@ class MainActivity : AppCompatActivity() {
                         navController.navigate(R.id.communityFragment)
                         true
                     }
+                    R.id.profileMenu -> {
+                        navController.navigate(R.id.profileFragment)
+                        true
+                    }
                     else -> false
                 }
             }
@@ -100,6 +104,12 @@ class MainActivity : AppCompatActivity() {
 //                        }
                     }
                     R.id.communityFragment -> {
+                        binding.frameNavbar.visibility = View.VISIBLE
+//                        binding.frameNavbar.doOnLayout {
+//                            moveIndicatorTo(R.id.eduMenu)
+//                        }
+                    }
+                    R.id.profileFragment -> {
                         binding.frameNavbar.visibility = View.VISIBLE
 //                        binding.frameNavbar.doOnLayout {
 //                            moveIndicatorTo(R.id.eduMenu)
