@@ -70,10 +70,9 @@ class HistoryCommunityFragment : Fragment() {
                 is State.Error -> {
                     binding.pbLoading.visibility = View.GONE
                     binding.rvHistory.visibility = View.VISIBLE
+                    viewModel.getHistoryMessage(requireContext())
                 }
             }
         }
     }
-
-
 }

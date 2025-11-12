@@ -41,6 +41,7 @@ class ChatCommunityAdapter(
     inner class ReceivedMessageViewHolder(val binding: ItemMessageReceiverCommunityBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(message: CommunityMessage) {
+            binding.tvUsername.text = message.sender_name
             binding.tvChat.text = message.message
             binding.tvTime.text = formatTimestamp(message.timestamp)
         }
@@ -77,6 +78,8 @@ class ChatCommunityAdapter(
         messages.addAll(newMessages)
         notifyDataSetChanged()
     }
+
+
 
 //    fun addMessage(message: CommunityMessage) {
 //        messages.add(message)

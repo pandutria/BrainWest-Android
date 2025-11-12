@@ -3,17 +3,23 @@ package com.example.brainwest_android.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.brainwest_android.data.model.CommunityHistory
 import com.example.brainwest_android.data.model.CommunityHistoryMessage
 import com.example.brainwest_android.databinding.ItemHistoryConsultationBinding
 
 class HistoryCommunityAdapter(
-    private val list: MutableList<CommunityHistoryMessage> = mutableListOf(),
-    private val onClick: (CommunityHistoryMessage) -> Unit
+    private val list: MutableList<CommunityHistory> = mutableListOf(),
+    private val onClick: (CommunityHistory) -> Unit
 ): RecyclerView.Adapter<HistoryCommunityAdapter.ViewHolder>() {
     class ViewHolder(val binding: ItemHistoryConsultationBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(history: CommunityHistoryMessage, onClick: (CommunityHistoryMessage) -> Unit) {
+        fun bind(history: CommunityHistory, onClick: (CommunityHistory) -> Unit) {
             binding.tvName.text = history.group.name
-            binding.tvLastMessage.text = history.message
+            binding.tvLastMessage.text = "Lihat riwayat lengkap, termasuk detail percakapan dan informasi lainnya dengan mengetuk di sini."
+
+            Glide.with(binding.root.context)
+                .load(history.group.image_logo)
+                .into(binding.imgImage)
 
             binding.root.setOnClickListener {
                 onClick(history)
@@ -34,7 +40,7 @@ class HistoryCommunityAdapter(
         return list.size
     }
 
-    fun setData(data: List<CommunityHistoryMessage>) {
+    fun setData(data: List<CommunityHistory>) {
         list.clear()
         list.addAll(data)
         notifyDataSetChanged()

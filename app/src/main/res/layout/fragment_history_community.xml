@@ -80,7 +80,7 @@
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/poppins_regular"
-                    android:hint="@string/search_doctor"
+                    android:hint="@string/hint_community"
                     android:paddingLeft="15dp"
                     android:maxLines="1"
                     android:inputType="text"

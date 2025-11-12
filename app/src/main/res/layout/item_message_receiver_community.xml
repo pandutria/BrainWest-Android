@@ -52,7 +52,7 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:src="@drawable/example_videos"
+                android:src="@drawable/profile_dummy"
                 android:scaleType="centerCrop"/>
 
             <ImageView

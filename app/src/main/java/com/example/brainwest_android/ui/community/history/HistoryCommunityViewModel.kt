@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.brainwest_android.data.model.CommunityHistoryMessage
+import com.example.brainwest_android.data.model.CommunityHistory
 import com.example.brainwest_android.data.repository.ChatCommunityRepository
 import com.example.brainwest_android.data.repository.CommunityRepository
 import com.example.brainwest_android.data.state.State
@@ -14,8 +14,8 @@ import com.example.brainwest_android.utils.ApiErrorHandler
 import kotlinx.coroutines.launch
 
 class HistoryCommunityViewModel(val repo: CommunityRepository): ViewModel() {
-    private val _result = MutableLiveData<State<List<CommunityHistoryMessage>>>()
-    val result: MutableLiveData<State<List<CommunityHistoryMessage>>> get() = _result
+    private val _result = MutableLiveData<State<List<CommunityHistory>>>()
+    val result: MutableLiveData<State<List<CommunityHistory>>> get() = _result
 
     fun getHistoryMessage(context: Context) {
         viewModelScope.launch {

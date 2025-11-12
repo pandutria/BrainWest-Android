@@ -1,6 +1,7 @@
 package com.example.brainwest_android.data.network.api
 
 import com.example.brainwest_android.data.model.Community
+import com.example.brainwest_android.data.model.CommunityHistory
 import com.example.brainwest_android.data.model.CommunityHistoryMessage
 import com.example.brainwest_android.data.model.CommunityMember
 import com.example.brainwest_android.data.model.ConsultationHistoryMessage
@@ -129,6 +130,10 @@ interface ApiService {
 
     @GET("community/{id}")
     suspend fun getCommunity(@Path("id") id: Int): Response<BaseResponse<Community>>
+
+    @GET("community/history")
+    suspend fun getHistoryCommunity(@Header("Authorization") token: String)
+    : Response<BaseResponse<List<CommunityHistory>>>
 
     @POST("community/member")
     suspend fun postMemberCommunity(
