@@ -1,5 +1,6 @@
 package com.example.brainwest_android.ui.onboarding
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,8 @@ import android.widget.FrameLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
+import com.example.brainwest_android.data.local.TokenPref
+import com.example.brainwest_android.ui.parent.MainActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -23,7 +26,14 @@ class SplashFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             delay(3000)
+            if (TokenPref(requireContext()).getToken() == "")
             findNavController().navigate(R.id.action_splashFragment_to_onBoardingOneFragment)
+            else {
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                startActivity(intent)
+                requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+                requireActivity().finish()
+            }
         }
 
         return view

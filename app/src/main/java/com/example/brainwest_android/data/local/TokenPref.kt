@@ -13,7 +13,7 @@ class TokenPref(context: Context) {
     }
 
     fun getToken(): String {
-        return shared.getString(tokenKey, null).toString()
+        return shared.getString(tokenKey, "").toString()
     }
 
     fun removeToken() {

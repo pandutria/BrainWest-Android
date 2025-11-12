@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="48dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvUsername"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Lutfi Harimawan"
+            android:textSize="10sp"
+            android:layout_marginRight="5dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_medium"/>
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="09:00"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_medium"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="38dp"
+            android:layout_height="38dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/example_videos"
+                android:scaleType="centerCrop"/>
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_gravity="bottom|end"
+                android:src="@drawable/ic_online"/>
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="280dp"
+            android:text="Halo.👋 Saya teman baru Anda, Asisten Kesehatan. Anda dapat mengajukan pertanyaan apa pun kepada saya."
+            android:background="@drawable/bg_chat_receiver"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="7dp"
+            android:textSize="13sp"
+            android:layout_marginLeft="10dp"
+            android:justificationMode="inter_word"
+            android:fontFamily="@font/poppins_regular"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

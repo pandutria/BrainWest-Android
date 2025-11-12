@@ -1,12 +1,14 @@
 package com.example.brainwest_android.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.brainwest_android.R
 import com.example.brainwest_android.data.model.CommunityMessage
+import com.example.brainwest_android.databinding.ItemMessageReceiverCommunityBinding
+import com.example.brainwest_android.databinding.ItemMessageSenderCommunityBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class ChatCommunityAdapter(
     private val messages: MutableList<CommunityMessage>,
@@ -18,21 +20,29 @@ class ChatCommunityAdapter(
         private const val VIEW_TYPE_RECEIVED = 2
     }
 
-    inner class SentMessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val tvMessage: TextView = itemView.findViewById(R.id.tvChat)
-//        private val tvName: TextView = itemView.findViewById(R.id.tvSenderName)
-        fun bind(message: CommunityMessage) {
-            tvMessage.text = message.message
-//            tvName.text = "You"
+    private fun formatTimestamp(timestamp: Long): String {
+        return try {
+            val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
+            val netDate = Date(timestamp)
+            sdf.format(netDate)
+        } catch (e: Exception) {
+            ""
         }
     }
 
-    inner class ReceivedMessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val tvMessage: TextView = itemView.findViewById(R.id.tvChat)
-//        private val tvName: TextView = itemView.findViewById(R.id.tvSenderName)
+    inner class SentMessageViewHolder(val binding: ItemMessageSenderCommunityBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(message: CommunityMessage) {
-            tvMessage.text = message.message
-//            tvName.text = message.sender_name
+            binding.tvChat.text = message.message
+            binding.tvTime.text = formatTimestamp(message.timestamp)
+        }
+    }
+
+    inner class ReceivedMessageViewHolder(val binding: ItemMessageReceiverCommunityBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(message: CommunityMessage) {
+            binding.tvChat.text = message.message
+            binding.tvTime.text = formatTimestamp(message.timestamp)
         }
     }
 
@@ -42,24 +52,25 @@ class ChatCommunityAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
         return if (viewType == VIEW_TYPE_SENT) {
-            val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_message_sender, parent, false)
-            SentMessageViewHolder(view)
+            val binding = ItemMessageSenderCommunityBinding.inflate(inflater, parent, false)
+            SentMessageViewHolder(binding)
         } else {
-            val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_message_receiver, parent, false)
-            ReceivedMessageViewHolder(view)
+            val binding = ItemMessageReceiverCommunityBinding.inflate(inflater, parent, false)
+            ReceivedMessageViewHolder(binding)
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val message = messages[position]
+        when (holder) {
+            is SentMessageViewHolder -> holder.bind(message)
+            is ReceivedMessageViewHolder -> holder.bind(message)
         }
     }
 
     override fun getItemCount(): Int = messages.size
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val message = messages[position]
-        if (holder is SentMessageViewHolder) holder.bind(message)
-        else if (holder is ReceivedMessageViewHolder) holder.bind(message)
-    }
 
     fun setMessages(newMessages: List<CommunityMessage>) {
         messages.clear()
@@ -67,8 +78,8 @@ class ChatCommunityAdapter(
         notifyDataSetChanged()
     }
 
-    fun addMessage(message: CommunityMessage) {
-        messages.add(message)
-        notifyItemInserted(messages.size - 1)
-    }
+//    fun addMessage(message: CommunityMessage) {
+//        messages.add(message)
+//        notifyItemInserted(messages.size - 1)
+//    }
 }
