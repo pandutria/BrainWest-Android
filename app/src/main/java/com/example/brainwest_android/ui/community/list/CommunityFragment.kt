@@ -2,10 +2,14 @@ package com.example.brainwest_android.ui.community.list
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.brainwest_android.R
@@ -33,6 +37,8 @@ class CommunityFragment : Fragment() {
     lateinit var adapter: CommunityAdapter
     var group_id = 0
 
+    private var backPressedTime: Long = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,7 +53,20 @@ class CommunityFragment : Fragment() {
             requireActivity().overridePendingTransition(
                 R.anim.zoom_fade_in,
                 R.anim.zoom_fade_out
-            )
+             )
+        }
+
+        binding.etSearch.setOnFocusChangeListener { view, hasFocus ->
+            val mainActivity = requireActivity() as MainActivity
+            if (hasFocus) {
+                mainActivity.binding.frameNavbar.visibility = View.GONE
+            } else {
+                mainActivity.binding.frameNavbar.visibility = View.VISIBLE
+            }
+        }
+
+        binding.root.setOnClickListener {
+            Helper.clearFocusOnEdtText(requireContext(), binding.etSearch)
         }
 
         bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet)
@@ -79,6 +98,10 @@ class CommunityFragment : Fragment() {
         }
 
         showData()
+
+        binding.root.setOnClickListener {
+            Helper.clearFocusOnEdtText(requireContext(), binding.etSearch)
+        }
 
         binding.etSearch.setOnClickListener {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
@@ -199,12 +222,23 @@ class CommunityFragment : Fragment() {
                     binding.pbLoading.visibility = View.VISIBLE
                     binding.rvCommunity.visibility = View.GONE
                     Helper.showErrorToast(requireContext(), state.message)
-
-            }}
+                }
+            }
         }
 
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback {
+            if (backPressedTime + 2000 > System.currentTimeMillis()) {
+                requireActivity().finish()
+            } else {
+                Toast.makeText(requireContext(), "Klik sekali lagi untuk keluar", Toast.LENGTH_SHORT).show()
+            }
+            backPressedTime = System.currentTimeMillis()
+        }
     }
 
     fun joinCommunity() {

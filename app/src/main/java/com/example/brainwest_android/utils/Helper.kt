@@ -4,13 +4,22 @@ import android.content.Context
 import android.graphics.Color
 import android.util.Log
 import android.view.Gravity
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
 import com.example.brainwest_android.R
 import io.github.muddz.styleabletoast.StyleableToast
 
 object Helper {
     fun showErrorLog(message: String? = null) {
         Log.d("AppError", "Error : $message")
+    }
+
+    fun clearFocusOnEdtText(context: Context, edtText: EditText) {
+        edtText.clearFocus()
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(edtText.windowToken, 0)
     }
 
     fun showSuccessToast(context: Context, message: String) {

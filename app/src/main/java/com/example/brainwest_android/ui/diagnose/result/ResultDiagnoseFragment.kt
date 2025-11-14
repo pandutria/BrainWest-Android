@@ -87,7 +87,6 @@ class ResultDiagnoseFragment : Fragment() {
         binding.tvExlpanation.text = explanation
         binding.tvRisk.text = risk
 
-        // Tampilkan kondisi dan rekomendasi berdasarkan skor
         showCondition(totalScore)
         showRecomendation(totalScore)
     }

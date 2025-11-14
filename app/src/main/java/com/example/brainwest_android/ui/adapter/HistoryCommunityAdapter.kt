@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.brainwest_android.data.model.CommunityHistory
-import com.example.brainwest_android.data.model.CommunityHistoryMessage
 import com.example.brainwest_android.databinding.ItemHistoryConsultationBinding
 
 class HistoryCommunityAdapter(

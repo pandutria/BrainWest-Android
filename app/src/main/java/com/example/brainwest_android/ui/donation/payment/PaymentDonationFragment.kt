@@ -1,6 +1,7 @@
 package com.example.brainwest_android.ui.donation.payment
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
@@ -32,6 +35,10 @@ class PaymentDonationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showSnap()
+
+        requireActivity().onBackPressedDispatcher.addCallback {
+            Toast.makeText(requireContext(), "Dilarang keluar", Toast.LENGTH_LONG).show()
+        }
     }
 
     @SuppressLint("SetJavaScriptEnabled")

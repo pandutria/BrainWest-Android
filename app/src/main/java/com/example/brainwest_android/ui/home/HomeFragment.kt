@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import com.example.brainwest_android.ui.parent.ChatBotActivity
 import com.example.brainwest_android.R
@@ -36,6 +38,8 @@ class HomeFragment : Fragment() {
 
     lateinit var productAdapter: ProductAdapter
 
+    private var backPressedTime: Long = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,6 +61,18 @@ class HomeFragment : Fragment() {
         showData()
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback {
+            if (backPressedTime + 2000 > System.currentTimeMillis()) {
+                requireActivity().finish()
+            } else {
+                Toast.makeText(requireContext(), "Klik sekali lagi untuk keluar", Toast.LENGTH_SHORT).show()
+            }
+            backPressedTime = System.currentTimeMillis()
+        }
     }
 
     fun navigate() {

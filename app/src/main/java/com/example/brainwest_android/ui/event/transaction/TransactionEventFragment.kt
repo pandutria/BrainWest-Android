@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
@@ -32,7 +34,12 @@ class TransactionEventFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showSnap()
+
+        requireActivity().onBackPressedDispatcher.addCallback {
+            Toast.makeText(requireContext(), "Dilarang keluar", Toast.LENGTH_LONG)
+        }
     }
+
 
     @SuppressLint("SetJavaScriptEnabled")
     fun showSnap() {

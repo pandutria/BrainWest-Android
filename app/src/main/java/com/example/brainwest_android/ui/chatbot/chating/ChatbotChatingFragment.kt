@@ -19,6 +19,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +29,7 @@ import com.example.brainwest_android.data.network.response.gemini.GeminiChatMess
 import com.example.brainwest_android.data.repository.GeminiRepository
 import com.example.brainwest_android.databinding.FragmentChatbotChatingBinding
 import com.example.brainwest_android.ui.adapter.ChatBotAdapter
+import com.example.brainwest_android.utils.Helper
 import java.util.regex.Pattern
 
 
@@ -58,6 +60,10 @@ class ChatbotChatingFragment : Fragment() {
 
         binding.btnMicrophone.setOnClickListener {
             startSpeechToText()
+        }
+
+        binding.root.setOnClickListener {
+            Helper.clearFocusOnEdtText(requireContext(), binding.etMessage)
         }
 
         adapter = ChatBotAdapter(mutableListOf())
@@ -92,6 +98,13 @@ class ChatbotChatingFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback {
+            findNavController().popBackStack()
+        }
     }
 
     private fun showTypingEffect(fullMessage: GeminiChatMessage) {

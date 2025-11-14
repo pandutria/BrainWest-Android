@@ -36,6 +36,12 @@ class LoginFragment : Fragment() {
 
         handleLogin()
 
+
+        binding.root.setOnClickListener {
+            binding.etUsername.clearFocus()
+            Helper.clearFocusOnEdtText(requireActivity(), binding.etPassword)
+        }
+
         binding.etUsername.setText("dapi")
         binding.etPassword.setText("dapi123")
 

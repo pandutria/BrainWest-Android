@@ -30,6 +30,13 @@ class RegisterFragment : Fragment() {
         binding.tvLogin.setOnClickListener {
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
+
+        binding.root.setOnClickListener {
+            Helper.clearFocusOnEdtText(requireContext(), binding.etFullname)
+            Helper.clearFocusOnEdtText(requireContext(), binding.etPassword)
+            Helper.clearFocusOnEdtText(requireContext(), binding.etUsername)
+        }
+
         handleRegister()
 
         return binding.root
