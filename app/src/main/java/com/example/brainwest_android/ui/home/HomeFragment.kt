@@ -54,6 +54,7 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireActivity(), ProductActivity::class.java)
             intent.putExtra("product_id", product.id)
             intent.putExtra("open_detail_direct", true)
+            intent.putExtra("from_main", true)
             startActivity(intent)
             requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
         }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -43,10 +44,18 @@ class DetailProductFragment : Fragment() {
 
         binding.btnBack.setOnClickListener {
             val navController = findNavController()
+
+            val fromMain = requireActivity().intent.getBooleanExtra("from_main", false)
+
+            if (fromMain) {
+                requireActivity().finish()
+                requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+                return@setOnClickListener
+            }
+
             val canPop = navController.popBackStack()
 
             if (!canPop) {
-                // Kalau nggak bisa pop (berarti fragment ini dibuka langsung)
                 requireActivity().finish()
                 requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
             }
@@ -89,6 +98,28 @@ class DetailProductFragment : Fragment() {
         showData()
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback {
+            val navController = findNavController()
+
+            val fromMain = requireActivity().intent.getBooleanExtra("from_main", false)
+
+            if (fromMain) {
+                requireActivity().finish()
+                requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+                return@addCallback
+            }
+
+            val canPop = navController.popBackStack()
+
+            if (!canPop) {
+                requireActivity().finish()
+                requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+            }
+        }
     }
 
     fun showData() {

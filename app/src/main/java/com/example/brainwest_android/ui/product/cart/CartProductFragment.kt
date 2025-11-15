@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -114,6 +115,7 @@ class CartProductFragment : Fragment() {
             val intent = Intent(requireActivity(), ProductActivity::class.java)
             intent.putExtra("from", "list")
             startActivity(intent)
+            requireActivity().finish()
             requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
         }
 
@@ -140,6 +142,17 @@ class CartProductFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback {
+            val intent = Intent(requireActivity(), ProductActivity::class.java)
+            intent.putExtra("from", "list")
+            startActivity(intent)
+            requireActivity().finish()
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+        }
     }
 
     fun showData() {

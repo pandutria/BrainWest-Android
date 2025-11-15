@@ -41,9 +41,9 @@ class LoginFragment : Fragment() {
             binding.etUsername.clearFocus()
             Helper.clearFocusOnEdtText(requireActivity(), binding.etPassword)
         }
-
-        binding.etUsername.setText("dapi")
-        binding.etPassword.setText("dapi123")
+//
+//        binding.etUsername.setText("dapi")
+//        binding.etPassword.setText("dapi123")
 
         return binding.root
     }

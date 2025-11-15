@@ -71,7 +71,6 @@ class ListProductFragment : Fragment() {
                 val query = p0.toString().trim().lowercase()
                 if (query.isNotEmpty()) adapter.setData(list.filter { x -> x.name.lowercase().contains(query) })
                 else adapter.setData(list)
-
             }
         })
 

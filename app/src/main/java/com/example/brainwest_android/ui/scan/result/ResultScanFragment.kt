@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import com.example.brainwest_android.R
 import com.example.brainwest_android.databinding.FragmentResultScanBinding
@@ -55,7 +56,6 @@ class ResultScanFragment : Fragment() {
         val prediction = arguments?.getString("prediction") ?: "unknown"
         val rawConfidence = arguments?.getDouble("confidence") ?: 0.0
 
-        // Jika prediksi "notumor", tampilkan confidence 100%
         val percent = if (prediction.lowercase() == "notumor" || prediction.lowercase() == "no_tumor") {
             100
         } else {
@@ -109,6 +109,14 @@ class ResultScanFragment : Fragment() {
 
         showCondition(prediction)
         showRecomendation(prediction)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback {
+            requireActivity().finish()
+            requireActivity().overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+        }
     }
 
     private fun showCondition(prediction: String) {
