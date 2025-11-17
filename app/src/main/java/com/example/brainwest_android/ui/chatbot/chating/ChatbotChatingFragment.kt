@@ -81,7 +81,7 @@ class ChatbotChatingFragment : Fragment() {
                 val userMsg = GeminiChatMessage(message = message, isUser = true)
                 adapter.addMessage(userMsg)
                 binding.rvChat.scrollToPosition(adapter.itemCount - 1)
-                viewModel.askGemini("AIzaSyDqD7S1HKYrwCv4ddpPsyKqw7JmXoU91x8", message)
+                viewModel.askGemini("AIzaSyAbiU96jeJBTQ0wm7x7zVhnZ3fVHEyRzCg", message)
                 binding.etMessage.text.clear()
                 binding.etMessage.clearFocus()
                 val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
